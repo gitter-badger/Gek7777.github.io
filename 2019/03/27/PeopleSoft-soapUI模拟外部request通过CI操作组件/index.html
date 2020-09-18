@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="soapUI模拟外部request请求 通过CI 操作组件基本流程：创建消息（包括请求消息和响应消息），服务，服务操作， 创建package class ，使用soapUI 模拟外部request请求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PeopleSoft-soapUI模拟外部request通过CI操作组件">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/PeopleSoft-soapUI%E6%A8%A1%E6%8B%9F%E5%A4%96%E9%83%A8request%E9%80%9A%E8%BF%87CI%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Gek&#39;Blog">
+<meta property="og:description" content="soapUI模拟外部request请求 通过CI 操作组件基本流程：创建消息（包括请求消息和响应消息），服务，服务操作， 创建package class ，使用soapUI 模拟外部request请求">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-12.png">
+<meta property="article:published_time" content="2019-03-27T00:39:29.000Z">
+<meta property="article:modified_time" content="2020-09-18T10:19:14.412Z">
+<meta property="article:author" content="Gek">
+<meta property="article:tag" content="PeopleSoft">
+<meta property="article:tag" content="Component Interface">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-1.png">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/03/27/PeopleSoft-soapUI%E6%A8%A1%E6%8B%9F%E5%A4%96%E9%83%A8request%E9%80%9A%E8%BF%87CI%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>PeopleSoft-soapUI模拟外部request通过CI操作组件 | Gek'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Gek'Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">98</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#soapUI%E6%A8%A1%E6%8B%9F%E5%A4%96%E9%83%A8request%E8%AF%B7%E6%B1%82-%E9%80%9A%E8%BF%87CI-%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">soapUI模拟外部request请求 通过CI 操作组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%88%9B%E5%BB%BA%E6%B6%88%E6%81%AF%E3%80%82%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF%E4%BD%BF%E7%94%A8%E5%8E%9F%E6%9C%89%E7%9A%84%E5%A4%B4%E8%A1%A8%E5%92%8C%E6%98%8E%E7%BB%86%E8%A1%A8%E7%BB%B4%E6%8A%A4%EF%BC%8C%E8%80%8C%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF%E9%9C%80%E8%A6%81%E6%96%B0%E5%BB%BA%E8%A1%A8%E7%BB%B4%E6%8A%A4%E3%80%82"><span class="nav-number">2.0.1.</span> <span class="nav-text">一、创建消息。请求消息使用原有的头表和明细表维护，而响应消息需要新建表维护。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%88%9B%E5%BB%BA-%E6%9C%8D%E5%8A%A1-%E4%B8%8E-%E6%9C%8D%E5%8A%A1%E6%93%8D%E4%BD%9C%E3%80%82"><span class="nav-number">2.0.2.</span> <span class="nav-text">二、创建 服务 与 服务操作。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%88%9B%E5%BB%BApackage-class-%E3%80%82"><span class="nav-number">2.0.3.</span> <span class="nav-text">三、创建package class 。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8soapUI%E6%A8%A1%E6%8B%9F%E5%A4%96%E9%83%A8request%E8%AF%B7%E6%B1%82"><span class="nav-number">2.0.4.</span> <span class="nav-text">四、使用soapUI模拟外部request请求</span></a></li></ol></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gek"
+      src="https://raw.githubusercontent.com/1041930407/cdn.io/master/header.jpg">
+  <p class="site-author-name" itemprop="name">Gek</p>
+  <div class="site-description" itemprop="description">生而知之者，上也；学而知之者，次也；困而学之，又其次也。困而不学，民斯为下矣！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gek7777" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gek7777" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhaolong@Chinese.com" title="E-Mail → mailto:zhaolong@Chinese.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/PeopleSoft-soapUI%E6%A8%A1%E6%8B%9F%E5%A4%96%E9%83%A8request%E9%80%9A%E8%BF%87CI%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/header.jpg">
+      <meta itemprop="name" content="Gek">
+      <meta itemprop="description" content="生而知之者，上也；学而知之者，次也；困而学之，又其次也。困而不学，民斯为下矣！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gek'Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PeopleSoft-soapUI模拟外部request通过CI操作组件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-27 08:39:29" itemprop="dateCreated datePublished" datetime="2019-03-27T08:39:29+08:00">2019-03-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="soapUI模拟外部request请求-通过CI-操作组件"><a href="#soapUI模拟外部request请求-通过CI-操作组件" class="headerlink" title="soapUI模拟外部request请求 通过CI 操作组件"></a>soapUI模拟外部request请求 通过CI 操作组件</h2><p><strong>基本流程：创建消息（包括请求消息和响应消息），服务，服务操作， 创建package class ，使用soapUI 模拟外部request请求</strong></p>
+<a id="more"></a>
+
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h4 id="一、创建消息。请求消息使用原有的头表和明细表维护，而响应消息需要新建表维护。"><a href="#一、创建消息。请求消息使用原有的头表和明细表维护，而响应消息需要新建表维护。" class="headerlink" title="一、创建消息。请求消息使用原有的头表和明细表维护，而响应消息需要新建表维护。"></a>一、创建消息。请求消息使用原有的头表和明细表维护，而响应消息需要新建表维护。</h4><ol>
+<li><p>创建 接口响应消息表  record 命名为：ZL_INT_ORD_RST ，向其中添加两个field，ZL_ORDERID和 MESSAGE_TEXT，并设置ZL_ORDERID为key，search key ，list box item。</p>
+</li>
+<li><p>在PS系统：主菜单–PeopleTools–集成代理程序–集成设置–消息目录下，添加新值。</p>
+<p>订单请求消息目录：①类型选择：行集合   ②名称：ZL_REQ_MESAG   ③版本：V1</p>
+<p>描述：订单请求消息目录。向根节点添加记录：</p>
+<p><img src="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-1.png"></p>
+<p>订单响应消息目录：①类型选择：行集合   ②名称：ZL_RESP_MESAGE  ③版本：V1</p>
+<p>描述：订单响应消息目录。向根节点添加记录：</p>
+<p><img src="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-2.png"></p>
+</li>
+</ol>
+<h4 id="二、创建-服务-与-服务操作。"><a href="#二、创建-服务-与-服务操作。" class="headerlink" title="二、创建 服务 与 服务操作。"></a>二、创建 服务 与 服务操作。</h4><ol>
+<li><p>在PS系统：主菜单–PeopleTools–集成代理程序–集成设置–服务目录下，添加新值。</p>
+<p><img src="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-3.png"></p>
+</li>
+<li><p>在PS系统：主菜单–PeopleTools–集成代理程序–集成设置–服务操作目录下，添加新值。</p>
+<p>​    <u>基于服务创建<strong>同名</strong>的服务操作</u>。赋权，生成路由，插入消息。</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-4.png"></p>
+<p><img src="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-5.png"></p>
+<p><img src="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-6.png"></p>
+<h4 id="三、创建package-class-。"><a href="#三、创建package-class-。" class="headerlink" title="三、创建package class 。"></a>三、创建package class 。</h4><ol>
+<li>在工程中插入Application Package : SIE_TRN2019_PKG（软件包名称），TRN2019（路径），右键路径，插入新建class类 ZL_ORDER_ON_REQU，代码如下：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> PS_PT:Integration:IRequestHandler;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 实现一个请求接口 PS_PT:Integration:IRequestHandler*/</span></span><br><span class="line">class ZL_ORDER_ON_REQU implements PS_PT:Integration:IRequestHandler</span><br><span class="line">	<span class="comment">/**构造方法*/</span></span><br><span class="line">   <span class="function">method <span class="title">ZL_ORDER_ON_REQU</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="comment">/**执行方法*/</span></span><br><span class="line">   <span class="function">method <span class="title">OnRequest</span><span class="params">(&amp;_MSG As Message)</span> Returns Message</span>;</span><br><span class="line">	<span class="comment">/**错误处理方法*/</span></span><br><span class="line">   <span class="function">method <span class="title">OnError</span><span class="params">(&amp;_MSG As Message)</span> Returns string</span>;</span><br><span class="line">end-<span class="class"><span class="keyword">class</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**声明调用的函数，位置*/</span></span><br><span class="line">Declare Function fun PeopleCode ZL_COMMITMENT.COMMITMENT_CNTL FieldFormula;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* constructor 构造器*/</span></span><br><span class="line">method ZL_ORDER_ON_REQU</span><br><span class="line">   %Super = create PS_PT:Integration:IRequestHandler();</span><br><span class="line">end-method;</span><br><span class="line"></span><br><span class="line">method OnRequest</span><br><span class="line">   /+ &amp;_MSG as Message +/</span><br><span class="line">   /+ Returns Message +/</span><br><span class="line">   /+ Extends/implements PS_PT:Integration:IRequestHandler.OnRequest +/</span><br><span class="line">   Local Message &amp;response;</span><br><span class="line">   Local XmlDoc &amp;requestDoc, &amp;responseDoc;</span><br><span class="line">   Local Rowset &amp;rst;</span><br><span class="line">   </span><br><span class="line">   Local integer &amp;I, &amp;J;</span><br><span class="line">   &amp;rst = &amp;_MSG.GetRowset(); <span class="comment">/*获取行消息集合*/</span></span><br><span class="line">   </span><br><span class="line">   <span class="comment">/** 接受函数返回值 */</span></span><br><span class="line">   Local <span class="keyword">boolean</span> &amp;ret = fun(&amp;rst);</span><br><span class="line"></span><br><span class="line">   <span class="comment">/** 获取请求msg中的0层的record */</span></span><br><span class="line">   Local Record &amp;hdl = &amp;rst.GetRow(<span class="number">1</span>).GetRecord(Record.ZL_ORDER_HEL);</span><br><span class="line">   </span><br><span class="line">   MessageBox(<span class="number">0</span>, <span class="string">&quot;&quot;</span>, <span class="number">9999</span>, <span class="number">9999</span>, <span class="string">&quot;&amp;ret===&quot;</span> | &amp;ret);</span><br><span class="line">   </span><br><span class="line">   <span class="comment">/** Local Rowset &amp;itmRst = &amp;rst.GetRow(1).GetRowset(Scroll.ZL_ORDER_ITEM);*/</span></span><br><span class="line">   </span><br><span class="line">   <span class="comment">/** 根据请求消息发送过来的smg中的订单ID删除消息响应目录表中的订单ID对应的record */</span></span><br><span class="line">   SQLExec(<span class="string">&quot;DELETE FROM PS_ZL_INT_ORD_RST WHERE ZL_ORDERID=:1&quot;</span>, &amp;hdl.ZL_ORDERID.Value);</span><br><span class="line">   <span class="comment">/** 在 消息响应目录表 创建新的record，此时是在component buffer*/</span></span><br><span class="line">   Local Record &amp;respRcd = CreateRecord(Record.ZL_INT_ORD_RST);</span><br><span class="line">	<span class="comment">/** 设置新建的record的orderID字段的值*/</span></span><br><span class="line">   &amp;respRcd.ZL_ORDERID.Value = &amp;hdl.ZL_ORDERID.Value;</span><br><span class="line">   <span class="comment">/** 根据fun函数返回结果设置新建record中MESSAGE_TEXT字段的值*/</span></span><br><span class="line">   If &amp;ret = True Then</span><br><span class="line">      &amp;respRcd.MESSAGE_TEXT.Value = <span class="string">&quot;订单接口数据同步成功。&quot;</span>;</span><br><span class="line">   Else</span><br><span class="line">      &amp;respRcd.MESSAGE_TEXT.Value = <span class="string">&quot;订单接口数据同步失败。&quot;</span>;</span><br><span class="line">   End-If;</span><br><span class="line">   </span><br><span class="line"><span class="comment">/** 将buffer中新建的record 插入数据库中*/</span></span><br><span class="line">   &amp;respRcd.Insert();</span><br><span class="line">   <span class="comment">/** 提交事务*/</span></span><br><span class="line">   CommitWork();</span><br><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment">   生产响应消息，针对ZL_ORDER_SRV服务操作</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">   &amp;response = CreateMessage(Operation.ZL_ORDER_SRV, %IntBroker_Response);</span><br><span class="line">   </span><br><span class="line">   <span class="comment">/**获得响应的rowset集合，里面是空的   */</span></span><br><span class="line">   Local Rowset &amp;respRst = &amp;response.GetRowset();</span><br><span class="line">   </span><br><span class="line">	<span class="comment">/** 根据record新建一个rowset*/</span></span><br><span class="line">   Local Rowset &amp;respRst1 = CreateRowset(Record.ZL_INT_ORD_RST);</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">   根据msg获得orderid的值查表ZL_INT_ORD_RST 然后添加到新建的rowset中。</span></span><br><span class="line"><span class="comment">   返回值：改变的行数。如果返回0，表示表中没有这条数据。</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">   Local integer &amp;numRowCount = &amp;respRst1.Fill(<span class="string">&quot;WHERE FILL.ZL_ORDERID=:1&quot;</span>, &amp;hdl.ZL_ORDERID.Value);</span><br><span class="line">   </span><br><span class="line">   <span class="comment">/** 判断是否有改变，进行提示 */</span></span><br><span class="line">   If &amp;numRowCount = <span class="number">0</span> Then</span><br><span class="line">      <span class="keyword">throw</span> CreateException(<span class="number">30002</span>, <span class="number">13</span>, <span class="string">&quot;无数据！&quot;</span>);</span><br><span class="line">   End-If;</span><br><span class="line">   <span class="comment">/** 将新建的rowset中的值复制到响应中的rowset中 */</span></span><br><span class="line">   &amp;respRst1.CopyTo(&amp;respRst);</span><br><span class="line">   <span class="comment">/**  发送响应消息  */</span></span><br><span class="line">   Return &amp;response;</span><br><span class="line">   </span><br><span class="line">end-method;</span><br><span class="line"></span><br><span class="line">method OnError</span><br><span class="line">   /+ &amp;_MSG as Message +/</span><br><span class="line">   /+ Returns String +/</span><br><span class="line">   /+ Extends/implements PS_PT:Integration:IRequestHandler.OnError +/</span><br><span class="line">   </span><br><span class="line">   Local integer &amp;nMsgNumber, &amp;nMsgSetNumber;</span><br><span class="line">   Local string &amp;sText; </span><br><span class="line">   &amp;nMsgNumber = &amp;_MSG.IBException.MessageNumber;</span><br><span class="line">   &amp;nMsgSetNumber = &amp;_MSG.IBException.MessageSetNumber;</span><br><span class="line">   &amp;sText = &amp;_MSG.IBException.ToString();</span><br><span class="line"></span><br><span class="line">   Return &amp;sText;</span><br><span class="line">   </span><br><span class="line">end-method;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>在ZL_COMMITMENT.COMMITMENT_CNTL Fieldformula 中编写PeopleCode，代码如下：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 声明变量 */</span></span><br><span class="line">Local ApiObject &amp;oSession, &amp;oZlOrdercomCi;</span><br><span class="line">Local ApiObject &amp;oZlOrderDetCollection, &amp;oZlOrderDet;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 定义了一个错误处理函数*/</span></span><br><span class="line"><span class="function">Function <span class="title">errorHandler</span><span class="params">()</span></span></span><br><span class="line"><span class="function">   Local ApiObject &amp;oPSMessageCollection, &amp;oPSMessage</span>;</span><br><span class="line">   Local number &amp;i;</span><br><span class="line">   Local string &amp;sErrMsgSetNum, &amp;sErrMsgNum, &amp;sErrMsgText, &amp;sErrType;</span><br><span class="line">   </span><br><span class="line">   &amp;oPSMessageCollection = &amp;oSession.PSMessages;</span><br><span class="line">   For &amp;i = <span class="number">1</span> To &amp;oPSMessageCollection.Count</span><br><span class="line">      &amp;oPSMessage = &amp;oPSMessageCollection.Item(&amp;i);</span><br><span class="line">      &amp;sErrMsgSetNum = &amp;oPSMessage.MessageSetNumber;</span><br><span class="line">      &amp;sErrMsgNum = &amp;oPSMessage.MessageNumber;</span><br><span class="line">      &amp;sErrMsgText = &amp;oPSMessage.Text;</span><br><span class="line">      rem &amp;fileLog.WriteLine(&amp;sErrType | <span class="string">&quot; (&quot;</span> | &amp;sErrMsgSetNum | <span class="string">&quot;,&quot;</span> | &amp;sErrMsgNum | <span class="string">&quot;) - &quot;</span> | &amp;sErrMsgText);</span><br><span class="line">      MessageBox(<span class="number">0</span>, <span class="string">&quot;&quot;</span>, <span class="number">9999</span>, <span class="number">9999</span>, <span class="string">&quot;&quot;</span> | &amp;sErrType | <span class="string">&quot; (&quot;</span> | &amp;sErrMsgSetNum | <span class="string">&quot;,&quot;</span> | &amp;sErrMsgNum | <span class="string">&quot;) - &quot;</span> | &amp;sErrMsgText);</span><br><span class="line">   End-For;</span><br><span class="line">   rem ***** Delete the Messages from the collection *****;</span><br><span class="line">   &amp;oPSMessageCollection.DeleteAll();</span><br><span class="line">End-Function;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 定义服务操作处理函数*/</span></span><br><span class="line"><span class="function">Function <span class="title">fun</span><span class="params">(&amp;rst)</span> Returns <span class="keyword">boolean</span></span>;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">try</span></span><br><span class="line">       <span class="comment">/** 获取到系统的session */</span></span><br><span class="line">      &amp;oSession = %Session;</span><br><span class="line">      <span class="comment">/** 设置session消息模式 */</span></span><br><span class="line">      &amp;oSession.PSMessagesMode = <span class="number">1</span>;</span><br><span class="line">      rem ***** Get the Component Interface *****;</span><br><span class="line">		<span class="comment">/** 获取到定义好的接口 */</span></span><br><span class="line">      &amp;oZlOrdercomCi = &amp;oSession.GetCompIntfc(CompIntfc.ZL_ORDERCOM_CI);</span><br><span class="line">      <span class="comment">/** 如果没有获取到接口，就报错 */</span></span><br><span class="line">      If &amp;oZlOrdercomCi = Null Then</span><br><span class="line">         errorHandler();</span><br><span class="line">         <span class="keyword">throw</span> CreateException(<span class="number">0</span>, <span class="number">0</span>, <span class="string">&quot; getCi faidled&quot;</span>);</span><br><span class="line">      End-If;</span><br><span class="line">      </span><br><span class="line">      rem ***** Set the Component Interface Mode *****;</span><br><span class="line"></span><br><span class="line">      &amp;oZlOrdercomCi.InteractiveMode = True;</span><br><span class="line">      &amp;oZlOrdercomCi.GetHistoryItems = True;</span><br><span class="line">      &amp;oZlOrdercomCi.EditHistoryItems = True;</span><br><span class="line">      </span><br><span class="line">		<span class="comment">/**获取接口对象 */</span></span><br><span class="line">      If Not &amp;oZlOrdercomCi.Get() Then</span><br><span class="line">         rem ***** Execute Create ******;</span><br><span class="line">			<span class="comment">/**  如果获取不到，创建一个新的接口对象*/</span></span><br><span class="line">         If Not &amp;oZlOrdercomCi.Create() Then;</span><br><span class="line">            rem ***** Unable to Create Component Interface <span class="keyword">for</span> the Add keys provided. *****;</span><br><span class="line">            errorHandler();</span><br><span class="line">            <span class="keyword">throw</span> CreateException(<span class="number">0</span>, <span class="number">0</span>, <span class="string">&quot;Create failed&quot;</span>);</span><br><span class="line">         End-If;</span><br><span class="line">      End-If;</span><br><span class="line">      </span><br><span class="line">		<span class="comment">/** 给接口中的参数赋值*/</span>				</span><br><span class="line">      &amp;oZlOrdercomCi.ZL_ORDERID = &amp;rst.getrow(<span class="number">1</span>).ZL_ORDER_HEL.ZL_ORDERID.VALUE;</span><br><span class="line"></span><br><span class="line">      &amp;oZlOrdercomCi.ZL_ORDERDESC = &amp;rst.getrow(<span class="number">1</span>).ZL_ORDER_HEL.ZL_ORDERDESC.VALUE;</span><br><span class="line">      <span class="comment">/** 获取接口对象中ZL_ORDER_DET集合*/</span></span><br><span class="line">      &amp;oZlOrderDetCollection = &amp;oZlOrdercomCi.ZL_ORDER_DET;</span><br><span class="line">      <span class="comment">/** 将集合的元素中的元素全部删除  */</span></span><br><span class="line">      Local integer &amp;i;</span><br><span class="line">      For &amp;i = &amp;oZlOrderDetCollection.count To <span class="number">1</span> Step - <span class="number">1</span></span><br><span class="line">         &amp;oZlOrderDetCollection.deleteItem(&amp;i);</span><br><span class="line">      End-For;</span><br><span class="line">      <span class="comment">/**  获取传入参数的rst中的1层的rowset*/</span></span><br><span class="line">      Local Rowset &amp;rowSet1 = &amp;rst.GetRow(<span class="number">1</span>).GetRowset(Scroll.ZL_ORDER_DET);</span><br><span class="line">      <span class="comment">/** for循环 对 对象中的集合中的元素的各个字段进行赋值*/</span></span><br><span class="line">      For &amp;i17 = <span class="number">1</span> To &amp;rowSet1.ActiveRowCount;</span><br><span class="line">	  <span class="comment">/**根据当前的下标数插入元素，</span></span><br><span class="line"><span class="comment">      	增加的是当前数的下一个元素</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">	&amp;oZlOrderDetCollection.insertItem(&amp;oZlOrderDetCollection.count);</span><br><span class="line">		<span class="comment">/** 获取当前数为下标数的元素 */</span></span><br><span class="line">         &amp;oZlOrderDet = &amp;oZlOrderDetCollection.Item(&amp;oZlOrderDetCollection.count);</span><br><span class="line">         </span><br><span class="line">         &amp;oZlOrderDet.ZL_ORDER_SUBID = &amp;rowSet1.GetRow(&amp;i17).ZL_ORDER_DET.ZL_ORDER_SUBID.Value;</span><br><span class="line">         </span><br><span class="line">         &amp;oZlOrderDet.ZL_ORDER_SUBTYPE = &amp;rowSet1.GetRow(&amp;i17).ZL_ORDER_DET.ZL_ORDER_SUBTYPE.Value;</span><br><span class="line">         </span><br><span class="line">         &amp;oZlOrderDet.ZL_ORDER_SUBDESC_1 = &amp;rowSet1.GetRow(&amp;i17).ZL_ORDER_DET.ZL_ORDER_SUBDESC.Value;</span><br><span class="line">         </span><br><span class="line">         &amp;oZlOrderDet.ZL_ORDERQUAN = &amp;rowSet1.GetRow(&amp;i17).ZL_ORDER_DET.ZL_ORDERQUAN.Value;</span><br><span class="line">         </span><br><span class="line">         &amp;oZlOrderDet.ZL_ORDERPRI = &amp;rowSet1.GetRow(&amp;i17).ZL_ORDER_DET.ZL_ORDERPRI.Value;</span><br><span class="line">         </span><br><span class="line">      End-For;</span><br><span class="line">      <span class="comment">/** </span></span><br><span class="line"><span class="comment">      调用对象的save()函数，（这里执行的是create操作）</span></span><br><span class="line"><span class="comment">      返回值：boolean类型，失败了返回false，成功了返回true。</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">      If Not &amp;oZlOrdercomCi.Save() Then;</span><br><span class="line">         Return False;</span><br><span class="line">      Else</span><br><span class="line">         Return True;</span><br><span class="line">      End-If;</span><br><span class="line">      </span><br><span class="line">   <span class="keyword">catch</span> Exception &amp;ex</span><br><span class="line">      </span><br><span class="line">   end-<span class="keyword">try</span>;</span><br><span class="line">   </span><br><span class="line">End-Function;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在服务操作中的处理程序 中 添加处理程序详情：</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-7.png"></p>
+<ol start="4">
+<li><strong>注意：这里不添加处理程序的话，在soapUI中会报错：执行到onRequest中断之类的错误。</strong></li>
+</ol>
+<h4 id="四、使用soapUI模拟外部request请求"><a href="#四、使用soapUI模拟外部request请求" class="headerlink" title="四、使用soapUI模拟外部request请求"></a>四、使用soapUI模拟外部request请求</h4><p><img src="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-8.png"></p>
+<p><img src="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-9.png"></p>
+<p><img src="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-10.png"></p>
+<p>打开soapUI，新建工程：</p>
+<p><img src="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-11.png"></p>
+<p><img src="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-12.png"></p>
+<p>得到代码如下，删除了后面两部分，似乎是关于多语言配置的：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">soapenv:Envelope</span> <span class="attr">xmlns:soapenv</span>=<span class="string">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span> <span class="attr">xmlns:zl</span>=<span class="string">&quot;http://xmlns.oracle.com/Enterprise/Tools/schemas/ZL_REQ_MESAG.V1&quot;</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 修改头部信息--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">soapenv:Header</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">wsse:Security</span> <span class="attr">soap:mustUnderstand</span>=<span class="string">&quot;1&quot;</span> <span class="attr">xmlns:soap</span>=<span class="string">&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot;</span> <span class="attr">xmlns:wsse</span>=<span class="string">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">wsse:UsernameToken</span> <span class="attr">wsu:Id</span>=<span class="string">&quot;UsernameToken-1&quot;</span> <span class="attr">xmlns:wsu</span>=<span class="string">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd&quot;</span>&gt;</span></span><br><span class="line">         	<span class="comment">&lt;!-- 这里是用户ID和密码，如果该用户没有改服务操作的权限，会报错：该用户未经授权无法调用服务操作 ZL_ORDER_SRV。--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">wsse:Username</span>&gt;</span>PS<span class="tag">&lt;/<span class="name">wsse:Username</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">wsse:Password</span> <span class="attr">Type</span>=<span class="string">&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText&quot;</span>&gt;</span>Abcd!234<span class="tag">&lt;/<span class="name">wsse:Password</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">wsse:UsernameToken</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">wsse:Security</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">soapenv:Header</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">   <span class="tag">&lt;<span class="name">soapenv:Body</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">zl:ZL_REQ_MESAG</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">zl:FieldTypes</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--You may enter the following 3 items in any order--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">zl:ZL_ORDER_HEL</span> <span class="attr">class</span>=<span class="string">&quot;R&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:ZL_ORDERID</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:ZL_ORDER_TEXT</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:ZL_ORDERDESC</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:ZL_ORDER_SUMMON</span> <span class="attr">type</span>=<span class="string">&quot;NUMBER&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">zl:ZL_ORDER_HEL</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">zl:ZL_ORDER_DET</span> <span class="attr">class</span>=<span class="string">&quot;R&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:ZL_ORDER_SUBID</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:ZL_ORDERID</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:ZL_ORDER_SUBTYPE</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:ZL_ORDER_SUBDESC</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:ZL_ORDERQUAN</span> <span class="attr">type</span>=<span class="string">&quot;NUMBER&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:ZL_ORDERPRI</span> <span class="attr">type</span>=<span class="string">&quot;NUMBER&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:ZL_ORDERMON</span> <span class="attr">type</span>=<span class="string">&quot;NUMBER&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">zl:ZL_ORDER_DET</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">zl:PSCAMA</span> <span class="attr">class</span>=<span class="string">&quot;R&quot;</span>&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:LANGUAGE_CD</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:AUDIT_ACTN</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:BASE_LANGUAGE_CD</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:MSG_SEQ_FLG</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:PROCESS_INSTANCE</span> <span class="attr">type</span>=<span class="string">&quot;NUMBER&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:PUBLISH_RULE_ID</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:MSGNODENAME</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">zl:PSCAMA</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">zl:FieldTypes</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">zl:MsgData</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--Zero or more repetitions:--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">zl:Transaction</span>&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--You may enter the following 2 items in any order--&gt;</span></span><br><span class="line">               <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">zl:ZL_ORDER_HEL</span> <span class="attr">class</span>=<span class="string">&quot;R&quot;</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">zl:ZL_ORDERID</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span>1001<span class="tag">&lt;/<span class="name">zl:ZL_ORDERID</span>&gt;</span></span><br><span class="line">                  <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">zl:ZL_ORDER_TEXT</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">zl:ZL_ORDER_TEXT</span>&gt;</span></span><br><span class="line">                  <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">zl:ZL_ORDERDESC</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span>2018年采购<span class="tag">&lt;/<span class="name">zl:ZL_ORDERDESC</span>&gt;</span></span><br><span class="line">                  <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">zl:ZL_ORDER_SUMMON</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">zl:ZL_ORDER_SUMMON</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">zl:ZL_ORDER_DET</span> <span class="attr">class</span>=<span class="string">&quot;R&quot;</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">zl:ZL_ORDER_SUBID</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">zl:ZL_ORDER_SUBID</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">zl:ZL_ORDERID</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">zl:ZL_ORDERID</span>&gt;</span></span><br><span class="line">                     <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">zl:ZL_ORDER_SUBTYPE</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span>p<span class="tag">&lt;/<span class="name">zl:ZL_ORDER_SUBTYPE</span>&gt;</span></span><br><span class="line">                     <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">zl:ZL_ORDER_SUBDESC</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span>垃圾采购<span class="tag">&lt;/<span class="name">zl:ZL_ORDER_SUBDESC</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">zl:ZL_ORDERQUAN</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span>10<span class="tag">&lt;/<span class="name">zl:ZL_ORDERQUAN</span>&gt;</span></span><br><span class="line">                     <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">zl:ZL_ORDERPRI</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span>10.23<span class="tag">&lt;/<span class="name">zl:ZL_ORDERPRI</span>&gt;</span></span><br><span class="line">                     <span class="comment">&lt;!--Optional:--&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">zl:ZL_ORDERMON</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">zl:ZL_ORDERMON</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;/<span class="name">zl:ZL_ORDER_DET</span>&gt;</span></span><br><span class="line">           </span><br><span class="line">               <span class="tag">&lt;/<span class="name">zl:ZL_ORDER_HEL</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">zl:Transaction</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">zl:MsgData</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">zl:ZL_REQ_MESAG</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">soapenv:Body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">soapenv:Envelope</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>点击左上角运行，右边出现如下代码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">soapenv:Envelope</span> <span class="attr">xmlns:soapenv</span>=<span class="string">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span> <span class="attr">xmlns:soapenc</span>=<span class="string">&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;</span> <span class="attr">xmlns:xsd</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">soapenv:Body</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ZL_RESP_MESAGE</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://peoplesoft.com/ZL_RESP_MESAGEResponse&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">FieldTypes</span>&gt;</span></span><br><span class="line">             </span><br><span class="line">            <span class="tag">&lt;<span class="name">ZL_INT_ORD_RST</span> <span class="attr">class</span>=<span class="string">&quot;R&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">ZL_ORDERID</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">MESSAGE_TEXT</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ZL_INT_ORD_RST</span>&gt;</span></span><br><span class="line">             </span><br><span class="line">            <span class="tag">&lt;<span class="name">PSCAMA</span> <span class="attr">class</span>=<span class="string">&quot;R&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">LANGUAGE_CD</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">AUDIT_ACTN</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">BASE_LANGUAGE_CD</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">MSG_SEQ_FLG</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">PROCESS_INSTANCE</span> <span class="attr">type</span>=<span class="string">&quot;NUMBER&quot;</span>/&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">PUBLISH_RULE_ID</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">MSGNODENAME</span> <span class="attr">type</span>=<span class="string">&quot;CHAR&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">PSCAMA</span>&gt;</span></span><br><span class="line">             </span><br><span class="line">         <span class="tag">&lt;/<span class="name">FieldTypes</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">MsgData</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Transaction</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">ZL_INT_ORD_RST</span> <span class="attr">class</span>=<span class="string">&quot;R&quot;</span>&gt;</span></span><br><span class="line">                   <span class="comment">&lt;!-- 输出返回的响应消息表中对应的数据 --&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">ZL_ORDERID</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span>1001<span class="tag">&lt;/<span class="name">ZL_ORDERID</span>&gt;</span></span><br><span class="line">                  <span class="comment">&lt;!-- 此处表示成功通过订单接口同步数据 --&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">MESSAGE_TEXT</span> <span class="attr">IsChanged</span>=<span class="string">&quot;Y&quot;</span>&gt;</span>订单接口数据同步成功。<span class="tag">&lt;/<span class="name">MESSAGE_TEXT</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">ZL_INT_ORD_RST</span>&gt;</span></span><br><span class="line">                </span><br><span class="line">               <span class="tag">&lt;<span class="name">PSCAMA</span> <span class="attr">class</span>=<span class="string">&quot;R&quot;</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">LANGUAGE_CD</span>&gt;</span>ZHS<span class="tag">&lt;/<span class="name">LANGUAGE_CD</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">AUDIT_ACTN</span>/&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">BASE_LANGUAGE_CD</span>&gt;</span>ZHS<span class="tag">&lt;/<span class="name">BASE_LANGUAGE_CD</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">MSG_SEQ_FLG</span>/&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">PROCESS_INSTANCE</span>&gt;</span>0<span class="tag">&lt;/<span class="name">PROCESS_INSTANCE</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">PUBLISH_RULE_ID</span>/&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">MSGNODENAME</span>/&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">PSCAMA</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Transaction</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">MsgData</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ZL_RESP_MESAGE</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">soapenv:Body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">soapenv:Envelope</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>思考：</strong></p>
+<p><strong>1、为什么当点击两次运行时，会出现插入失败，即自定义在fieldformula中的函数运行失败了？</strong></p>
+<p>​    这里和订单录入系统函数代码虽然是一样的，最终都是执行的save操作，但区别是：订单录入系统的save是执行的updatedata操作（覆盖操作），这里的save是执行create操作（新建，orderID是唯一的），所以，一个可以成功覆盖，另一个不能成功创建插入。还有一个是update操作，ID可以相同，但是子序列必须不同。</p>
+<p><strong>2、header中的配置从哪里获得的？</strong></p>
+<p>​    每个系统特有的，会给。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PeopleSoft/" rel="tag"># PeopleSoft</a>
+              <a href="/tags/Component-Interface/" rel="tag"># Component Interface</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/03/25/PeopleSoft-%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/" rel="prev" title="PeopleSoft-开发入门">
+                  <i class="fa fa-chevron-left"></i> PeopleSoft-开发入门
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/03/27/PeopleSoft-%E8%AE%A2%E5%8D%95%E5%BD%95%E5%85%A5%E7%B3%BB%E7%BB%9F-%E5%86%85%E9%83%A8%E8%B0%83%E7%94%A8CI/" rel="next" title="PeopleSoft-订单录入系统-内部调用CI">
+                  PeopleSoft-订单录入系统-内部调用CI <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gek</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">93k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:25</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+</body>
+</html>

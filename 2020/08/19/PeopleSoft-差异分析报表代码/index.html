@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="以下代码为差异分析报表AE报表，设计思路：将表中的每一条数据先插入一维数组中，然后将一维数组放入二维数组，再对比二维数组的相邻两条；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PeopleSoft-差异分析报表代码">
+<meta property="og:url" content="http://yoursite.com/2020/08/19/PeopleSoft-%E5%B7%AE%E5%BC%82%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8%E4%BB%A3%E7%A0%81/index.html">
+<meta property="og:site_name" content="Gek&#39;Blog">
+<meta property="og:description" content="以下代码为差异分析报表AE报表，设计思路：将表中的每一条数据先插入一维数组中，然后将一维数组放入二维数组，再对比二维数组的相邻两条；">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-19T02:31:45.000Z">
+<meta property="article:modified_time" content="2020-09-18T10:19:14.431Z">
+<meta property="article:author" content="Gek">
+<meta property="article:tag" content="PeopleSoft">
+<meta property="article:tag" content="PeopleCode">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/08/19/PeopleSoft-%E5%B7%AE%E5%BC%82%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8%E4%BB%A3%E7%A0%81/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>PeopleSoft-差异分析报表代码 | Gek'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Gek'Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">98</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gek"
+      src="https://raw.githubusercontent.com/1041930407/cdn.io/master/header.jpg">
+  <p class="site-author-name" itemprop="name">Gek</p>
+  <div class="site-description" itemprop="description">生而知之者，上也；学而知之者，次也；困而学之，又其次也。困而不学，民斯为下矣！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gek7777" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gek7777" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhaolong@Chinese.com" title="E-Mail → mailto:zhaolong@Chinese.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/19/PeopleSoft-%E5%B7%AE%E5%BC%82%E5%88%86%E6%9E%90%E6%8A%A5%E8%A1%A8%E4%BB%A3%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/header.jpg">
+      <meta itemprop="name" content="Gek">
+      <meta itemprop="description" content="生而知之者，上也；学而知之者，次也；困而学之，又其次也。困而不学，民斯为下矣！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gek'Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PeopleSoft-差异分析报表代码
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-19 10:31:45" itemprop="dateCreated datePublished" datetime="2020-08-19T10:31:45+08:00">2020-08-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>66</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>以下代码为差异分析报表AE报表，设计思路：将表中的每一条数据先插入一维数组中，然后将一维数组放入二维数组，再对比二维数组的相邻两条；</p>
+<a id="more"></a>
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**================================================</span></span><br><span class="line"><span class="comment">任务:C_GP_RPT_0010</span></span><br><span class="line"><span class="comment">描述：差异分析表打上标记，然后分为两个部分</span></span><br><span class="line"><span class="comment">设计思路：将表中的每一条数据先插入一维数组中，然后将一维数组放入二维数组，再对比二维数组的相邻两条；</span></span><br><span class="line"><span class="comment">--------------------------------------------------------</span></span><br><span class="line"><span class="comment">作者：            操作时间：                操作：                     </span></span><br><span class="line"><span class="comment">SIE_ZL			2020-07-03                  创建</span></span><br><span class="line"><span class="comment">=================================================*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 导入公共函数包 */</span></span><br><span class="line"><span class="keyword">import</span> C_HRS_FUNC:*;</span><br><span class="line"></span><br><span class="line">REM <span class="keyword">import</span> C_COMMON_FUNC:UTILITY:*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 声明变量 */</span></span><br><span class="line">Local array of array of any &amp;arrRptPar; <span class="comment">/*定义报表参数列表*/</span></span><br><span class="line">Local array of any &amp;arrRptHead; <span class="comment">/*定义报表标题*/</span></span><br><span class="line"></span><br><span class="line">Local number &amp;seqNo; <span class="comment">/*序号*/</span></span><br><span class="line">Local string &amp;gpPayGroup;</span><br><span class="line">Local string &amp;calPrdId;</span><br><span class="line">Local string &amp;calPrdId1;</span><br><span class="line"></span><br><span class="line">rem Local string &amp;orderId;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 变量初始化 */</span></span><br><span class="line">&amp;arrRptPar = CreateArrayRept(CreateArrayAny(), <span class="number">0</span>).Clone();</span><br><span class="line">&amp;arrRptHead = CreateArrayAny();</span><br><span class="line">&amp;arrData = CreateArrayAny();</span><br><span class="line"></span><br><span class="line">&amp;oReport = create C_HRS_FUNC:REPORT();</span><br><span class="line">REM &amp;oUtility = create C_HRS_FUNC:UTILITY();</span><br><span class="line">REM &amp;oUtility2 = create C_COMMON_FUNC:UTILITY();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 取得查询页面输入的查询参数 */</span></span><br><span class="line">&amp;seqNo = <span class="number">1</span>; <span class="comment">/*序号*/</span></span><br><span class="line">&amp;gpPayGroup = C_RPT_0010_AET.GP_PAYGROUP; <span class="comment">/*薪资组*/</span></span><br><span class="line">&amp;calPrdId = C_RPT_0010_AET.CAL_PRD_ID; <span class="comment">/*开始月份*/</span></span><br><span class="line">&amp;calPrdId1 = C_RPT_0010_AET.CAL_PRD_ID1; <span class="comment">/*结束月份*/</span></span><br><span class="line">Warning (&amp;calPrdId | <span class="string">&quot;---&quot;</span> | &amp;calPrdId1);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*定义输出文件*/</span></span><br><span class="line">&amp;strTmplateId = <span class="string">&quot;差异分析表&quot;</span>;</span><br><span class="line">Local File &amp;rptFile = GetTempFile(%FilePath | &amp;strTmplateId | <span class="string">&quot;_&quot;</span> | %Date | <span class="string">&quot;.xls&quot;</span>, <span class="string">&quot;w&quot;</span>, <span class="string">&quot;u&quot;</span>, %FilePath_Absolute);</span><br><span class="line"><span class="comment">/*打印log*/</span></span><br><span class="line">Local File &amp;log = GetTempFile(%FilePath | <span class="string">&quot;log&quot;</span> | %Date | <span class="string">&quot;.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, <span class="string">&quot;u&quot;</span>, %FilePath_Absolute);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">================================================================</span></span><br><span class="line"><span class="comment">生成报表头信息</span></span><br><span class="line"><span class="comment">================================================================</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">Rem 求出报表描述名称;</span><br><span class="line">&amp;arrRptPar.Push(CreateArrayAny(<span class="string">&quot;报表名称&quot;</span>, <span class="string">&quot;差异分析表&quot;</span>));</span><br><span class="line"></span><br><span class="line">Rem 取报表的制表人(OPRID+空格+OPRID对应员工的NAME_FORMAL);</span><br><span class="line">SQLExec(<span class="string">&quot;SELECT NAME_DISPLAY FROM PS_PERSONAL_DATA WHERE EMPLID = :1&quot;</span>, %EmployeeId, &amp;strRptPersonNm);</span><br><span class="line">&amp;strRptPersonNm = %OperatorId | <span class="string">&quot; &quot;</span> | &amp;strRptPersonNm;</span><br><span class="line"></span><br><span class="line">&amp;arrRptPar.Push(CreateArrayAny(<span class="string">&quot;制表人&quot;</span>, &amp;strRptPersonNm));</span><br><span class="line">&amp;arrRptPar.Push(CreateArrayAny(<span class="string">&quot;制表日期&quot;</span>, String(%Date)));</span><br><span class="line">rem Local string &amp;cPrdId = C_RPT_0010_AET.CAL_PRD_ID.Value;</span><br><span class="line">&amp;arrRptPar.Push(CreateArrayAny(<span class="string">&quot;开始月份&quot;</span>, &amp;calPrdId));</span><br><span class="line">&amp;arrRptPar.Push(CreateArrayAny(<span class="string">&quot;对比月份&quot;</span>, &amp;calPrdId1));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">================================================================</span></span><br><span class="line"><span class="comment">生成报表数据列头信息</span></span><br><span class="line"><span class="comment">================================================================</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">Rem 设置报表格式信息;</span><br><span class="line">&amp;oReport.AddXlsHeader(&amp;rptFile);</span><br><span class="line">Rem 打印报表头信息;</span><br><span class="line">&amp;oReport.WritePara(&amp;rptFile, &amp;arrRptPar);</span><br><span class="line"></span><br><span class="line">Rem 初始化报表标题信息 <span class="number">8</span> ;</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;序号&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;工号&quot;</span>);</span><br><span class="line">rem &amp;arrRptHead.Push(<span class="string">&quot;员工记录&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;姓名&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;组织架构&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;岗位&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;入职时间&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;离职时间&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;薪资组&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;项目&quot;</span>);</span><br><span class="line"></span><br><span class="line">REM <span class="number">17</span>;</span><br><span class="line">&lt;*</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;应出勤&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;实际出勤&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;入离职缺勤&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;事假&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;病假&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;产假&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;旷工&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;缺卡次数&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;迟到早退次数&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;严重迟到早退（次）&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;延时/夜班次数&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;出差天数&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;平日加班(H)&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;周末加班(H)&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;节假日加班(H)&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;缺卡扣款&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;迟到扣款&quot;</span>);</span><br><span class="line">*&gt;</span><br><span class="line">REM <span class="number">25</span>;</span><br><span class="line"></span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;基本工资&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;岗位工资&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;月度绩效工资&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;计件工资&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;销售提成&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;加班工资&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;奖金&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;证书补贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;延时/夜班补贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;驻外津贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;特殊岗位津贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;笔记本电脑津贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;私车公用津贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;工龄津贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;高温津贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;通讯津贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;餐费津贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;探亲津贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;住房津贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;交通津贴&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;应发工资&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;个人社保合计&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;个人公积金合计&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;当月个税&quot;</span>);</span><br><span class="line">&amp;arrRptHead.Push(<span class="string">&quot;实发工资&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&amp;oReport.WriteColName(&amp;rptFile, &amp;arrRptHead);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">===============================================</span></span><br><span class="line"><span class="comment">============   生成报表主题   =================</span></span><br><span class="line"><span class="comment">===============================================</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">rem 获取主要数据;</span><br><span class="line">Local string &amp;sqlStr;</span><br><span class="line">&amp;sqlStr = <span class="string">&quot;  SELECT emplid ,CAL_PRD_ID, C_AMT_002, C_AMT_003, C_AMT_004, C_AMT_008, C_AMT_009, C_AMT_011, C_AMT_010, &quot;</span>;</span><br><span class="line">&amp;sqlStr = &amp;sqlStr | <span class="string">&quot; C_AMT_006, C_AMT_012, C_AMT_013, C_AMT_015, C_AMT_016, C_AMT_018, C_AMT_017, C_AMT_020,  &quot;</span>;</span><br><span class="line">&amp;sqlStr = &amp;sqlStr | <span class="string">&quot;  C_AMT_019, C_AMT_021, C_AMT_022, C_AMT_023, C_AMT_024, C_AMT_027, C_AMT_090, C_AMT_091, C_AMT_047, C_AMT_028  &quot;</span>;</span><br><span class="line">&amp;sqlStr = &amp;sqlStr | <span class="string">&quot;    FROM PS_C_WA_PAY_RSLT P WHERE P.GP_PAYGROUP = :1  AND P.CAL_PRD_ID IN (:2, :3 )  ORDER BY P.EMPLID, P.CAL_PRD_ID DESC, P.RSLT_SEG_NUM  &quot;</span>;</span><br><span class="line">Local SQL &amp;rowSql = CreateSQL(&amp;sqlStr, &amp;gpPayGroup, &amp;calPrdId, &amp;calPrdId1);</span><br><span class="line"></span><br><span class="line">Local array &amp;data1;</span><br><span class="line"></span><br><span class="line">Local array of array of any &amp;data2;</span><br><span class="line"></span><br><span class="line">&amp;data1 = CreateArrayAny().Clone();</span><br><span class="line"></span><br><span class="line">rem &amp;data2 = CreateArray(CreateArrayAny(), <span class="number">0</span>).Clone();</span><br><span class="line">&amp;data2 = CreateArrayRept(CreateArrayAny(), <span class="number">0</span>).Clone();</span><br><span class="line"></span><br><span class="line">Local string &amp;Name;</span><br><span class="line">Local string &amp;deptPath;</span><br><span class="line">Local string &amp;stdPosnDescr;</span><br><span class="line">Local string &amp;lastHireDt;</span><br><span class="line">Local string &amp;endDt;</span><br><span class="line">Local string &amp;gpGroup;</span><br><span class="line">Local string &amp;tmpEmplid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">While &amp;rowSql.Fetch(&amp;data1)</span><br><span class="line">   &amp;data2.Push(CreateArrayAny(&amp;data1));</span><br><span class="line">End-While;</span><br><span class="line"></span><br><span class="line">If &amp;data2.Len &gt; <span class="number">0</span> Then</span><br><span class="line">   Warning <span class="string">&quot;debug2&quot;</span> | &amp;data2.Len;</span><br><span class="line">   For &amp;i = <span class="number">1</span> To &amp;data2.Len</span><br><span class="line">      Warning <span class="string">&quot;debug3&quot;</span> | &amp;data2 [&amp;i][<span class="number">1</span>];</span><br><span class="line">      SQLExec(<span class="string">&quot; SELECT  JOB.NAME,JOB.c_short_dept_path,JOB.descr,JOB.last_hire_dt,JOB.termination_dt , job.gp_paygroup FROM PS_C_JOB_CURR_VW2 JOB WHERE JOB.emplid = :1 &quot;</span>, &amp;data2 [&amp;i][<span class="number">1</span>], &amp;Name, &amp;deptPath, &amp;stdPosnDescr, &amp;lastHireDt, &amp;endDt, &amp;gpGroup);</span><br><span class="line">      If &amp;i = <span class="number">2</span> Then</span><br><span class="line">         If &amp;data2 [<span class="number">2</span>][<span class="number">1</span>] &lt;&gt; &amp;data2 [<span class="number">1</span>][<span class="number">1</span>] Then</span><br><span class="line">            &amp;rptFile.WriteLine(<span class="string">&quot;&lt;tr&gt;&quot;</span>);</span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, &amp;seqNo, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 序号*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 工号*/</span></span><br><span class="line">            rem  &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 员工记录*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 姓名*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 组织架构*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 岗位*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 入职时间*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 离职时间*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 薪资组*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot;差异&quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 项目(期间)*/</span></span><br><span class="line">            </span><br><span class="line">            For &amp;j = <span class="number">3</span> To &amp;data2 [&amp;i].Len</span><br><span class="line">               &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot;0&quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 差异为0*/</span></span><br><span class="line">            End-For;</span><br><span class="line">            &amp;rptFile.WriteLine(<span class="string">&quot;&lt;/tr&gt;&quot;</span>);</span><br><span class="line">            &amp;seqNo = &amp;seqNo + <span class="number">1</span>;</span><br><span class="line">         Else</span><br><span class="line">            &amp;rptFile.WriteLine(<span class="string">&quot;&lt;tr&gt;&quot;</span>);</span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, &amp;seqNo, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 序号*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 工号*/</span></span><br><span class="line">            rem  &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 员工记录*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 姓名*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 组织架构*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 岗位*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 入职时间*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 离职时间*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 薪资组*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot;差异&quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 项目(期间)*/</span></span><br><span class="line">            </span><br><span class="line">            For &amp;j = <span class="number">3</span> To &amp;data2 [&amp;i].Len</span><br><span class="line">               &amp;oReport.WriteCellData(&amp;rptFile, &amp;data2 [<span class="number">1</span>][&amp;j] - &amp;data2 [<span class="number">2</span>][&amp;j], <span class="string">&quot;30&quot;</span>); <span class="comment">/* 计算差异*/</span></span><br><span class="line">            End-For;</span><br><span class="line">            &amp;rptFile.WriteLine(<span class="string">&quot;&lt;/tr&gt;&quot;</span>);</span><br><span class="line">            &amp;seqNo = &amp;seqNo + <span class="number">1</span>;</span><br><span class="line">         End-If;</span><br><span class="line">      End-If;</span><br><span class="line">      If &amp;i &gt; <span class="number">2</span> And</span><br><span class="line">            &amp;tmpEmplid &lt;&gt; &amp;data2 [&amp;i][<span class="number">1</span>] Then</span><br><span class="line">         </span><br><span class="line">         </span><br><span class="line">         If &amp;tmpEmplid &lt;&gt; &amp;data2 [&amp;i - <span class="number">2</span>][<span class="number">1</span>] Then</span><br><span class="line">            &amp;rptFile.WriteLine(<span class="string">&quot;&lt;tr&gt;&quot;</span>);</span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, &amp;seqNo, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 序号*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 工号*/</span></span><br><span class="line">            rem  &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 员工记录*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 姓名*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 组织架构*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 岗位*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 入职时间*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 离职时间*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 薪资组*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot;差异&quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 项目(期间)*/</span></span><br><span class="line">            </span><br><span class="line">            For &amp;j = <span class="number">3</span> To &amp;data2 [&amp;i].Len</span><br><span class="line">               &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot;0&quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 差异为0*/</span></span><br><span class="line">            End-For;</span><br><span class="line">            &amp;rptFile.WriteLine(<span class="string">&quot;&lt;/tr&gt;&quot;</span>);</span><br><span class="line">            &amp;seqNo = &amp;seqNo + <span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">         Else</span><br><span class="line">            </span><br><span class="line">            &amp;rptFile.WriteLine(<span class="string">&quot;&lt;tr&gt;&quot;</span>);</span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, &amp;seqNo, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 序号*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 工号*/</span></span><br><span class="line">            rem  &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 员工记录*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 姓名*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 组织架构*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 岗位*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 入职时间*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 离职时间*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 薪资组*/</span></span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot;差异&quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 项目(期间)*/</span></span><br><span class="line">            </span><br><span class="line">            For &amp;j = <span class="number">3</span> To &amp;data2 [&amp;i].Len</span><br><span class="line">               &amp;oReport.WriteCellData(&amp;rptFile, &amp;data2 [&amp;i - <span class="number">2</span>][&amp;j] - &amp;data2 [&amp;i - <span class="number">1</span>][&amp;j], <span class="string">&quot;30&quot;</span>); <span class="comment">/* 计算差异*/</span></span><br><span class="line">            End-For;</span><br><span class="line">            &amp;rptFile.WriteLine(<span class="string">&quot;&lt;/tr&gt;&quot;</span>);</span><br><span class="line">            &amp;seqNo = &amp;seqNo + <span class="number">1</span>;</span><br><span class="line">         End-If;</span><br><span class="line">         </span><br><span class="line">         </span><br><span class="line">      End-If;</span><br><span class="line">      </span><br><span class="line">      &amp;rptFile.WriteLine(<span class="string">&quot;&lt;tr&gt;&quot;</span>);</span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, &amp;seqNo, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 序号*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, &amp;data2 [&amp;i][<span class="number">1</span>], <span class="string">&quot;30&quot;</span>); <span class="comment">/* 工号*/</span></span><br><span class="line">      rem &amp;oReport.WriteCellData(&amp;rptFile, &amp;data2 [&amp;i][<span class="number">2</span>], <span class="string">&quot;30&quot;</span>); <span class="comment">/* 员工记录*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, &amp;Name, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 姓名*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, &amp;deptPath, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 组织架构*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, &amp;stdPosnDescr, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 岗位*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, &amp;lastHireDt, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 入职时间*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, &amp;endDt, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 离职时间*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, &amp;gpGroup, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 薪资组*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, &amp;data2 [&amp;i][<span class="number">2</span>], <span class="string">&quot;30&quot;</span>); <span class="comment">/* 项目(期间)*/</span></span><br><span class="line">      </span><br><span class="line">      For &amp;j = <span class="number">3</span> To &amp;data2 [&amp;i].Len</span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, &amp;data2 [&amp;i][&amp;j], <span class="string">&quot;30&quot;</span>);</span><br><span class="line">      End-For;</span><br><span class="line">      &amp;rptFile.WriteLine(<span class="string">&quot;&lt;/tr&gt;&quot;</span>);</span><br><span class="line">      &amp;tmpEmplid = &amp;data2 [&amp;i][<span class="number">1</span>];</span><br><span class="line">      </span><br><span class="line">   End-For;</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   If &amp;data2.Len = <span class="number">1</span> Then</span><br><span class="line">      &amp;rptFile.WriteLine(<span class="string">&quot;&lt;tr&gt;&quot;</span>);</span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, &amp;seqNo, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 序号*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 工号*/</span></span><br><span class="line">      rem  &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 员工记录*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 姓名*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 组织架构*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 岗位*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 入职时间*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 离职时间*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 薪资组*/</span></span><br><span class="line">      &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot;差异&quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 项目(期间)*/</span></span><br><span class="line">      </span><br><span class="line">      For &amp;j = <span class="number">3</span> To &amp;data2 [&amp;i].Len</span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot;0&quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 差异为0*/</span></span><br><span class="line">      End-For;</span><br><span class="line">      &amp;rptFile.WriteLine(<span class="string">&quot;&lt;/tr&gt;&quot;</span>);</span><br><span class="line">   End-If;</span><br><span class="line">   If &amp;data2.Len = <span class="number">2</span> Then</span><br><span class="line">      rem  ;</span><br><span class="line">   End-If;</span><br><span class="line">   If &amp;data2.Len &gt; <span class="number">2</span> Then</span><br><span class="line">      If &amp;data2 [&amp;data2.Len - <span class="number">1</span>][<span class="number">1</span>] &lt;&gt; &amp;data2 [&amp;data2.Len][<span class="number">1</span>] Then</span><br><span class="line">         &amp;rptFile.WriteLine(<span class="string">&quot;&lt;tr&gt;&quot;</span>);</span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, &amp;seqNo, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 序号*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 工号*/</span></span><br><span class="line">         rem  &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 员工记录*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 姓名*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 组织架构*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 岗位*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 入职时间*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 离职时间*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 薪资组*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot;差异&quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 项目(期间)*/</span></span><br><span class="line">         </span><br><span class="line">         For &amp;j = <span class="number">3</span> To &amp;data2 [&amp;data2.Len].Len</span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot;0&quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 差异为0*/</span></span><br><span class="line">         End-For;</span><br><span class="line">         &amp;rptFile.WriteLine(<span class="string">&quot;&lt;/tr&gt;&quot;</span>);</span><br><span class="line">      Else</span><br><span class="line">         &amp;rptFile.WriteLine(<span class="string">&quot;&lt;tr&gt;&quot;</span>);</span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, &amp;seqNo, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 序号*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 工号*/</span></span><br><span class="line">         rem  &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 员工记录*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 姓名*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 组织架构*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 岗位*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 入职时间*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 离职时间*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot; &quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 薪资组*/</span></span><br><span class="line">         &amp;oReport.WriteCellData(&amp;rptFile, <span class="string">&quot;差异&quot;</span>, <span class="string">&quot;30&quot;</span>); <span class="comment">/* 项目(期间)*/</span></span><br><span class="line">         </span><br><span class="line">         For &amp;j = <span class="number">3</span> To &amp;data2 [&amp;data2.Len].Len</span><br><span class="line">            &amp;oReport.WriteCellData(&amp;rptFile, &amp;data2 [&amp;data2.Len - <span class="number">1</span>][&amp;j] - &amp;data2 [&amp;data2.Len][&amp;j], <span class="string">&quot;30&quot;</span>); <span class="comment">/* 计算差异*/</span></span><br><span class="line">         End-For;</span><br><span class="line">         &amp;rptFile.WriteLine(<span class="string">&quot;&lt;/tr&gt;&quot;</span>);</span><br><span class="line">         </span><br><span class="line">      End-If;</span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">   End-If;</span><br><span class="line">End-If;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*打印结尾信息*/</span></span><br><span class="line">&amp;oReport.WriteEnding(&amp;rptFile);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&amp;log.Close();</span><br><span class="line">&amp;rptFile.Close();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PeopleSoft/" rel="tag"># PeopleSoft</a>
+              <a href="/tags/PeopleCode/" rel="tag"># PeopleCode</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/08/17/%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99/" rel="prev" title="变量函数命名规则">
+                  <i class="fa fa-chevron-left"></i> 变量函数命名规则
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/09/02/PeopleSoft-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E6%8E%A5%E5%8F%A3/" rel="next" title="PeopleSoft-调用外部接口">
+                  PeopleSoft-调用外部接口 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gek</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">93k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:25</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+</body>
+</html>

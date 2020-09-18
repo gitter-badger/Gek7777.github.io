@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="写在最前面：只是一些个人思考总结，有误处欢迎指正。&amp;emsp;&amp;emsp;现在是2018年10月24日，我经过三天的奋斗，终于搭建好了这个简单的博客。这个博客的搭建是完全免费的。主要是用hexo博客框架，生成静态页面，然后使用git版本控制工具把新的项目版本更新到Github上，利用GitHub Pages的项目静态页面展示功能展示页面。所以，感谢Gayhub-全球最大的同性交友网站。 &amp;emsp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的第一篇博客">
+<meta property="og:url" content="http://yoursite.com/2018/10/24/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="Gek&#39;Blog">
+<meta property="og:description" content="写在最前面：只是一些个人思考总结，有误处欢迎指正。&amp;emsp;&amp;emsp;现在是2018年10月24日，我经过三天的奋斗，终于搭建好了这个简单的博客。这个博客的搭建是完全免费的。主要是用hexo博客框架，生成静态页面，然后使用git版本控制工具把新的项目版本更新到Github上，利用GitHub Pages的项目静态页面展示功能展示页面。所以，感谢Gayhub-全球最大的同性交友网站。 &amp;emsp">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-10-24T10:49:31.000Z">
+<meta property="article:modified_time" content="2020-09-18T10:14:41.466Z">
+<meta property="article:author" content="Gek">
+<meta property="article:tag" content="Thinking">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2018/10/24/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>我的第一篇博客 | Gek'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Gek'Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">98</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2%EF%BC%9A%E5%8F%AA%E6%98%AF%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93%EF%BC%8C%E6%9C%89%E8%AF%AF%E5%A4%84%E6%AC%A2%E8%BF%8E%E6%8C%87%E6%AD%A3%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">写在最前面：只是一些个人思考总结，有误处欢迎指正。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9%E4%BA%86%E5%AD%A6Java%EF%BC%9FJava%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">为什么选择了学Java？Java的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%84%E5%BD%95%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">附录：</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gek"
+      src="https://raw.githubusercontent.com/1041930407/cdn.io/master/header.jpg">
+  <p class="site-author-name" itemprop="name">Gek</p>
+  <div class="site-description" itemprop="description">生而知之者，上也；学而知之者，次也；困而学之，又其次也。困而不学，民斯为下矣！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gek7777" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gek7777" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhaolong@Chinese.com" title="E-Mail → mailto:zhaolong@Chinese.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/24/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/header.jpg">
+      <meta itemprop="name" content="Gek">
+      <meta itemprop="description" content="生而知之者，上也；学而知之者，次也；困而学之，又其次也。困而不学，民斯为下矣！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gek'Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我的第一篇博客
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-10-24 18:49:31" itemprop="dateCreated datePublished" datetime="2018-10-24T18:49:31+08:00">2018-10-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-18 18:14:41" itemprop="dateModified" datetime="2020-09-18T18:14:41+08:00">2020-09-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="写在最前面：只是一些个人思考总结，有误处欢迎指正。"><a href="#写在最前面：只是一些个人思考总结，有误处欢迎指正。" class="headerlink" title="写在最前面：只是一些个人思考总结，有误处欢迎指正。"></a>写在最前面：只是一些个人思考总结，有误处欢迎指正。</h3><p>&emsp;&emsp;现在是2018年10月24日，我经过三天的奋斗，终于搭建好了这个简单的博客。这个博客的搭建是完全免费的。主要是用hexo博客框架，生成静态页面，然后使用git版本控制工具把新的项目版本更新到Github上，利用GitHub Pages的项目静态页面展示功能展示页面。所以，感谢Gayhub-全球最大的同性交友网站。</p>
+<p>&emsp;&emsp;因为此博客主要是用来记录自己平时学习的东西，并且将之前学习的前端知识运用起来，所以就没有特意的增加过多花里胡哨的功能，例如：评论功能，宠物功能等，毕竟是以记录知识，提升自己为主。(自己水平有限也是一部分原因。哭)</p>
+<a id="more"></a>
+
+<blockquote>
+<h3 id="为什么选择了学Java？Java的优点"><a href="#为什么选择了学Java？Java的优点" class="headerlink" title="为什么选择了学Java？Java的优点"></a>为什么选择了学Java？Java的优点</h3><p>以下答案引用互联网</p>
+<ol>
+<li>言语简练<br>&emsp;&emsp;比较C言语，JAVA言语更为简练。它经过提供根本的方法完结任务方针，所以使用JAVA你只需要理解一些根本的概念，就能够编写出合适各种情况的程序。</li>
+<li>安全性高<br>&emsp;&emsp;Java不支持指针，全部对内存的访问都必须经过对象的实例变量来实现，这样就防止了网络环境中的病毒的入侵，一起也避免了指针操作而发生的过错。</li>
+<li>可移植性高(非常重要)<br>&emsp;&emsp;JAVA当初的规划理念是一次编写，到处运行，因而JAVA言语在使用过程中就屏蔽掉了由平台形成的不同形成的障碍，使得JAVA程序能够方便地移植到网络上的不同机器，极大程度的进步的编程言语的可移植性。</li>
+<li>拥有多线程处理能力<br>&emsp;&emsp;多线程机制能够使应用程序并行处理，并且同步机制能够很大程度上进步同享数据的操作正确性。经过使用多线程，程序规划者能够分别用不同的线程完结特定的行为，而不需要采用全局的事情循环机制，实现交互、实时行为。</li>
+</ol>
+</blockquote>
+<p>&emsp;&emsp;从自己接触Java到现在，也已经七个月了。也曾经想过去参加培训班，但是那时候还是大三，课程还是有点紧，所以就开始了自己的自学之路。当时到B站搜索Java教程，最新的，于是从千峰教育老刘的视频入的门，然后加入了老刘的学生的群，也算是认识老刘了吧。下面是老刘的最新视频：</p>
+<blockquote><p>千锋最新JavaSE基础，最适合初学者的视频</p>
+<footer><strong>老刘</strong><cite><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av21995605">www.bilibili.com/video/av21995605</a></cite></footer></blockquote>
+<p>&emsp;&emsp;老刘的课，讲的很慢，我建议是用1.5倍速看，如果有其他的编程基础的话，2倍速食用更佳。但是，他讲的确实很仔细，基本上知识点都讲到了。所以，作为入门实在是合适不过了。注意：看完以后一定要自己敲一遍，笔记也是，要自己写一遍，不要以为看了就记住了。作为一个好的Coder，敲坏一把键盘，是一个java工程师的必经之路。</p>
+<p>&emsp;&emsp;把老刘的课看完，基本上也就掌握了JavaSE、Web基础、Mysql数据库这些基础的知识。到这里，已经可以做一一些小的网站demo了。甚至可以建立自己的动态博客，不是现在这种静态的，只不过很复杂，也很繁琐。</p>
+<p>&emsp;&emsp;那么，还需要更深层次的技术，那么就是框架了。框架的好处简单地说就是：不需要重复的造轮子。别人有的东西拿来用就好了，之前什么都需要自己造，现在可以直接用了，就很苏胡。这也是Java的封装机制的好处，我管你怎么实现呢，我拿来用先。不过，既然用别人的东西，那么你就必须遵守别人的规则，不过好在，规则几乎是统一的，毕竟大家都在用。so，Web框架部分，主要就是学习规则，例如：Spring、SpringMVC、MyBatis、Struts2、Hibernate等主流框架，每一个都自己的使用规范，那么学习它们的规范，就成了最基础的要求了。最后就是深入学习这些框架，这些可以在以后的工作中慢慢深入研究。</p>
+<p>&emsp;&emsp;接下来Web框架的进阶学习，那就是SpringBoot、还有SpringCloud，并发编程等知识我还没有学完，以后再总结吧。以我的经验，学完上面的知识，那么找工作应该是不成问题了。(大神勿喷)</p>
+<blockquote>
+<h3 id="附录："><a href="#附录：" class="headerlink" title="附录："></a>附录：</h3><p>铺垫知识：《计算机网络》、《数据结构与算法》，还有一些是学习过程中接触到的工具和技术，需要自己去找资料弄清楚。</p>
+<ul>
+<li>git 或 SVN 版本控制工具，相对而言，更喜欢 git。</li>
+<li>Maven 项目管理工具。</li>
+<li>Redis 存储系统，主要是做高速缓存用的。</li>
+<li>Linux 操作系统，了解基本的命令等。</li>
+<li>eclipse 开源开发软件 。</li>
+<li>IDEA 最好的Java开发工具(毕竟数据说话)。</li>
+<li>Chrome 谷歌浏览器，最好的测试浏览器。</li>
+<li>FireFox 火狐浏览器，感觉没有谷歌好用。</li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;投资是一生的事情，永远不要放下脚步，去学习，去接触新鲜事物，做一个永远热情洋溢的Coder~~</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Thinking/" rel="tag"># Thinking</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/10/27/%E6%90%AD%E5%BB%BASSM%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/" rel="next" title="搭建SSM项目练习">
+                  搭建SSM项目练习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gek</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">93k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:25</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+</body>
+</html>

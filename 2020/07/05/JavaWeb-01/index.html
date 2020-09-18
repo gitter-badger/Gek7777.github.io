@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="软件环境123456789Eclipse 和 MyEclipse2015Eclipse：免费，提供了一些javaEE开发需要的插件大部分企业会使用EclipseSpring	安装插件的过程：		eclipse里help 里inst software 搜索 Oxygen 选择Web,xml,JavaEE and OSGI		接受条款安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb-01">
+<meta property="og:url" content="http://yoursite.com/2020/07/05/JavaWeb-01/index.html">
+<meta property="og:site_name" content="Gek&#39;Blog">
+<meta property="og:description" content="软件环境123456789Eclipse 和 MyEclipse2015Eclipse：免费，提供了一些javaEE开发需要的插件大部分企业会使用EclipseSpring	安装插件的过程：		eclipse里help 里inst software 搜索 Oxygen 选择Web,xml,JavaEE and OSGI		接受条款安装">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-05T11:06:55.000Z">
+<meta property="article:modified_time" content="2020-09-18T10:19:14.318Z">
+<meta property="article:author" content="Gek">
+<meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/07/05/JavaWeb-01/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JavaWeb-01 | Gek'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Gek'Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">98</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">软件环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%86%9F%E6%82%89"><span class="nav-number">2.</span> <span class="nav-text">Tomcat从入门到熟悉</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B-S-%E5%92%8C-C"><span class="nav-number">2.1.</span> <span class="nav-text">B&#x2F;S 和 C&#x2F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">什么是服务器？</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gek"
+      src="https://raw.githubusercontent.com/1041930407/cdn.io/master/header.jpg">
+  <p class="site-author-name" itemprop="name">Gek</p>
+  <div class="site-description" itemprop="description">生而知之者，上也；学而知之者，次也；困而学之，又其次也。困而不学，民斯为下矣！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gek7777" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gek7777" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhaolong@Chinese.com" title="E-Mail → mailto:zhaolong@Chinese.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/JavaWeb-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/header.jpg">
+      <meta itemprop="name" content="Gek">
+      <meta itemprop="description" content="生而知之者，上也；学而知之者，次也；困而学之，又其次也。困而不学，民斯为下矣！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gek'Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaWeb-01
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-05 19:06:55" itemprop="dateCreated datePublished" datetime="2020-07-05T19:06:55+08:00">2020-07-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>34</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="软件环境"><a href="#软件环境" class="headerlink" title="软件环境"></a>软件环境</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Eclipse 和 MyEclipse2015</span><br><span class="line"></span><br><span class="line">Eclipse：免费，提供了一些javaEE开发需要的插件</span><br><span class="line">大部分企业会使用Eclipse</span><br><span class="line">Spring</span><br><span class="line"></span><br><span class="line">	安装插件的过程：</span><br><span class="line">		eclipse里help 里inst software 搜索 Oxygen 选择Web,xml,JavaEE and OSGI</span><br><span class="line">		接受条款安装</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="Tomcat从入门到熟悉"><a href="#Tomcat从入门到熟悉" class="headerlink" title="Tomcat从入门到熟悉"></a>Tomcat从入门到熟悉</h2><h3 id="B-S-和-C"><a href="#B-S-和-C" class="headerlink" title="B/S 和 C/"></a>B/S 和 C/</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">B/S:</span><br><span class="line">	浏览器和服务器架构</span><br><span class="line">	好处：</span><br><span class="line">		<span class="number">1.</span>不需要符合各种平台环境的客户端，有浏览器就可以了。</span><br><span class="line">		<span class="number">2.</span>更新方便，服务器更新，浏览器只要刷新就行了</span><br><span class="line">		</span><br><span class="line">C/S:</span><br><span class="line">	客户端和服务端架构</span><br><span class="line">	QQ 微信 快手</span><br><span class="line">	</span><br><span class="line">	好处：</span><br><span class="line">		<span class="number">1.</span>用户体验比B/S略好</span><br><span class="line">	弊端：</span><br><span class="line">		<span class="number">1.</span>如果使用服务，必须装软件</span><br><span class="line">		<span class="number">2.</span>服务器更新之后，要求客户端也随之更新</span><br><span class="line">		</span><br><span class="line">中小型更多选择B/S架构</span><br><span class="line">HTML CSS JavaScript JavaEE MySQL/Oracle Tomcat Ngnix</span><br></pre></td></tr></table></figure>
+
+<h3 id="什么是服务器？"><a href="#什么是服务器？" class="headerlink" title="什么是服务器？"></a>什么是服务器？</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">计算机：</span><br><span class="line">	cpu 	内存	 硬盘	 带宽</span><br><span class="line">	<span class="number">1</span>核		 <span class="number">1</span>g		 <span class="number">40</span>g	  <span class="number">10</span>m</span><br><span class="line">	</span><br><span class="line">HTML+CSS</span><br><span class="line">CSS做成一个独立的CSS文件</span><br><span class="line"></span><br><span class="line">流量：</span><br><span class="line">	家用宽带<span class="number">100</span>M下载速度，<span class="number">20</span>M上行速度</span><br><span class="line">	商用/服务器宽带<span class="number">100</span>M上下行速度</span><br><span class="line">	</span><br><span class="line">服务器除了硬件之外，还有软件</span><br><span class="line">	这个软件是用来提供共享资源能力的，让网络端的电脑能够访问服务器</span><br><span class="line">	Tomcat Ngnix apche组织</span><br><span class="line">	</span><br><span class="line">	WebLogic：BEA公司，收费的，完全支持JavaEE规范</span><br><span class="line">	WebSphere：IBM公司，收费的，完全支持JavaEE规范</span><br><span class="line">	JBoss： Redhat公司，收费的，完全支持JavaEE规范</span><br><span class="line">	</span><br><span class="line">	Tomcat：apche组织，完全免费开源的，支持我们能用到的JavaEE部分规范</span><br><span class="line">	Servlet JSP JDBC</span><br><span class="line">	</span><br><span class="line">数据库服务器：</span><br><span class="line">	安装了数据库软件得一个电脑 MySQL Oracle SQLserver</span><br><span class="line">	</span><br><span class="line">WEB服务器：</span><br><span class="line">	提供WEB服务器的一台电脑，安装了WEB服务器软件</span><br><span class="line"></span><br><span class="line">Tomcat基本使用方法</span><br><span class="line"><span class="number">1.</span>从官网上下载<span class="number">8.</span>x版本</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>下载完成后，解压到无中文的路径</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>启动用/bin/startup.bat</span><br><span class="line">  关闭用/bin/shutdowm.bat</span><br><span class="line">  【注意】绝对不允许直接叉掉</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>浏览器输入：</span><br><span class="line">	http:<span class="comment">//localhost:8080</span></span><br><span class="line">	</span><br><span class="line"><span class="number">5.</span>加载成功即服务器启动成功</span><br></pre></td></tr></table></figure>
+
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Tomcat的目录结构：</span><br><span class="line">	bin:存放Tomcat程序的二进制文件 目录</span><br><span class="line">	conf：存放Tomcat的配置文件，主要操作对象是server.xml</span><br><span class="line">	lib:存放Tomcat运行需要的jar包，这里面有一个需要关注的是servlet-api.jar</span><br><span class="line">	logs：存放运行时日志的临时文件夹</span><br><span class="line">	webapps：共享资源路径，WEB应用保存的目录</span><br><span class="line">	work：Tomcat的运行目录，JSP运行的临时目录。JSP生成的临时文件都会放在这里</span><br><span class="line">	</span><br><span class="line">	Tomcat共享文件演示</span><br><span class="line">		只要操作的是webapps这个文件夹</span><br><span class="line">		</span><br><span class="line">		在webapps这个文件夹下创建一个目录</span><br><span class="line">		mywebs</span><br><span class="line">	</span><br><span class="line">	在mywebs下写一个html文件</span><br><span class="line">		index.html</span><br><span class="line">		</span><br><span class="line">	在浏览器输入：</span><br><span class="line">		http:<span class="comment">//ip:8080/mywebs/index.html</span></span><br><span class="line">		就可以访问了</span><br><span class="line">		</span><br><span class="line">	http：这是HTTP协议</span><br><span class="line">	ip：服务器的ip地址</span><br><span class="line">	<span class="number">8080</span>：服务器Tomcat软件得端口号</span><br><span class="line">	mywebs：在tomcat服务器下共享目录webapps里的一个JavaWEB项目目录名</span><br><span class="line">	index.html是一个HTML文件</span><br><span class="line">	</span><br><span class="line">	小知识：</span><br><span class="line">		index.html因为它的名字是index，在没有确定申请访问那一个文件时，默认会打开index.html</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>​<br>​<br>​<br>​<br>​        </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
+              <a href="/tags/Web/" rel="tag"># Web</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/07/05/Tomcat-%E4%B8%BB%E9%A1%B5%E8%AE%BF%E9%97%AE404/" rel="prev" title="Tomcat-主页访问404">
+                  <i class="fa fa-chevron-left"></i> Tomcat-主页访问404
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/07/05/JavaWeb-02/" rel="next" title="JavaWeb-02">
+                  JavaWeb-02 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gek</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">93k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:25</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+</body>
+</html>

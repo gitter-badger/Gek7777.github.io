@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="什么是JSP？123456789101112131415Java Server Pages,它和servlet技术一样，都是Java中用于开发动态WEB资源的技术JSP相当于Java + HTMLJSP最大的特点就是：有种写HTML代码的感觉，HTML只能提供静态的WEB资源JSP技术允许在HTML页面中嵌套Java代码对比Servlet有一个特别好的地方，可以对前端页面进行排版JSP的执行过程：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb-04">
+<meta property="og:url" content="http://yoursite.com/2020/07/05/JavaWeb-04/index.html">
+<meta property="og:site_name" content="Gek&#39;Blog">
+<meta property="og:description" content="什么是JSP？123456789101112131415Java Server Pages,它和servlet技术一样，都是Java中用于开发动态WEB资源的技术JSP相当于Java + HTMLJSP最大的特点就是：有种写HTML代码的感觉，HTML只能提供静态的WEB资源JSP技术允许在HTML页面中嵌套Java代码对比Servlet有一个特别好的地方，可以对前端页面进行排版JSP的执行过程：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-05T11:09:33.000Z">
+<meta property="article:modified_time" content="2020-09-18T10:19:14.324Z">
+<meta property="article:author" content="Gek">
+<meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/07/05/JavaWeb-04/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JavaWeb-04 | Gek'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Gek'Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">98</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFJSP%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是JSP？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99"><span class="nav-number">2.</span> <span class="nav-text">JSP语法规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP%E4%B8%89%E5%A4%A7%E6%8C%87%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">JSP三大指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP%E5%92%8CServlet%E7%9A%84%E5%88%86%E5%B7%A5"><span class="nav-number">4.</span> <span class="nav-text">JSP和Servlet的分工</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1"><span class="nav-number">5.</span> <span class="nav-text">内置对象</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gek"
+      src="https://raw.githubusercontent.com/1041930407/cdn.io/master/header.jpg">
+  <p class="site-author-name" itemprop="name">Gek</p>
+  <div class="site-description" itemprop="description">生而知之者，上也；学而知之者，次也；困而学之，又其次也。困而不学，民斯为下矣！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gek7777" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gek7777" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhaolong@Chinese.com" title="E-Mail → mailto:zhaolong@Chinese.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/JavaWeb-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/header.jpg">
+      <meta itemprop="name" content="Gek">
+      <meta itemprop="description" content="生而知之者，上也；学而知之者，次也；困而学之，又其次也。困而不学，民斯为下矣！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gek'Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaWeb-04
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-05 19:09:33" itemprop="dateCreated datePublished" datetime="2020-07-05T19:09:33+08:00">2020-07-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>294</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="什么是JSP？"><a href="#什么是JSP？" class="headerlink" title="什么是JSP？"></a>什么是JSP？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Java Server Pages,它和servlet技术一样，都是Java中用于开发动态WEB资源的技术</span><br><span class="line">JSP相当于Java + HTML</span><br><span class="line">JSP最大的特点就是：有种写HTML代码的感觉，HTML只能提供静态的WEB资源</span><br><span class="line">JSP技术允许在HTML页面中嵌套Java代码</span><br><span class="line">对比Servlet有一个特别好的地方，可以对前端页面进行排版</span><br><span class="line"></span><br><span class="line">JSP的执行过程：</span><br><span class="line">    JSP本质上就是一个Servlet程序</span><br><span class="line">    1.第一次访问JSP文件时，会在Tomcat的work目录下生成一个对应的java程序</span><br><span class="line">        例如：01hello.jsp &#x3D;&#x3D;&gt; _01hello_jsp.java</span><br><span class="line">    2.根据这个java程序生成对应的class字节码文件</span><br><span class="line">    3.Tomcat服务器会加载这个class字节码文件，执行里面的代码，执行的本质其实是一个Servlet程序</span><br><span class="line">    4.如果是第二次访问这个JSP文件，不会重新生存对应的java程序，以及class文件，直接执行对应的class文件</span><br><span class="line">    </span><br><span class="line">    这里Tomcat服务器会根据JSP文件和class文件的修改时间，来判断是否需要重新生成Java和编译之后的class文件</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="JSP语法规则"><a href="#JSP语法规则" class="headerlink" title="JSP语法规则"></a>JSP语法规则</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1.JSP脚本</span><br><span class="line">    <span class="tag">&lt;<span class="name">%</span></span></span><br><span class="line"><span class="tag">        只能是<span class="attr">Java</span>代码</span></span><br><span class="line"><span class="tag">    %&gt;</span></span><br><span class="line">    在JSP脚本中只能出现Java代码，不能出现其他的任何东西，例如：html代码</span><br><span class="line">    在JSP脚本中的代码会被JSP编译器原封不动的放到Servlet程序中的_jspService方法中   </span><br><span class="line"></span><br><span class="line">2.JSP表达式</span><br><span class="line">     <span class="tag">&lt;<span class="name">%=Java的表达式%</span>&gt;</span></span><br><span class="line">     例如：</span><br><span class="line">        <span class="tag">&lt;<span class="name">%=</span> <span class="attr">new</span> <span class="attr">Date</span>()%&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">%=name%</span>&gt;</span></span><br><span class="line">        Java的表达式就是一条Java语句，但是在JSP表达式语法中不允许出现分号</span><br><span class="line">        </span><br><span class="line">3.JSP声明</span><br><span class="line">    <span class="tag">&lt;<span class="name">%!</span></span></span><br><span class="line"><span class="tag">        定义变量，方法  </span></span><br><span class="line"><span class="tag">    %&gt;</span></span><br><span class="line">        JSP声明的Java代码不会被编译到_jspservice方法中，而是定义在这个JSP文件对应的class类中，JSP声明中的变量是成员变量，方法可以认为是成员方法</span><br><span class="line">        </span><br><span class="line">4.JSP注释</span><br><span class="line">    <span class="tag">&lt;<span class="name">%--</span> 注释内容<span class="attr">--</span>%&gt;</span> 唯一推荐格式</span><br></pre></td></tr></table></figure>
+
+<h2 id="JSP三大指令"><a href="#JSP三大指令" class="headerlink" title="JSP三大指令"></a>JSP三大指令</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">JSP指令不是直接生成可视化文件，而是告诉JSP引擎如何处理JSP页面中的其他部分</span><br><span class="line"></span><br><span class="line">JSP指令的基本语法：</span><br><span class="line">    <span class="tag">&lt;<span class="name">%@</span> 指令名 属性名=<span class="string">&quot;值&quot;</span>%&gt;</span></span><br><span class="line"></span><br><span class="line">1.include指令</span><br><span class="line">    include指令用于引入其他JSP页面，如果使用include指令引入其他的JSP页面，JSP引擎会把这两个JSP文件翻译成一个servlet，</span><br><span class="line">    所以include指令引入称之为静态引入</span><br><span class="line">    </span><br><span class="line">    格式：</span><br><span class="line">        <span class="tag">&lt;<span class="name">%@include</span> <span class="attr">file</span>=<span class="string">&quot;relativeURL&quot;</span>%&gt;</span></span><br><span class="line">        这里要求file属性使用URL用来引入其他的JSP文件，这里URL必须是一个相对路径，如果使用&quot;/&quot;，表示当前WEB项目的根目录</span><br><span class="line">        </span><br><span class="line">    【注意】</span><br><span class="line">        1.被引入的文件必须符合JSP语法</span><br><span class="line">        2.被引入的文件可以使用HTML，JSP这些文件格式，JSP引擎也会按照JSP语法规则处理</span><br><span class="line">            小规范：</span><br><span class="line">                如果是静态的引入文件，通常会使用.jspf(JSP Fragments)作为文件后缀名</span><br><span class="line">2.Page指令</span><br><span class="line">    用于定义JSP页面的各种属性，无论它在哪一个位置出现，都作用于整个JSP页面，书写要求：page指令最好放在页面的开始</span><br><span class="line">    </span><br><span class="line">    page指令的常用语法：</span><br><span class="line">        <span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span></span></span><br><span class="line"><span class="tag">            [<span class="attr">language</span> = <span class="string">&quot;java&quot;</span>],</span></span><br><span class="line"><span class="tag">            [<span class="attr">import</span> = <span class="string">&quot;pagename.* 或者class&quot;</span>],</span></span><br><span class="line"><span class="tag">            [<span class="attr">session</span> = <span class="string">&quot;true&quot;</span>],</span></span><br><span class="line"><span class="tag">            [<span class="attr">buffer</span> = <span class="string">&quot;nune | 8kB | sizekB&quot;</span>],</span></span><br><span class="line"><span class="tag">            [<span class="attr">autoFlush</span> = <span class="string">&quot;true | false&quot;</span>],</span></span><br><span class="line"><span class="tag">            [<span class="attr">errorPage</span> = <span class="string">&quot;relativeURL&quot;</span>],</span></span><br><span class="line"><span class="tag">            [<span class="attr">isErrorPage</span> = <span class="string">&quot;true | false&quot;</span>],</span></span><br><span class="line"><span class="tag">            [<span class="attr">pageEncode</span> = <span class="string">&quot;utf-8 | charSet&quot;</span>],</span></span><br><span class="line"><span class="tag">            [<span class="attr">contentType</span> = <span class="string">&quot;text/html;charset = utf-8&quot;</span>]</span></span><br><span class="line"><span class="tag">        %&gt;</span></span><br><span class="line">        </span><br><span class="line">        使用errorPage设置当前页面的错误异常处理页面，在错误处理页面中，如果需要使用exception对象，必须设置isErrorPage=&quot;true&quot;</span><br><span class="line">        </span><br><span class="line">        一般情况下不会给每一个页面都设置ErrorPage，否则工作量太大了。</span><br><span class="line"></span><br><span class="line">全局异常处理</span><br><span class="line">在web.xml中配置</span><br><span class="line">  <span class="tag">&lt;<span class="name">error-page</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- error-code 是要捕获的错误编号	 --&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">error-code</span>&gt;</span>404<span class="tag">&lt;/<span class="name">error-code</span>&gt;</span></span><br><span class="line">  	<span class="comment">&lt;!-- location 式异常处理页面所在位置  --&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">location</span>&gt;</span>/common/404.jsp<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">   <span class="tag">&lt;<span class="name">error-page</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- error-code 是要捕获的错误编号	 --&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">error-code</span>&gt;</span>500<span class="tag">&lt;/<span class="name">error-code</span>&gt;</span></span><br><span class="line">  	<span class="comment">&lt;!-- location 式异常处理页面所在位置  --&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">location</span>&gt;</span>/common/500.jsp<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">   <span class="tag">&lt;<span class="name">error-page</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- 这里是完整的包名.类名  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exception-type</span>&gt;</span>java.lang.NullPointerException<span class="tag">&lt;/<span class="name">exception-type</span>&gt;</span></span><br><span class="line">  	<span class="comment">&lt;!-- location 式异常处理页面所在位置  --&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">location</span>&gt;</span>/common/error.jsp<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></span><br><span class="line"> 3.teblib指令</span><br></pre></td></tr></table></figure>
+
+<p>​        </p>
+<h2 id="JSP和Servlet的分工"><a href="#JSP和Servlet的分工" class="headerlink" title="JSP和Servlet的分工"></a>JSP和Servlet的分工</h2><pre><code>Servlet用来处理响应的数据
+JSP用来处理Servlet转发过来的响应数据</code></pre>
+<h2 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">每一个JSP页面在第一次访问的时候，WEB服务器都会把JSP文件交给JSP引擎处理，处理之后，会出现一个非常重要的方法_jspservice，</span><br><span class="line">本质就是Servlet里面的Service方法</span><br><span class="line"></span><br><span class="line">JSP引擎在调用JSP对应的_jspService方法时，会提供给 _jspService方法<span class="number">9</span>个开发相关的内置对象</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>九大内置对象</span><br></pre></td></tr></table></figure>
+
+
+<table>
+<thead>
+<tr>
+<th>内置对象</th>
+<th>对应的Servlet技术</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>request</td>
+<td>HttpServletRequest</td>
+</tr>
+<tr>
+<td>response</td>
+<td>HttpServletResponse</td>
+</tr>
+<tr>
+<td>application</td>
+<td>ServletContext</td>
+</tr>
+<tr>
+<td>Session</td>
+<td>HttpSession</td>
+</tr>
+<tr>
+<td>out</td>
+<td>jspWriter 类似于PrintWrite</td>
+</tr>
+<tr>
+<td>pageContext</td>
+<td>pageContext</td>
+</tr>
+<tr>
+<td>exception</td>
+<td>throwable</td>
+</tr>
+<tr>
+<td>config</td>
+<td>Servletconfig</td>
+</tr>
+<tr>
+<td>page</td>
+<td>Object(this) 很少使用</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2.</span>out    会有一个buffer缓存。 （自己的理解：JSPWriter对象）</span><br><span class="line">out用于给客户端发送文本数据</span><br><span class="line">out对象是通过pageContext对象里面的pageOut获取的，类似于response.getWriter()获取到的PrintWriter对象</span><br><span class="line">    </span><br><span class="line"><span class="number">3.</span>pageContext</span><br><span class="line">    pageContext对象是JSP技术最重要的一个对象，这个pageContext表示当前JSP页面的运行环境</span><br><span class="line">    这个对象不仅封装了其他的<span class="number">8</span>大内置(隐式)对象的引用，而且pageContext本身就是一个域对象，</span><br><span class="line">    可以用来保存数据。而且pageContext还封装了WEB开发中经常涉及到的一些常用操作</span><br><span class="line">        例如：</span><br><span class="line">            跳转其他资源，检索其他域对象的属性</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
+              <a href="/tags/Web/" rel="tag"># Web</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/07/05/JavaWeb-03/" rel="prev" title="JavaWeb-03">
+                  <i class="fa fa-chevron-left"></i> JavaWeb-03
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/07/05/JavaWeb-05/" rel="next" title="JavaWeb-05">
+                  JavaWeb-05 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gek</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">93k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:25</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+</body>
+</html>
