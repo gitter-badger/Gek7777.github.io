@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>数据库中Char字段和Long字段对比</title>
+      <link href="2020/10/09/Char%E5%AD%97%E6%AE%B5%E5%92%8CLong%E5%AD%97%E6%AE%B5%E5%AF%B9%E6%AF%94/"/>
+      <url>2020/10/09/Char%E5%AD%97%E6%AE%B5%E5%92%8CLong%E5%AD%97%E6%AE%B5%E5%AF%B9%E6%AF%94/</url>
+      
+        <content type="html"><![CDATA[<h2 id="数据库设计中char和long两种类型的对比"><a href="#数据库设计中char和long两种类型的对比" class="headerlink" title="数据库设计中char和long两种类型的对比"></a>数据库设计中char和long两种类型的对比</h2><p>如果用char，问题非常多：</p><ol><li><p>可能浪费空间，除非正好放满。</p></li><li><p>会导致程序员在字段前使用trunc等截掉尾部空格的函数，要优化必须建立一些函数索引。写程序还要用rpad之类的函数。</p></li><li><p>如果char很大，很可能导致索引无法建立。</p></li><li><p>长度一变，经常要修改程序。</p></li><li><p>导致程序使用大量的非绑定变量。这个可能更开发语言有关，例子：  c_id=‘1212’ 可以查询到结果  如果使用绑定：c_id=:a这个要看各种开发语言，因为不会补全尾部的空格，可能查询结果为空。</p></li><li><p>CHAR/NCHAR类型还会带来混乱（很多应用存储了信息之后却无法“找到”所存储的数据）。还有：CHAR/NCHAR实际上只是伪装的VARCHAR2/NVARCHAR2，基于这一点，所以我认为其实只需要考虑这两种字符串类型：VARCHAR和NVARCHAR2。</p></li></ol><p>Oracle的LONG类型可谓“臭名昭著”，<strong>由于LONG类型的限制太多，以至于Oracle很少去提LONG类型有哪些限制条件，而一般都是通过说明在哪些情况下，可以使用LONG类型</strong>。正是这些限制阻止了LONG的使用，Oracle也在推出了大对象类型——LOB之后，<strong>强烈建议用户不要在使用LONG类型</strong>。限制：</p><ol><li><p>一个表中只能包含一个LONG类型的列。</p></li><li><p>不能索引LONG类型列。</p></li><li><p>不能将含有LONG类型列的表作聚簇。</p></li><li><p>不能在SQL*Plus中将LONG类型列的数值插入到另一个表格中,如 insertinto …select。</p></li><li><p>不能在SQL*Plus中通过查询其他表的方式来创建LONG类型列,如createtable as select。</p></li><li><p>不能对LONG类型列加约束条件（NULL、NOTNULL、DEFAULT除外），如：关键字列(PRIMARYKEY)不能是LONG数据类型。</p></li><li><p>LONG类型列不能用在Select的以下子句中：where、groupby、orderby，以及带有distinct的select语句中。</p></li><li><p>LONG类型列不能用于分布查询。</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SQL </tag>
+            
+            <tag> ORACLE </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MongoDB概念解析</title>
       <link href="2020/09/29/MongoDB%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90/"/>
       <url>2020/09/29/MongoDB%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90/</url>
