@@ -143,7 +143,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">105</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">106</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-count">106</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -274,6 +274,108 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/Hexo-deployer-git%E9%94%99%E8%AF%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/header.jpg">
+      <meta itemprop="name" content="Gek">
+      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gek'Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/05/Hexo-deployer-git%E9%94%99%E8%AF%AF/" class="post-title-link" itemprop="url">Hexo-deployer-git错误</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-05 18:56:33" itemprop="dateCreated datePublished" datetime="2020-07-05T18:56:33+08:00">2020-07-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-25 21:02:35" itemprop="dateModified" datetime="2020-09-25T21:02:35+08:00">2020-09-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>501</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>hexo指令无法使用，一直报错，不管是hexo clean 、hexo g、还是hexo d 、hexo new，这些指令都出现了错误，</p>
+<p>报错原因：插件错误，hexo-deployer-git插件出现错误</p>
+<p>去网上查找原因，没有找到该问题的解决办法。</p>
+<p>很明显是该插件的问题，就重新下载该插件，但是却提示：</p>
+<p>This package is no longer maintained，该插件不再维护。</p>
+<p>把博客文件夹中node_modules删了，然后git bash中输入：</p>
+<p> npm install -g cnpm –registry=<a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
+<p>&lt;img src=<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/1553331102831.png">https://raw.githubusercontent.com/1041930407/cdn.io/master/image/1553331102831.png</a>)</p>
+<p>然后再输入：cnpm install hexo-deployer-git –save</p>
+<p>&lt;img src=<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/1041930407/cdn.io/master/image/1553331111538.png">https://raw.githubusercontent.com/1041930407/cdn.io/master/image/1553331111538.png</a>)</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -657,112 +759,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/PeopleSoft-%E5%B8%B8%E7%94%A8API/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/1041930407/cdn.io/master/header.jpg">
-      <meta itemprop="name" content="Gek">
-      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gek'Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/05/PeopleSoft-%E5%B8%B8%E7%94%A8API/" class="post-title-link" itemprop="url">PeopleSoft-常用API</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-07-05 18:35:37" itemprop="dateCreated datePublished" datetime="2020-07-05T18:35:37+08:00">2020-07-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-03 23:27:09" itemprop="dateModified" datetime="2020-11-03T23:27:09+08:00">2020-11-03</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="其他数据类型转字符串String"><a href="#其他数据类型转字符串String" class="headerlink" title="其他数据类型转字符串String"></a>其他数据类型转字符串String</h3><p><strong>方法：String(a)。</strong></p>
-<h3 id="其他数据类型转小数Number"><a href="#其他数据类型转小数Number" class="headerlink" title="其他数据类型转小数Number"></a>其他数据类型转小数Number</h3><p><strong>方法：Number(a)。</strong></p>
-<h3 id="其他数据类型转整数Integer"><a href="#其他数据类型转整数Integer" class="headerlink" title="其他数据类型转整数Integer"></a>其他数据类型转整数Integer</h3><p><strong>方法：Integer(a)。</strong>注意：如果是小数类型数据，会去掉小数部分，直接取整。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/05/PeopleSoft-%E5%B8%B8%E7%94%A8API/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -814,13 +814,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">284k</span>
+    <span title="站点总字数">286k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:18</span>
+    <span title="站点阅读时长">4:20</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
