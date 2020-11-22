@@ -31,7 +31,7 @@
 <meta property="og:description" content="soapUI模拟外部request请求 通过CI 操作组件基本流程：创建消息（包括请求消息和响应消息），服务，服务操作， 创建package class ，使用soapUI 模拟外部request请求">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-03-27T00:39:29.000Z">
-<meta property="article:modified_time" content="2020-09-25T13:02:35.669Z">
+<meta property="article:modified_time" content="2020-11-22T16:44:30.395Z">
 <meta property="article:author" content="Gek">
 <meta property="article:tag" content="PeopleSoft">
 <meta property="article:tag" content="Component Interface">
@@ -318,7 +318,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-25 21:02:35" itemprop="dateModified" datetime="2020-09-25T21:02:35+08:00">2020-09-25</time>
+        <time title="修改时间：2020-11-23 00:44:30" itemprop="dateModified" datetime="2020-11-23T00:44:30+08:00">2020-11-23</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -363,29 +363,29 @@
 <li><p>在PS系统：主菜单–PeopleTools–集成代理程序–集成设置–消息目录下，添加新值。</p>
 <p>订单请求消息目录：①类型选择：行集合   ②名称：ZL_REQ_MESAG   ③版本：V1</p>
 <p>描述：订单请求消息目录。向根节点添加记录：</p>
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-1.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190326-1.png >
 
 <p>订单响应消息目录：①类型选择：行集合   ②名称：ZL_RESP_MESAGE  ③版本：V1</p>
 <p>描述：订单响应消息目录。向根节点添加记录：</p>
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-2.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190326-2.png >
 
 </li>
 </ol>
 <h4 id="二、创建-服务-与-服务操作。"><a href="#二、创建-服务-与-服务操作。" class="headerlink" title="二、创建 服务 与 服务操作。"></a>二、创建 服务 与 服务操作。</h4><ol>
 <li><p>在PS系统：主菜单–PeopleTools–集成代理程序–集成设置–服务目录下，添加新值。</p>
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-3.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190326-3.png >
 </li>
 <li><p>在PS系统：主菜单–PeopleTools–集成代理程序–集成设置–服务操作目录下，添加新值。</p>
 <p>​    <u>基于服务创建<strong>同名</strong>的服务操作</u>。赋权，生成路由，插入消息。</p>
 </li>
 </ol>
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-4.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190326-4.png >
 
 
 
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-5.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190326-5.png >
 
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-6.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190326-6.png >
 
 <h4 id="三、创建package-class-。"><a href="#三、创建package-class-。" class="headerlink" title="三、创建package class 。"></a>三、创建package class 。</h4><ol>
 <li>在工程中插入Application Package : SIE_TRN2019_PKG（软件包名称），TRN2019（路径），右键路径，插入新建class类 ZL_ORDER_ON_REQU，代码如下：</li>
@@ -402,23 +402,23 @@
 <ol start="3">
 <li>在服务操作中的处理程序 中 添加处理程序详情：</li>
 </ol>
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-7.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190326-7.png >
 
 <ol start="4">
 <li><strong>注意：这里不添加处理程序的话，在soapUI中会报错：执行到onRequest中断之类的错误。</strong></li>
 </ol>
-<h4 id="四、使用soapUI模拟外部request请求"><a href="#四、使用soapUI模拟外部request请求" class="headerlink" title="四、使用soapUI模拟外部request请求"></a>四、使用soapUI模拟外部request请求</h4><img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-8.png >
+<h4 id="四、使用soapUI模拟外部request请求"><a href="#四、使用soapUI模拟外部request请求" class="headerlink" title="四、使用soapUI模拟外部request请求"></a>四、使用soapUI模拟外部request请求</h4><img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190326-8.png >
 
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-9.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190326-9.png >
 
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-10.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190326-10.png >
 
 
 
 <p>打开soapUI，新建工程：</p>
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-11.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190326-11.png >
 
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/20190326-12.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190326-12.png >
 
 
 

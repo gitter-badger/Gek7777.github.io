@@ -31,7 +31,7 @@
 <meta property="og:description" content="逻辑主要是通过页面添加一个HTML页面来是实现功能。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-17T08:52:27.000Z">
-<meta property="article:modified_time" content="2020-09-25T13:02:35.692Z">
+<meta property="article:modified_time" content="2020-11-22T16:44:30.419Z">
 <meta property="article:author" content="Gek">
 <meta property="article:tag" content="PeopleSoft">
 <meta property="article:tag" content="PeopleCode">
@@ -318,7 +318,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-25 21:02:35" itemprop="dateModified" datetime="2020-09-25T21:02:35+08:00">2020-09-25</time>
+        <time title="修改时间：2020-11-23 00:44:30" itemprop="dateModified" datetime="2020-11-23T00:44:30+08:00">2020-11-23</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -358,18 +358,18 @@
 <a id="more"></a>
 
 <h3 id="HTML、表，字段"><a href="#HTML、表，字段" class="headerlink" title="HTML、表，字段"></a>HTML、表，字段</h3><p>创建一个HTML，用来生成一个HTML页面；添加一张图片，动态值；这里是数据动态生成的地方。备用。</p>
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/1594806702024.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/1594806702024.png >
 
 <p>建表，字段，用来接收HTML静态页面；</p>
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/1594807471976.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/1594807471976.png >
 
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/1594806936001.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/1594806936001.png >
 
 <p>在页面中，创建一个HTML元件，设置为动态的展示，设置如下；</p>
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/1594806879213.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/1594806879213.png >
 
 <p>在页面生效代码中，动态获取照片数据</p>
-<img src=https://raw.githubusercontent.com/1041930407/cdn.io/master/image/1594807112837.png >
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/1594807112837.png >
 
 <p>代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Local Record &amp;EMPL_PHOTO2 = CreateRecord(Record.EMPL_PHOTO);</span><br><span class="line">&amp;EMPL_PHOTO2.EMPLID.Value = C_PER_BASE_VW.EMPLID.Value;</span><br><span class="line">&amp;EMPL_PHOTO2.PHOTO_SIZENAME.Value = <span class="string">&quot;PAGE&quot;</span>;</span><br><span class="line">Local <span class="keyword">boolean</span> &amp;Bykey = &amp;EMPL_PHOTO2.SelectByKey();</span><br><span class="line"></span><br><span class="line">&amp;short_url = %Response.GetImageURL(&amp;EMPL_PHOTO2);</span><br><span class="line">If %Request.ServerPort = <span class="number">443</span> Then</span><br><span class="line">   &amp;URL_KY = &amp;short_url;</span><br><span class="line">Else</span><br><span class="line">   &amp;URL_KY = <span class="string">&quot;Http://&quot;</span> | %Request.ServerName | <span class="string">&quot;:&quot;</span> | %Request.ServerPort | &amp;short_url;</span><br><span class="line">End-If;</span><br><span class="line"><span class="comment">//动态生成HTML页面，赋值给C_HTML_AVATAR字段；该字段关联了页面的HTML元件；</span></span><br><span class="line">C_EMPL_CARD_WK.C_HTML_AVATAR.Value = GetHTMLText(HTML.C_PHOTO_IMG, &amp;URL_KY | <span class="string">&quot;?&quot;</span> | DateTimeToLocalizedString(%Datetime, <span class="string">&quot;yyyyMMddHHmmss&quot;</span>));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
