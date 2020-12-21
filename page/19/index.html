@@ -143,7 +143,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">106</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -278,7 +278,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/04/Java-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/Java-String%E3%80%81StringBuffer%E5%92%8CStringbuilder/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
@@ -295,7 +295,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/04/04/Java-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">Java-基础语法</a>
+            <a href="/2019/04/09/Java-String%E3%80%81StringBuffer%E5%92%8CStringbuilder/" class="post-title-link" itemprop="url">Java-String、StringBuffer和Stringbuilder</a>
         </h2>
 
         <div class="post-meta-container">
@@ -306,7 +306,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-04-04 08:37:09" itemprop="dateCreated datePublished" datetime="2019-04-04T08:37:09+08:00">2019-04-04</time>
+      <time title="创建时间：2019-04-09 15:59:44" itemprop="dateCreated datePublished" datetime="2019-04-09T15:59:44+08:00">2019-04-09</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -331,14 +331,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
+      <span>5.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -349,16 +349,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Java-基础语法"><a href="#Java-基础语法" class="headerlink" title="Java 基础语法"></a>Java 基础语法</h1><p>一个 Java 程序可以认为是一系列对象的集合，而这些对象通过调用彼此的方法来协同工作。</p>
-<ul>
-<li>对象：对象是类的一个实例，有状态和行为。</li>
-<li>类：类是一个模板，它描述一类对象的行为和状态。</li>
-<li>方法：方法就是行为，一个类可以有很多方法。运算逻辑、数据修改以及所有的动作都是在方法中完成的。</li>
-<li>实例变量：每个对象都有独特的实例变量，对象的状态由这些实例变量的值决定。</li>
-</ul>
+          <h1 id="String-类"><a href="#String-类" class="headerlink" title="String 类"></a>String 类</h1><p>字符串广泛应用在 Java 编程中，在 Java 中字符串属于对象，Java 提供了 String 类来创建和操作字符串。</p>
+<h2 id="创建字符串的方式："><a href="#创建字符串的方式：" class="headerlink" title="创建字符串的方式："></a>创建字符串的方式：</h2><p>String 类有11种构造方法。下面举例三个：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//最简单的方式：</span></span><br><span class="line">String str1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种</span></span><br><span class="line">String str2 = <span class="keyword">new</span> String(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//第三种</span></span><br><span class="line"><span class="keyword">char</span>[] helloArray = &#123;<span class="string">&#x27;h&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;o&#x27;</span>&#125;;</span><br><span class="line">String str3 = <span class="keyword">new</span> String(helloArray); </span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>String 类是不可改变的，所以一旦创建了 String 对象，那么它的值就无法改变了。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/04/04/Java-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/#more" rel="contents">
+              <a class="btn" href="/2019/04/09/Java-String%E3%80%81StringBuffer%E5%92%8CStringbuilder/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -384,7 +382,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/SQL%E5%87%BD%E6%95%B0-03/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/Java-Number-Math-%E7%B1%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
@@ -401,7 +399,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/04/03/SQL%E5%87%BD%E6%95%B0-03/" class="post-title-link" itemprop="url">SQL函数-03</a>
+            <a href="/2019/04/09/Java-Number-Math-%E7%B1%BB/" class="post-title-link" itemprop="url">Java Number & Math 类</a>
         </h2>
 
         <div class="post-meta-container">
@@ -412,108 +410,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-04-03 15:37:01" itemprop="dateCreated datePublished" datetime="2019-04-03T15:37:01+08:00">2019-04-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="常用的-SQL-函数"><a href="#常用的-SQL-函数" class="headerlink" title="常用的 SQL 函数"></a>常用的 SQL 函数</h1><h2 id="AVG-函数"><a href="#AVG-函数" class="headerlink" title="AVG () 函数"></a>AVG () 函数</h2><p>计算一个字段的平均值，NULL 值不在其中</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">AVG</span>(column_name) <span class="keyword">FROM</span> table_name</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/04/03/SQL%E5%87%BD%E6%95%B0-03/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/SQL%E5%9F%BA%E7%A1%80-02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
-      <meta itemprop="name" content="Gek">
-      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gek'Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/03/SQL%E5%9F%BA%E7%A1%80-02/" class="post-title-link" itemprop="url">SQL基础-02</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-04-03 09:42:56" itemprop="dateCreated datePublished" datetime="2019-04-03T09:42:56+08:00">2019-04-03</time>
+      <time title="创建时间：2019-04-09 15:05:55" itemprop="dateCreated datePublished" datetime="2019-04-09T15:05:55+08:00">2019-04-09</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -538,108 +435,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>9.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>8 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="SQL进阶"><a href="#SQL进阶" class="headerlink" title="SQL进阶"></a>SQL进阶</h1><h2 id="TOP-子句"><a href="#TOP-子句" class="headerlink" title="TOP 子句"></a>TOP 子句</h2><p>用于规定要返回的记录的数目，对于拥有数千条记录的大型表来说，TOP子句是非常有用的。注意：并非所有的数据库系统都支持 TOP 子句</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TOP <span class="built_in">Number</span>|<span class="keyword">percent</span> 字段名(s) <span class="keyword">from</span> 表名；</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/04/03/SQL%E5%9F%BA%E7%A1%80-02/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/SQL%E5%9F%BA%E7%A1%80-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
-      <meta itemprop="name" content="Gek">
-      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gek'Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/02/SQL%E5%9F%BA%E7%A1%80-01/" class="post-title-link" itemprop="url">SQL基础-01</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-04-02 16:06:46" itemprop="dateCreated datePublished" datetime="2019-04-02T16:06:46+08:00">2019-04-02</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
+      <span>2.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -657,14 +453,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="一、什么是SQL？"><a href="#一、什么是SQL？" class="headerlink" title="一、什么是SQL？"></a>一、什么是SQL？</h1><ul>
-<li>SQL 指结构化查询语言</li>
-<li>SQL 是我们有能力访问数据库</li>
-<li>SQL 是一种 ANSI 的标准计算机语言    （ANSI，美国国家标准化组织） </li>
-</ul>
+          <h1 id="Number-amp-Math-类"><a href="#Number-amp-Math-类" class="headerlink" title="Number &amp; Math 类"></a>Number &amp; Math 类</h1><h2 id="Number-类"><a href="#Number-类" class="headerlink" title="Number 类"></a>Number 类</h2><p>一般而言，当需要使用数字的时候，我们通常使用内置数据类型，如：byte、int、long、double 等。</p>
+<p>但是，在实际开发中，我们经常遇到需要使用对象，而不是内置数据类型的情形。为了解决这个问题，Java 提供了每一个内置数据类型的对应的包装类。</p>
+<p>所有的包装类（Integer 、 Long 、 Byte 、 Double 、 Float 、 Short）都是抽象类 Number 的子类。</p>
+<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190409-1.png >
+
+<p>这种由编译器特别支持的包装称为装箱，所以当内置数据类型被当做对象使用的时候，编译器会把内置类型装箱为包装类。相似的，编译器也可以把一个对象拆箱为内置类型。Number 类属于 java.lang 包</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/04/02/SQL%E5%9F%BA%E7%A1%80-01/#more" rel="contents">
+              <a class="btn" href="/2019/04/09/Java-Number-Math-%E7%B1%BB/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -690,7 +487,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/01/Java-Review01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/Java-%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84%E3%80%81%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%E5%92%8C%E9%80%89%E6%8B%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
@@ -707,7 +504,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/04/01/Java-Review01/" class="post-title-link" itemprop="url">Java-Review01</a>
+            <a href="/2019/04/09/Java-%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84%E3%80%81%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%E5%92%8C%E9%80%89%E6%8B%A9/" class="post-title-link" itemprop="url">Java-循环结构、条件判断和选择</a>
         </h2>
 
         <div class="post-meta-container">
@@ -718,7 +515,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-04-01 13:23:12" itemprop="dateCreated datePublished" datetime="2019-04-01T13:23:12+08:00">2019-04-01</time>
+      <time title="创建时间：2019-04-09 13:54:14" itemprop="dateCreated datePublished" datetime="2019-04-09T13:54:14+08:00">2019-04-09</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -743,14 +540,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>1.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -761,14 +558,228 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="一、原码，反码和补码"><a href="#一、原码，反码和补码" class="headerlink" title="一、原码，反码和补码"></a>一、原码，反码和补码</h1><p>计算机内存中，都是二进制的形式来存储数据。</p>
+          <h1 id="Java-循环结构"><a href="#Java-循环结构" class="headerlink" title="Java 循环结构"></a>Java 循环结构</h1><p>顺序结构的程序语句只能被执行一次。如果你想要同样的操作执行多次，就需要使用循环结构。</p>
+<p>Java 中有三种主要的循环结构：</p>
 <ul>
-<li>正整数的原码、补码、反码是一样的。</li>
-<li>负整数的原码，最高位是符号位，1为负，0为正数。反码是原码按位取反，符号位不变。补码是反码加1。</li>
+<li>while 循环</li>
+<li>do…while 循环</li>
+<li>for 循环</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/04/01/Java-Review01/#more" rel="contents">
+              <a class="btn" href="/2019/04/09/Java-%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84%E3%80%81%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%E5%92%8C%E9%80%89%E6%8B%A9/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/Java-%E8%BF%90%E7%AE%97%E7%AC%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
+      <meta itemprop="name" content="Gek">
+      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gek'Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/09/Java-%E8%BF%90%E7%AE%97%E7%AC%A6/" class="post-title-link" itemprop="url">Java-运算符</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-09 11:09:46" itemprop="dateCreated datePublished" datetime="2019-04-09T11:09:46+08:00">2019-04-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Java-运算符"><a href="#Java-运算符" class="headerlink" title="Java 运算符"></a>Java 运算符</h1><p>计算机的最基本用途之一就是执行数学运算，Java提供了一套丰富的运算符来操作变量。</p>
+<ul>
+<li>算术运算符</li>
+<li>关系运算符</li>
+<li>位运算符</li>
+<li>逻辑运算符</li>
+<li>赋值运算符</li>
+<li>其他运算符</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/04/09/Java-%E8%BF%90%E7%AE%97%E7%AC%A6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/Java-protected-%E5%85%B3%E9%94%AE%E5%AD%97%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
+      <meta itemprop="name" content="Gek">
+      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gek'Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/08/Java-protected-%E5%85%B3%E9%94%AE%E5%AD%97%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">Java protected 关键字详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-08 17:30:14" itemprop="dateCreated datePublished" datetime="2019-04-08T17:30:14+08:00">2019-04-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p> 大部分书中都会说到<strong>被 protected 修饰的成员对于本包和其子类可见</strong>。protected 的可见性在于以下两点：</p>
+<ul>
+<li>基类的 protected 成员是包内可见的，并且对子类可见；</li>
+<li>若子类与基类不在同一个包中，那么在子类中，子类实例可以访问其从基类继承而来的 protected 方法，而不可访问基类实例的 protected 方法。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/04/08/Java-protected-%E5%85%B3%E9%94%AE%E5%AD%97%E8%AF%A6%E8%A7%A3/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -793,7 +804,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -845,13 +856,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">286k</span>
+    <span title="站点总字数">305k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:20</span>
+    <span title="站点阅读时长">4:37</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动

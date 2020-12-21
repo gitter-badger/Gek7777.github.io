@@ -143,7 +143,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">106</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -278,7 +278,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/28/PeopleSoft-weblib%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/PeopleSoft-%E9%A1%B5%E9%9D%A2%E5%85%B3%E8%81%94%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%B8%A6%E5%87%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
@@ -295,7 +295,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/28/PeopleSoft-weblib%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">PeopleSoft-weblib库的使用</a>
+            <a href="/2020/07/05/PeopleSoft-%E9%A1%B5%E9%9D%A2%E5%85%B3%E8%81%94%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%B8%A6%E5%87%BA/" class="post-title-link" itemprop="url">PeopleSoft-页面关联字段自动带出</a>
         </h2>
 
         <div class="post-meta-container">
@@ -306,7 +306,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-04-28 17:02:11" itemprop="dateCreated datePublished" datetime="2020-04-28T17:02:11+08:00">2020-04-28</time>
+      <time title="创建时间：2020-07-05 18:31:51" itemprop="dateCreated datePublished" datetime="2020-07-05T18:31:51+08:00">2020-07-05</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -331,7 +331,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>928</span>
+      <span>111</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -349,13 +349,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="新建一个weblib，通过url传参的方式操作数据库。"><a href="#新建一个weblib，通过url传参的方式操作数据库。" class="headerlink" title="新建一个weblib，通过url传参的方式操作数据库。"></a>新建一个weblib，通过url传参的方式操作数据库。</h2><p>如图：新建record  ，新建field ，在record field  fieldformula 中编写peoplecode代码，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Function <span class="title">IScript_zl</span><span class="params">()</span></span>;</span><br><span class="line">   </span><br><span class="line">   Local string &amp;orderId;</span><br><span class="line">   </span><br><span class="line">   &amp;orderId = %Request.GetParameter(<span class="string">&quot;zl_orderId&quot;</span>);</span><br><span class="line">   </span><br><span class="line">   Local number &amp;ordId = Value(&amp;orderId);</span><br><span class="line">   Local SQL &amp;sql;</span><br><span class="line">   %Response.Write(&amp;orderId | <span class="string">&quot;&lt;BR&gt;&quot;</span>);</span><br><span class="line">   &amp;sql = CreateSQL(<span class="string">&quot;select * FROM PS_ZL_ORDER_HEL WHERE ZL_ORDERID=:1&quot;</span>, &amp;orderId);</span><br><span class="line">   While &amp;sql.Fetch(&amp;a, &amp;b, &amp;c, &amp;d);</span><br><span class="line">      %Response.Write(<span class="string">&quot;id =&quot;</span> | &amp;a | <span class="string">&quot;  text: &quot;</span> | &amp;b | <span class="string">&quot;   描述 :&quot;</span> | &amp;c | <span class="string">&quot;        总价 =&quot;</span> | &amp;d);</span><br><span class="line">   End-While;</span><br><span class="line">   </span><br><span class="line">End-Function;</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：函数名必须是IScript_xxx，否则在web库中查找不到。（script代表脚本）</strong></p>
+          <p>PeopleSoft中，页面中关联字段自动带出的实现方式…</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/04/28/PeopleSoft-weblib%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
+              <a class="btn" href="/2020/07/05/PeopleSoft-%E9%A1%B5%E9%9D%A2%E5%85%B3%E8%81%94%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%B8%A6%E5%87%BA/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -381,7 +378,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/28/PeopleSoft-BI-Publisher-%E6%89%93%E5%8D%B0PDF%E8%AF%81%E6%98%8E/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/PeopleSoft-%E5%BA%8F%E5%8F%B7%E8%87%AA%E5%A2%9E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
@@ -398,7 +395,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/28/PeopleSoft-BI-Publisher-%E6%89%93%E5%8D%B0PDF%E8%AF%81%E6%98%8E/" class="post-title-link" itemprop="url">PeopleSoft-BI-Publisher-打印PDF证明</a>
+            <a href="/2020/07/05/PeopleSoft-%E5%BA%8F%E5%8F%B7%E8%87%AA%E5%A2%9E/" class="post-title-link" itemprop="url">PeopleSoft-序号自增</a>
         </h2>
 
         <div class="post-meta-container">
@@ -409,7 +406,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-04-28 16:09:00" itemprop="dateCreated datePublished" datetime="2020-04-28T16:09:00+08:00">2020-04-28</time>
+      <time title="创建时间：2020-07-05 18:20:46" itemprop="dateCreated datePublished" datetime="2020-07-05T18:20:46+08:00">2020-07-05</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -434,14 +431,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>7.5k</span>
+      <span>807</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>7 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -452,10 +449,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>PeopleSoft中，新增PDF打印功能，整体实现流程如下…</p>
+          <p>PeopleSoft的页面中，关于某些表字段需要自增，按照以下操作即可…</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/04/28/PeopleSoft-BI-Publisher-%E6%89%93%E5%8D%B0PDF%E8%AF%81%E6%98%8E/#more" rel="contents">
+              <a class="btn" href="/2020/07/05/PeopleSoft-%E5%BA%8F%E5%8F%B7%E8%87%AA%E5%A2%9E/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -481,7 +478,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/28/PeopleSoft-component%E7%BB%84%E4%BB%B6%E8%B0%83%E7%94%A8CI%EF%BC%88component-Interface%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/PeopleSoft-%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2%E9%BB%98%E8%AE%A4%E5%80%BC-%E5%88%9D%E5%A7%8B%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
@@ -498,7 +495,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/28/PeopleSoft-component%E7%BB%84%E4%BB%B6%E8%B0%83%E7%94%A8CI%EF%BC%88component-Interface%EF%BC%89/" class="post-title-link" itemprop="url">PeopleSoft-component组件调用CI（component-Interface）</a>
+            <a href="/2020/07/05/PeopleSoft-%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2%E9%BB%98%E8%AE%A4%E5%80%BC-%E5%88%9D%E5%A7%8B%E5%80%BC/" class="post-title-link" itemprop="url">PeopleSoft-设置页面默认值/初始值</a>
         </h2>
 
         <div class="post-meta-container">
@@ -509,7 +506,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-04-28 15:08:42" itemprop="dateCreated datePublished" datetime="2020-04-28T15:08:42+08:00">2020-04-28</time>
+      <time title="创建时间：2020-07-05 18:16:24" itemprop="dateCreated datePublished" datetime="2020-07-05T18:16:24+08:00">2020-07-05</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -534,14 +531,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>6.3k</span>
+      <span>666</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -552,11 +549,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="设计订单录入系统–内部PeopleCode调用-CI"><a href="#设计订单录入系统–内部PeopleCode调用-CI" class="headerlink" title="设计订单录入系统–内部PeopleCode调用 CI"></a>设计<strong>订单录入系统</strong>–内部PeopleCode调用 CI</h3><p>​    设计思路：建立一个新的订单录入系统，通过提交按钮，通过调用CI 来操作订单管理component 将页面中的数据提交至订单管理系统中，并保存。</p>
-<p>​    流程：设计CI接口 –&gt;建record表–&gt;设计page页面–&gt;生成组件，编写提交按钮触发的PeopleCode代码–&gt;注册组件</p>
+          <p>PeopleSoft的表、页面中进行默认赋值，初始值等……</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/04/28/PeopleSoft-component%E7%BB%84%E4%BB%B6%E8%B0%83%E7%94%A8CI%EF%BC%88component-Interface%EF%BC%89/#more" rel="contents">
+              <a class="btn" href="/2020/07/05/PeopleSoft-%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2%E9%BB%98%E8%AE%A4%E5%80%BC-%E5%88%9D%E5%A7%8B%E5%80%BC/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -582,7 +578,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/Oracle-Group%E7%BB%84%E5%87%BD%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/PeopleSoft-%E8%AD%A6%E5%91%8A%E3%80%81%E9%94%99%E8%AF%AF%E3%80%81%E6%B6%88%E6%81%AF%E7%9B%92%E5%AD%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
@@ -599,7 +595,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/04/Oracle-Group%E7%BB%84%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">Oracle中 Group组函数</a>
+            <a href="/2020/07/05/PeopleSoft-%E8%AD%A6%E5%91%8A%E3%80%81%E9%94%99%E8%AF%AF%E3%80%81%E6%B6%88%E6%81%AF%E7%9B%92%E5%AD%90/" class="post-title-link" itemprop="url">PeopleSoft-警告、错误、消息盒子</a>
         </h2>
 
         <div class="post-meta-container">
@@ -610,14 +606,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-04-04 00:23:19" itemprop="dateCreated datePublished" datetime="2020-04-04T00:23:19+08:00">2020-04-04</time>
+      <time title="创建时间：2020-07-05 18:00:16" itemprop="dateCreated datePublished" datetime="2020-07-05T18:00:16+08:00">2020-07-05</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
+        <time title="修改时间：2020-11-23 00:44:30" itemprop="dateModified" datetime="2020-11-23T00:44:30+08:00">2020-11-23</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -635,14 +631,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>988</span>
+      <span>2.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -653,14 +649,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="求平均函数：AVG"><a href="#求平均函数：AVG" class="headerlink" title="求平均函数：AVG()"></a>求平均函数：AVG()</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(<span class="keyword">column</span>) <span class="keyword">from</span> table1;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="求数量：COUNT"><a href="#求数量：COUNT" class="headerlink" title="求数量：COUNT()"></a>求数量：COUNT()</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">column</span>) <span class="keyword">from</span> table1;</span><br></pre></td></tr></table></figure>
+          <h2 id="PeopleCode-中的“警告、错误、消息盒子”"><a href="#PeopleCode-中的“警告、错误、消息盒子”" class="headerlink" title="PeopleCode 中的“警告、错误、消息盒子”"></a>PeopleCode 中的“警告、错误、消息盒子”</h2><h3 id="PS页面中配置提示消息路径："><a href="#PS页面中配置提示消息路径：" class="headerlink" title="PS页面中配置提示消息路径："></a>PS页面中配置提示消息路径：</h3><p>根据消息严重性不一样，会有不同的结果。1.取消；2.消息；3.警告；4.错误；不同的消息，程序会根据不同的严重性进入不同的步骤。</p>
+<p>1.显示消息并且强制取消程序；</p>
+<p>2.显示消息并继续处理；</p>
+<p>3.显示消息并视为警告；</p>
+<p>4.显示消息并视为错误；</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/04/04/Oracle-Group%E7%BB%84%E5%87%BD%E6%95%B0/#more" rel="contents">
+              <a class="btn" href="/2020/07/05/PeopleSoft-%E8%AD%A6%E5%91%8A%E3%80%81%E9%94%99%E8%AF%AF%E3%80%81%E6%B6%88%E6%81%AF%E7%9B%92%E5%AD%90/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -686,7 +682,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/Oracle-%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/PeopleSoft-%E6%9F%A5%E8%AF%A2%E8%A7%86%E5%9B%BE%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
@@ -703,7 +699,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/04/Oracle-%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2/" class="post-title-link" itemprop="url">Oracle中 联表查询</a>
+            <a href="/2020/07/05/PeopleSoft-%E6%9F%A5%E8%AF%A2%E8%A7%86%E5%9B%BE%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">PeopleSoft-查询视图配置</a>
         </h2>
 
         <div class="post-meta-container">
@@ -714,14 +710,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-04-04 00:22:09" itemprop="dateCreated datePublished" datetime="2020-04-04T00:22:09+08:00">2020-04-04</time>
+      <time title="创建时间：2020-07-05 16:45:03" itemprop="dateCreated datePublished" datetime="2020-07-05T16:45:03+08:00">2020-07-05</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
+        <time title="修改时间：2020-11-23 00:44:30" itemprop="dateModified" datetime="2020-11-23T00:44:30+08:00">2020-11-23</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -739,7 +735,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>336</span>
+      <span>315</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -757,13 +753,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="内联表"><a href="#内联表" class="headerlink" title="内联表"></a>内联表</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> table1.column, table2.column</span><br><span class="line">  <span class="keyword">FROM</span> table1, table2</span><br><span class="line"> <span class="keyword">WHERE</span> table1.column = table2.column;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="外联表"><a href="#外联表" class="headerlink" title="外联表"></a>外联表</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*table1 的数据少，table2 的数据多，需要填充左侧*/</span></span><br><span class="line"><span class="keyword">SELECT</span> table1.column, table2.column</span><br><span class="line">  <span class="keyword">FROM</span> table1, table2</span><br><span class="line"> <span class="keyword">WHERE</span> table1.column(+) = table2.column;</span><br><span class="line"> <span class="comment">/*table1 的数据多，table2 的数据少，需要填充右侧*/</span></span><br><span class="line"><span class="keyword">SELECT</span> table1.column, table2.column</span><br><span class="line">  <span class="keyword">FROM</span> table1, table2</span><br><span class="line"> <span class="keyword">WHERE</span> table1.column = table2.column(+);</span><br></pre></td></tr></table></figure>
-
-
+          <h2 id="级联搜索视图"><a href="#级联搜索视图" class="headerlink" title="级联搜索视图"></a>级联搜索视图</h2><h3 id="效果示例"><a href="#效果示例" class="headerlink" title="效果示例"></a>效果示例</h3><img src=https://gitee.com/gek7777/cdn.io/raw/master/image/1591161810774.png >
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/05/PeopleSoft-%E6%9F%A5%E8%AF%A2%E8%A7%86%E5%9B%BE%E9%85%8D%E7%BD%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -783,7 +781,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -835,13 +833,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">286k</span>
+    <span title="站点总字数">305k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:20</span>
+    <span title="站点阅读时长">4:37</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
