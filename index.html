@@ -307,7 +307,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-12-21 17:27:10 / 修改时间：17:32:58" itemprop="dateCreated datePublished" datetime="2020-12-21T17:27:10+08:00">2020-12-21</time>
+      <time title="创建时间：2020-12-21 17:27:10 / 修改时间：18:33:36" itemprop="dateCreated datePublished" datetime="2020-12-21T17:27:10+08:00">2020-12-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -343,19 +343,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="实体表中增减照片字段："><a href="#实体表中增减照片字段：" class="headerlink" title="实体表中增减照片字段："></a>实体表中增减照片字段：</h3><img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221173008.png"/>
-
-<h3 id="页面添加如图字段，隐藏14-15，14因为刷新不及时，所以利用html区域显示图片。"><a href="#页面添加如图字段，隐藏14-15，14因为刷新不及时，所以利用html区域显示图片。" class="headerlink" title="页面添加如图字段，隐藏14.15，14因为刷新不及时，所以利用html区域显示图片。"></a>页面添加如图字段，隐藏14.15，14因为刷新不及时，所以利用html区域显示图片。</h3><img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221173045.png"/>
-
-<h3 id="上传照片"><a href="#上传照片" class="headerlink" title="上传照片"></a>上传照片</h3><img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221173104.png"/>
-
-<h3 id="删除照片"><a href="#删除照片" class="headerlink" title="删除照片"></a>删除照片</h3><img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221173121.png"/>
-
-<h3 id="刷新照片"><a href="#刷新照片" class="headerlink" title="刷新照片"></a>刷新照片</h3><img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221173136.png"/>
-
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HTML代码：</span></span><br><span class="line">&lt;div&gt;&lt;img src=&quot;%bind(:1)&quot; width=&quot;110&quot; height=&quot;150&quot; &gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//上传代码：</span></span><br><span class="line">rem 上传员工照片;</span><br><span class="line"><span class="comment">/*Employee Photo Feature Changes*/</span></span><br><span class="line">C_HR_WRK.C_YES_NO = <span class="string">&quot;N&quot;</span>;</span><br><span class="line"></span><br><span class="line">rem C_PRPSINFO_TBL.EMPLOYEE_PHOTO;</span><br><span class="line">Local Record &amp;recC_PRPSINFO_TBL;</span><br><span class="line">Local Record &amp;recC_HR_WRK;</span><br><span class="line"></span><br><span class="line">Local Field &amp;fld;</span><br><span class="line">&amp;recC_PRPSINFO_TBL = GetRow().GetRecord(Record.C_PRPSINFO_TBL);</span><br><span class="line">&amp;recC_PRPSINFO_TBL.EMPLOYEE_PHOTO.SetDefault();</span><br><span class="line"></span><br><span class="line">&amp;nReturn = DeleteImage(C_PRPSINFO_TBL.EMPLOYEE_PHOTO);</span><br><span class="line">&amp;nReturn = InsertImage(C_PRPSINFO_TBL.EMPLOYEE_PHOTO);</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除代码：</span></span><br><span class="line">&amp;nReturn = DeleteImage(C_PRPSINFO_TBL.EMPLOYEE_PHOTO);</span><br><span class="line"></span><br><span class="line"><span class="comment">//刷新代码：</span></span><br><span class="line">If C_HR_WRK.C_YES_NO.Value = <span class="string">&quot;Y&quot;</span> Then</span><br><span class="line">   </span><br><span class="line">   Local Record &amp;EMPL_PHOTO2 = CreateRecord(Record.C_PRPSINFO_TBL);</span><br><span class="line">   &amp;EMPL_PHOTO2.COUNTRY.Value = <span class="string">&quot;CHN&quot;</span>;</span><br><span class="line">   &amp;EMPL_PHOTO2.NATIONAL_ID_TYPE.Value = <span class="string">&quot;NID&quot;</span>;</span><br><span class="line">   &amp;EMPL_PHOTO2.NID_SPECIAL_CHAR.Value = C_PREHIRE0_TBL.NID_SPECIAL_CHAR.Value;</span><br><span class="line">   rem &amp;EMPL_PHOTO2.C_RE_NO.Value = C_PREHIRE0_TBL.C_RE_NO.Value;</span><br><span class="line">   Local <span class="keyword">boolean</span> &amp;Bykey = &amp;EMPL_PHOTO2.SelectByKey();</span><br><span class="line">   </span><br><span class="line">   <span class="function">rem   <span class="title">WinMessage</span><span class="params">(<span class="string">&quot;&amp;Bykey==&quot;</span> | &amp;Bykey)</span></span>;</span><br><span class="line">   &amp;short_url = %Response.GetImageURL(&amp;EMPL_PHOTO2);</span><br><span class="line">   <span class="function">rem    <span class="title">WinMessage</span><span class="params">(<span class="string">&quot;&amp;short_url==&quot;</span> | &amp;short_url)</span></span>;</span><br><span class="line">   </span><br><span class="line">   <span class="function">rem  <span class="title">WinMessage</span><span class="params">(<span class="string">&quot;%Request.ServerPort==&quot;</span> | %Request.ServerPort)</span></span>;</span><br><span class="line">   </span><br><span class="line">   If %Request.ServerPort = <span class="number">443</span> Then</span><br><span class="line">      &amp;URL_KY = &amp;short_url;</span><br><span class="line">   Else</span><br><span class="line">      &amp;URL_KY = <span class="string">&quot;Http://&quot;</span> | %Request.ServerName | <span class="string">&quot;:&quot;</span> | %Request.ServerPort | &amp;short_url;</span><br><span class="line">   End-If;</span><br><span class="line">   </span><br><span class="line">   <span class="function">rem  <span class="title">WinMessage</span><span class="params">(<span class="string">&quot;&amp;URL_KY==&quot;</span> | &amp;URL_KY)</span></span>;</span><br><span class="line">   <span class="function">If <span class="title">All</span><span class="params">(&amp;short_url)</span> Then</span></span><br><span class="line"><span class="function">      rem <span class="title">GetLevel0</span><span class="params">()</span><span class="params">(<span class="number">1</span>)</span>.<span class="title">GetRowset</span><span class="params">(Scroll.C_PRPSINFO_TBL)</span><span class="params">(<span class="number">1</span>)</span>.C_HR_WRK.HTMLAREA.Value </span>= GetHTMLText(HTML.C_PRE_PHOTO_IMG, &amp;URL_KY | <span class="string">&quot;?&quot;</span> | DateTimeToLocalizedString(%Datetime, <span class="string">&quot;yyyyMMddHHmmss&quot;</span>));</span><br><span class="line">      C_HR_WRK.HTMLAREA.Value = GetHTMLText(HTML.C_PRE_PHOTO_IMG, &amp;URL_KY | <span class="string">&quot;?&quot;</span> | DateTimeToLocalizedString(%Datetime, <span class="string">&quot;yyyyMMddHHmmss&quot;</span>));</span><br><span class="line">      <span class="function">rem     <span class="title">WinMessage</span><span class="params">(<span class="string">&quot;&amp;URL===&quot;</span> | &amp;URL_KY | <span class="string">&quot;?&quot;</span> | DateTimeToLocalizedString(%Datetime, <span class="string">&quot;yyyyMMddHHmmss&quot;</span>)</span>)</span>;</span><br><span class="line">   Else</span><br><span class="line">      <span class="function">rem  <span class="title">GetLevel0</span><span class="params">()</span><span class="params">(<span class="number">1</span>)</span>.<span class="title">GetRowset</span><span class="params">(Scroll.C_PRPSINFO_TBL)</span><span class="params">(<span class="number">1</span>)</span>.C_HR_WRK.HR_VT_IMAGE.Value </span>= <span class="string">&quot;PT_DUMMY_PHOTO&quot;</span>;</span><br><span class="line">      C_HR_WRK.HR_VT_IMAGE.Value = <span class="string">&quot;PT_DUMMY_PHOTO&quot;</span>;</span><br><span class="line">   End-If;</span><br><span class="line">   </span><br><span class="line">Else</span><br><span class="line">   MessageBox(<span class="number">0</span>, <span class="string">&quot;&quot;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">&quot;请先保存后再刷新照片&quot;</span>);</span><br><span class="line">End-If;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
+          <p>图片保存，上传功能，见详情。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/21/PeopleSoft-%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -591,7 +587,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-12-21 13:52:21 / 修改时间：17:34:39" itemprop="dateCreated datePublished" datetime="2020-12-21T13:52:21+08:00">2020-12-21</time>
+      <time title="创建时间：2020-12-21 13:52:21 / 修改时间：18:34:49" itemprop="dateCreated datePublished" datetime="2020-12-21T13:52:21+08:00">2020-12-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -609,7 +605,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>213</span>
+      <span>228</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -627,18 +623,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="循环定义"><a href="#循环定义" class="headerlink" title="循环定义"></a>循环定义</h3><p>AE定时执行，作业定时执行等。</p>
-<img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221173346.png"/>
-
-<p>如果要对AE进行循环设置，需要注意一下：</p>
-<img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221135348.png"/>
-
-<p>这里的日期不能是必填的，之前是写在表定义里的%date，由于要挂循环，所以写在AE表的代码里。这样才能每次都获取当日期进行AE处理。</p>
-<p>集合ID的话，如果每次都不一样的话，可以设置多个运行控制ID。这样就会跑多个集合下的数据。（目前这里不会出现这样的问题，所以可以不用设置）。</p>
-<img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221135401.png"/>
-
-<p>时区保持为空即可，如果选择了（即使选择了CHN），会导致AE运行的时间不对。</p>
-
+          <p>介绍了如何将AE设置为自动运行~</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/21/PeopleSoft-AE%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
