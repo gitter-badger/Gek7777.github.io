@@ -23,22 +23,26 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="1、安装好Oracle 以后，需要配置两个环境变量 第一个：在系统环境变量中配置Path变量，加入下面两个   如果不加，AD连接会报A64的问题。 作用：占时不了解。 第二个：配置TNS_ADMIN 文件，指定为当前使用的连接串所在的文件夹路径。   如果指定，PL&#x2F;SQL中会默认加载系统自带的ADMIN文件夹下的连接串。 作用：在PL&#x2F;SQL中的help–&gt;support，会发现TNS">
+  <meta name="description" content="如何使用之前的进程子页面轮子~">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Oracle-环境配置问题">
-<meta property="og:url" content="http://yoursite.com/2020/07/05/Oracle-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="PeopleSoft-AE进程页面配置通用AE进程子页面">
+<meta property="og:url" content="http://yoursite.com/2020/12/21/PeopleSoft-AE%E8%BF%9B%E7%A8%8B%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE%E9%80%9A%E7%94%A8AE%E8%BF%9B%E7%A8%8B%E5%AD%90%E9%A1%B5%E9%9D%A2/index.html">
 <meta property="og:site_name" content="Gek&#39;Blog">
-<meta property="og:description" content="1、安装好Oracle 以后，需要配置两个环境变量 第一个：在系统环境变量中配置Path变量，加入下面两个   如果不加，AD连接会报A64的问题。 作用：占时不了解。 第二个：配置TNS_ADMIN 文件，指定为当前使用的连接串所在的文件夹路径。   如果指定，PL&#x2F;SQL中会默认加载系统自带的ADMIN文件夹下的连接串。 作用：在PL&#x2F;SQL中的help–&gt;support，会发现TNS">
+<meta property="og:description" content="如何使用之前的进程子页面轮子~">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-05T11:00:57.000Z">
-<meta property="article:modified_time" content="2020-11-22T16:44:30.380Z">
+<meta property="og:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221152953.png">
+<meta property="og:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221153628.png">
+<meta property="og:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221153706.png">
+<meta property="article:published_time" content="2020-12-21T07:26:20.000Z">
+<meta property="article:modified_time" content="2020-12-21T07:38:16.802Z">
 <meta property="article:author" content="Gek">
-<meta property="article:tag" content="Oracle">
-<meta property="article:tag" content="环境">
+<meta property="article:tag" content="PeopleSoft">
+<meta property="article:tag" content="PeopleCode">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221152953.png">
 
 
-<link rel="canonical" href="http://yoursite.com/2020/07/05/Oracle-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/">
+<link rel="canonical" href="http://yoursite.com/2020/12/21/PeopleSoft-AE%E8%BF%9B%E7%A8%8B%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE%E9%80%9A%E7%94%A8AE%E8%BF%9B%E7%A8%8B%E5%AD%90%E9%A1%B5%E9%9D%A2/">
 
 
 <script class="page-configurations">
@@ -51,7 +55,7 @@
   };
 </script>
 
-  <title>Oracle-环境配置问题 | Gek'Blog</title>
+  <title>PeopleSoft-AE进程页面配置通用AE进程子页面 | Gek'Blog</title>
   
 
 
@@ -137,7 +141,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">30</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">31</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -147,7 +151,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">118</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -199,7 +203,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -211,6 +215,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BB%84%E4%BB%B6%E7%9A%84PostBuild%E4%B8%AD%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">在组件的PostBuild中编写代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BB%84%E4%BB%B6%E4%B8%8A%E6%89%BE%E5%88%B0%E5%A4%B4%E9%83%A8%E9%A1%B5%E9%9D%A2%E7%9A%84%E2%80%9D%E8%BF%90%E8%A1%8C%E2%80%9D%E5%AD%97%E6%AE%B5-FieldDefault%EF%BC%8C%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E3%80%82"><span class="nav-number">3.</span> <span class="nav-text">在组件上找到头部页面的”运行”字段-FieldDefault，编写代码。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-1"><span class="nav-number">4.</span> <span class="nav-text">代码：</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -226,7 +231,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -239,7 +244,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -283,7 +288,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/Oracle-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/21/PeopleSoft-AE%E8%BF%9B%E7%A8%8B%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE%E9%80%9A%E7%94%A8AE%E8%BF%9B%E7%A8%8B%E5%AD%90%E9%A1%B5%E9%9D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
@@ -299,7 +304,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Oracle-环境配置问题
+          PeopleSoft-AE进程页面配置通用AE进程子页面
         </h1>
 
         <div class="post-meta-container">
@@ -309,16 +314,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-07-05 19:00:57" itemprop="dateCreated datePublished" datetime="2020-07-05T19:00:57+08:00">2020-07-05</time>
+      <time title="创建时间：2020-12-21 15:26:20 / 修改时间：15:38:16" itemprop="dateCreated datePublished" datetime="2020-12-21T15:26:20+08:00">2020-12-21</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-23 00:44:30" itemprop="dateModified" datetime="2020-11-23T00:44:30+08:00">2020-11-23</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -335,7 +334,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>214</span>
+      <span>407</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -346,6 +345,7 @@
     </span>
 </div>
 
+            <div class="post-description">如何使用之前的进程子页面轮子~</div>
         </div>
       </header>
 
@@ -353,17 +353,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>1、安装好Oracle 以后，需要配置两个环境变量</p>
-<p>第一个：在系统环境变量中配置Path变量，加入下面两个</p>
-<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/1553041350229.png >
+        <h3 id="在组件的PostBuild中编写代码："><a href="#在组件的PostBuild中编写代码：" class="headerlink" title="在组件的PostBuild中编写代码："></a>在组件的PostBuild中编写代码：</h3><img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221152953.png"/>
 
-<p><strong>如果不加，AD连接会报A64的问题。</strong></p>
-<p>作用：占时不了解。</p>
-<p>第二个：配置TNS_ADMIN 文件，指定为<strong>当前使用的连接串</strong>所在的文件夹路径。</p>
-<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/1553041519814.png >
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Component string &amp;PrcsName;</span><br><span class="line">If %Mode = <span class="string">&quot;A&quot;</span> Then</span><br><span class="line">   C_COST_INTC_RTL.C_GP_SORT = <span class="string">&quot;20&quot;</span>;</span><br><span class="line">End-If;</span><br><span class="line">C_COST_INTCA_WK.C_FLAG_DJ.Value = <span class="string">&quot;N&quot;</span>;</span><br><span class="line">&amp;PrcsName = <span class="string">&quot;C_CST_INT_AE&quot;</span>; <span class="comment">/*****进程名称，需要早组件初始化的时候赋值*****/</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>如果指定，PL/SQL中会默认加载系统自带的ADMIN文件夹下的连接串。</strong></p>
-<p>作用：在PL/SQL中的help–&gt;support，会发现TNS file 的路径是系统默认的文件。会找不到配置的连接串。</p>
+<h3 id="在组件上找到头部页面的”运行”字段-FieldDefault，编写代码。"><a href="#在组件上找到头部页面的”运行”字段-FieldDefault，编写代码。" class="headerlink" title="在组件上找到头部页面的”运行”字段-FieldDefault，编写代码。"></a>在组件上找到头部页面的”运行”字段-FieldDefault，编写代码。</h3><img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221153628.png"/>
+
+<img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201221153706.png"/>
+
+<h3 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Component string &amp;PrcsName;</span><br><span class="line">Declare Function Refresh PeopleCode C_SYSAE_QRY.REFRESH_BTN FieldFormula;</span><br><span class="line">Refresh(&amp;PrcsName);</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -373,21 +372,21 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Oracle/" rel="tag"># Oracle</a>
-              <a href="/tags/%E7%8E%AF%E5%A2%83/" rel="tag"># 环境</a>
+              <a href="/tags/PeopleSoft/" rel="tag"># PeopleSoft</a>
+              <a href="/tags/PeopleCode/" rel="tag"># PeopleCode</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/07/05/Git-%E2%80%9Cnpm-v%E2%80%9D%E6%8A%A5%E9%94%99/" rel="prev" title="Git-“npm-v”报错">
-                  <i class="fa fa-chevron-left"></i> Git-“npm-v”报错
+                <a href="/2020/12/21/PeopleSoft-AE%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C/" rel="prev" title="PeopleSoft-AE设置自动运行">
+                  <i class="fa fa-chevron-left"></i> PeopleSoft-AE设置自动运行
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/07/05/Tomcat-%E4%B8%BB%E9%A1%B5%E8%AE%BF%E9%97%AE404/" rel="next" title="Tomcat-主页访问404">
-                  Tomcat-主页访问404 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/12/21/PeopleSoft-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/" rel="next" title="PeopleSoft-服务器常用配置文件路径.md">
+                  PeopleSoft-服务器常用配置文件路径.md <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -446,13 +445,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">305k</span>
+    <span title="站点总字数">309k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:37</span>
+    <span title="站点阅读时长">4:41</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
