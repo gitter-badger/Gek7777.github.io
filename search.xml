@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>PeopleSoft-页面表格数据检索功能</title>
+      <link href="2020/12/22/PeopleSoft-%E9%A1%B5%E9%9D%A2%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%A3%80%E7%B4%A2%E5%8A%9F%E8%83%BD/"/>
+      <url>2020/12/22/PeopleSoft-%E9%A1%B5%E9%9D%A2%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%A3%80%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>
+      
+        <content type="html"><![CDATA[<h3 id="第一种搜索"><a href="#第一种搜索" class="headerlink" title="第一种搜索"></a>第一种搜索</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ScrollFlush(Record.C_PRH_SER_VW);</span><br><span class="line"></span><br><span class="line">&amp;strWhere = <span class="string">&quot;WHERE 1 = 1 &quot;</span>;</span><br><span class="line">rem 默认出待入职的;</span><br><span class="line">&amp;strWhere = &amp;strWhere | <span class="string">&quot; AND C_PRH_STATUS = &#x27;10&#x27; &quot;</span>;</span><br><span class="line">&amp;strWhere = &amp;strWhere | <span class="string">&quot; AND OPRID = &#x27;&quot;</span> | %OperatorId | <span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">ScrollSelect(<span class="number">1</span>, Record.C_PRH_SER_VW, Record.C_PRH_SER_VW, &amp;strWhere);</span><br></pre></td></tr></table></figure><h3 id="第二种搜索"><a href="#第二种搜索" class="headerlink" title="第二种搜索"></a>第二种搜索</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Local Rowset &amp;rs = GetRowset(Scroll.C_SAL_QRY_VW);</span><br><span class="line">REM 清空rowset;</span><br><span class="line">&amp;rs.Flush();</span><br><span class="line">rem 根据输入的查询条件进行查询;</span><br><span class="line">&amp;rs.Select(Record.C_SAL_QRY_VW, &amp;WHERE);</span><br><span class="line"></span><br><span class="line">rem 排序;</span><br><span class="line">&amp;rs.Sort(C_SAL_QRY_VW.TREE_NODE_NUM, <span class="string">&quot;A&quot;</span>, C_SAL_QRY_VW.EMPLID, <span class="string">&quot;A&quot;</span>);</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PeopleSoft </tag>
+            
+            <tag> PeopleCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PeopleSoft-报表示例（Excel-2010）</title>
       <link href="2020/12/22/PeopleSoft-%E6%8A%A5%E8%A1%A8%E7%A4%BA%E4%BE%8B%EF%BC%88Excel-2010%EF%BC%89/"/>
       <url>2020/12/22/PeopleSoft-%E6%8A%A5%E8%A1%A8%E7%A4%BA%E4%BE%8B%EF%BC%88Excel-2010%EF%BC%89/</url>
