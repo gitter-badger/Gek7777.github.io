@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>PeopleSoft-员工ID溢出处理</title>
+      <link href="2020/12/22/PeopleSoft-%E5%91%98%E5%B7%A5ID%E6%BA%A2%E5%87%BA%E5%A4%84%E7%90%86/"/>
+      <url>2020/12/22/PeopleSoft-%E5%91%98%E5%B7%A5ID%E6%BA%A2%E5%87%BA%E5%A4%84%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<p><strong>员工ID长度</strong></p><img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201222110728.png"/><p><strong>员工ID溢出，编码开始</strong></p><img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20201222110552.png"/>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PeopleSoft </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PeopleSoft-图片上传功能</title>
       <link href="2020/12/21/PeopleSoft-%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/"/>
       <url>2020/12/21/PeopleSoft-%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD/</url>

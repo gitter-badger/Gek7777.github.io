@@ -143,7 +143,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">118</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">119</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-count">119</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -274,6 +274,129 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/Java-%E5%8C%85%EF%BC%88package%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
+      <meta itemprop="name" content="Gek">
+      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gek'Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/15/Java-%E5%8C%85%EF%BC%88package%EF%BC%89/" class="post-title-link" itemprop="url">Java-包（package）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-15 09:13:17" itemprop="dateCreated datePublished" datetime="2019-04-15T09:13:17+08:00">2019-04-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Java-包（package）"><a href="#Java-包（package）" class="headerlink" title="Java 包（package）"></a>Java 包（package）</h1><p>为了更好的组织类，Java 提供了包机制，用于区别类名的命名空间。</p>
+<h2 id="包的作用"><a href="#包的作用" class="headerlink" title="包的作用"></a>包的作用</h2><ol>
+<li>把功能相似或相关的类或接口组织在同一个包中，方便类的查找和使用。</li>
+<li>如同文件夹一样，包也采用了树形目录的存储方法。同一个包中的类名是不同的，不同的包中的类的名字是可以相同的，当同时调用两个不同包中相同类名的类时，应加上包名加以区别。因此，包可以避免名字冲突。</li>
+<li>包也限定了访问权限，拥有包访问权限的类才能访问某个包中的类。</li>
+</ol>
+<p>Java 使用包（package）这种机制是为了防止命名冲突，访问控制，提供搜索和定位类（class）、接口、枚举（enumerations）和注释（annotation）等。</p>
+<p>包的语法格式为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> pkg1.[pkg2.[pkg3...]];</span><br><span class="line"><span class="comment">//例如</span></span><br><span class="line"><span class="keyword">package</span> net.java.util;</span><br></pre></td></tr></table></figure>
+
+<p>package（包）的作用是把不同的Java 程序分类保存，更方便的被其他 Java 程序调用。一个包（package）可以定义位一组相互联系的类型（类、接口、枚举和注释），为这些类型提供访问保护和命名空间管理的功能。</p>
+<p>以下是一些Java 中的包：</p>
+<ul>
+<li><p>java.lang - 打包基础的类</p>
+</li>
+<li><p>java.io - 包含输入输出功能的函数</p>
+</li>
+</ul>
+<p>​        开发者可以自己把一组类和接口等打包，并定义自己的包。而且在实际开发中这样是值的提倡的，当你自己完成类的实现之后，将相关的类分组，可以让其他的编程者更容易地确定哪些类、接口、枚举和注释是相关的。</p>
+<p>​    由于包创建了新的命名空间（namespace），所以不会跟其他包中的任何名字产生命名冲突。使用这种机制，更容易实现访问控制，并且定位类更加简单。</p>
+<h2 id="创建包"><a href="#创建包" class="headerlink" title="创建包"></a>创建包</h2><p>创建包的时候，你需要为这个包取一个适合的名字。之后，如果其他的一个源文件包含了这个包提供的类、接口、枚举或者注释类型的时候，都必须将这个包的声明放在这个源文件的开头。</p>
+<p>包声明应该在源文件的第一行，每个源文件只能有一个包声明，这个文件中的每个类型都应用于它。</p>
+<p>如果一个源文件中没有使用包声明，那么其中的类、函数、枚举、注释等将被放在一个无名的包（default package）中。</p>
+<p>例如：</p>
+<p>通常用小写的字母来命名避免与类、接口名字的冲突。</p>
+<h2 id="import-关键字"><a href="#import-关键字" class="headerlink" title="import 关键字"></a>import 关键字</h2><p>为了能够使用某一个包的成员，我们需要在 Java 程序中明确导入该包。使用“import”语句完成此功能。</p>
+<p>在 Java 源文件中 import 语句应该再 package 语句之后，所有类的定义之前，可以没有，可以有多余。其语法为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> package1[.package2…].(classname|*);</span><br></pre></td></tr></table></figure>
+
+<p>可以使用通配符 “*”号。</p>
+<p>注意：类文件中可以包含任意数量的import 声明。import 声明必须在包声明之后，类声明之前。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -665,117 +788,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/04/12/Java-%E9%87%8D%E5%86%99%E5%92%8C%E9%87%8D%E8%BD%BD/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/Java-%E7%BB%A7%E6%89%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
-      <meta itemprop="name" content="Gek">
-      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gek'Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/12/Java-%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">Java-继承</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-04-12 09:11:07" itemprop="dateCreated datePublished" datetime="2019-04-12T09:11:07+08:00">2019-04-12</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-23 00:44:30" itemprop="dateModified" datetime="2020-11-23T00:44:30+08:00">2020-11-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>5.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>继承是Java 面向对象编程的一块基石，因为它允许创建分等级层级的类。</p>
-<p>继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。</p>
-<p><strong>实现接口也是继承的一种方式！！！！！！！！！</strong></p>
-<img src=https://gitee.com/gek7777/cdn.io/raw/master/image/20190412-1.jpg >
-
-<p>分析：</p>
-<ul>
-<li>兔子和羊属于食草动物类，狮子和豹属于食肉动物类。</li>
-<li>食草动物和食肉动物又是属于动物类。</li>
-<li>继承需要符合的关系是：<strong>is-a，父类更通用，子类更具体</strong>。</li>
-<li>虽然食草动物和食肉动物都是属于动物，但是两者的属性和行为上有差别，所以子类会具有父类一般特性也会具有自身的特性。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/04/12/Java-%E7%BB%A7%E6%89%BF/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
