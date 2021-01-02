@@ -31,7 +31,7 @@
 <meta property="og:description" content="关于一、二维数据的创建、初始化等方法….">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-17T03:48:40.000Z">
-<meta property="article:modified_time" content="2020-09-18T10:19:14.445Z">
+<meta property="article:modified_time" content="2021-01-02T14:21:44.566Z">
 <meta property="article:author" content="Gek">
 <meta property="article:tag" content="PeopleSoft">
 <meta property="article:tag" content="PeopleCode">
@@ -147,7 +147,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">124</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">123</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -227,7 +227,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">124</span>
+          <span class="site-state-item-count">123</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -318,7 +318,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
+        <time title="修改时间：2021-01-02 22:21:44" itemprop="dateModified" datetime="2021-01-02T22:21:44+08:00">2021-01-02</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -336,14 +336,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.9k</span>
+      <span>5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -360,7 +360,7 @@
 <h3 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h3><h4 id="空数组"><a href="#空数组" class="headerlink" title="空数组"></a>空数组</h4><ul>
 <li><strong>any类型</strong></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">local array Of any  &amp;arr1 = createArray();</span><br><span class="line">local array   &amp;arr1 = createArray();   <span class="comment">//不指定类型即为任意类型；</span></span><br><span class="line"><span class="comment">// 初始化一个不含元素的任意类型空数组；数组的长度为 0；</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">local array Of any  &amp;arr1 = createArray();</span><br><span class="line">local array   &amp;arr1 = createArray();   <span class="comment">//不指定类型即为任意类型；</span></span><br><span class="line"><span class="comment">// 初始化一个不含元素的任意类型空数组；数组下标从1开始，数组的长度为 0；</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><strong>string类型</strong></li>
@@ -417,7 +417,7 @@
 <ul>
 <li><strong>string类型</strong></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">local array of array of string &amp;arr2 = CreateArray(CreateArray(<span class="string">&quot;&quot;</span>,<span class="number">0</span>)); </span><br><span class="line"><span class="comment">//创建一个二维的string类型的数组；数组有一个</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">local array of array of string &amp;arr2 = CreateArray(CreateArray(<span class="string">&quot;&quot;</span>,<span class="number">0</span>)); </span><br><span class="line"><span class="comment">//创建一个二维的string类型的数组；数组有一个null数组元素，但是无法获取；数组长度为1</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><strong>number类型</strong></li>
@@ -580,7 +580,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
@@ -591,13 +591,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">319k</span>
+    <span title="站点总字数">322k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:50</span>
+    <span title="站点阅读时长">4:53</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
