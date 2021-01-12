@@ -313,7 +313,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-27 16:43:54" itemprop="dateModified" datetime="2020-09-27T16:43:54+08:00">2020-09-27</time>
+        <time title="修改时间：2021-01-09 20:05:11" itemprop="dateModified" datetime="2021-01-09T20:05:11+08:00">2021-01-09</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -331,7 +331,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>669</span>
+      <span>668</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -352,7 +352,7 @@
           <h2 id="设置grid列标题"><a href="#设置grid列标题" class="headerlink" title="设置grid列标题"></a>设置grid列标题</h2><p>操作如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&amp;Grid = getGrid(page.c_test_page,<span class="string">&quot;c_test_grid&quot;</span>);</span><br><span class="line">&amp;Grid.getColumn(<span class="string">&quot;test&quot;</span>).label = <span class="string">&quot;测试&quot;</span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="设置grid每行，每列只读"><a href="#设置grid每行，每列只读" class="headerlink" title="设置grid每行，每列只读"></a>设置grid每行，每列只读</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">local rowset &amp;rs = getRowset(scroll.C_TEST_TBL);</span><br><span class="line">FOR &amp;i = <span class="number">1</span> TO &amp;rs.activeRowCouont</span><br><span class="line">    FOR &amp;l = <span class="number">1</span> TO &amp;rs(&amp;i).getRecord(Record.C_TEST_TBL).fieldCount;</span><br><span class="line">    	&amp;rs(&amp;i).getRecord(Record.C_TEST_TBL).getField(&amp;l).enabled = <span class="keyword">false</span>;</span><br><span class="line">	end-<span class="keyword">for</span>; </span><br><span class="line">end-<span class="keyword">for</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="设置grid每行，每列只读"><a href="#设置grid每行，每列只读" class="headerlink" title="设置grid每行，每列只读"></a>设置grid每行，每列只读</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">local rowset &amp;rs = getRowset(scroll.C_TEST_TBL);</span><br><span class="line">FOR &amp;i = <span class="number">1</span> TO &amp;rs.activeRowCount</span><br><span class="line">    FOR &amp;l = <span class="number">1</span> TO &amp;rs(&amp;i).getRecord(Record.C_TEST_TBL).fieldCount;</span><br><span class="line">    	&amp;rs(&amp;i).getRecord(Record.C_TEST_TBL).getField(&amp;l).enabled = <span class="keyword">false</span>;</span><br><span class="line">	end-<span class="keyword">for</span>; </span><br><span class="line">end-<span class="keyword">for</span>;</span><br></pre></td></tr></table></figure>
 
 <h2 id="链接字段赋值"><a href="#链接字段赋值" class="headerlink" title="链接字段赋值"></a>链接字段赋值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*将LINK的字段赋值为每行的员工ID*/</span></span><br><span class="line"><span class="function">IF <span class="title">ALL</span><span class="params">(C_TEST_TBL.C_TEST_EMPLID)</span> THEN</span></span><br><span class="line"><span class="function">    <span class="comment">/*如果在表上写getrow()的话，直接获取相对位置*/</span></span></span><br><span class="line"><span class="function">	<span class="title">GETROW</span><span class="params">()</span>.C_TEST_TBL.C_TEST_LINK.LABEL </span>= GETROW().C_TEST_TBL.C_TEST_EMPLID.VALUE;</span><br><span class="line">	<span class="comment">/*如果不写，可能获取0层上的表，可能会取错位置*/</span></span><br><span class="line">	C_TEST_TBL.C_TEST_LINK.LABEL = C_TEST_TBL.C_TEST_EMPLID.VALUE;</span><br><span class="line">END-IF;</span><br></pre></td></tr></table></figure>
 
