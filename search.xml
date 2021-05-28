@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Eclipse-高版本无法兼容Fat_Jar工具处理方法</title>
+      <link href="2021/05/28/Eclipse-%E9%AB%98%E7%89%88%E6%9C%AC%E6%97%A0%E6%B3%95%E5%85%BC%E5%AE%B9Fat-Jar%E5%B7%A5%E5%85%B7%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95/"/>
+      <url>2021/05/28/Eclipse-%E9%AB%98%E7%89%88%E6%9C%AC%E6%97%A0%E6%B3%95%E5%85%BC%E5%AE%B9Fat-Jar%E5%B7%A5%E5%85%B7%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h2 id="〇、安装前准备"><a href="#〇、安装前准备" class="headerlink" title="〇、安装前准备"></a>〇、安装前准备</h2><p>1、Fat Jar插件下载地址：<a href="https://sourceforge.net/projects/fjep/files/">https://sourceforge.net/projects/fjep/files/</a></p><p>2、安装前请确认Eclipse版本：Help –&gt; About Eclipse</p><h2 id="一、Eclipse-3-4前版本安装Fat-Jar"><a href="#一、Eclipse-3-4前版本安装Fat-Jar" class="headerlink" title="一、Eclipse 3.4前版本安装Fat Jar"></a>一、Eclipse 3.4前版本安装Fat Jar</h2><p>1、本地插件安装</p><p>  a、解压下载的zip包，将里面的jar包解压到Eclipse安装路径下的plugins文件夹中；<br>  b、如果Eclipse已经启动需要重启一下，没有启动直接打开Eclipse即可。</p><p>2、在线安装</p><p>  a、进入Help –&gt; Install New Software…；<br>  b、Work with处填入参数“fat - <a href="http://kurucz-grafika.de/fatjar%E2%80%9D">http://kurucz-grafika.de/fatjar”</a> ；<br>  c、勾选Fat Jar ；<br>  d、点击下一步即可。</p><h2 id="二、Eclipse-3-4后版本安装Fat-Jar"><a href="#二、Eclipse-3-4后版本安装Fat-Jar" class="headerlink" title="二、Eclipse 3.4后版本安装Fat Jar"></a>二、Eclipse 3.4后版本安装Fat Jar</h2><p>1、先解决版本兼容问题：</p><p>  a、进入Help –&gt; Install New Software…；<br>  b、选择Work with列表下的The Eclipse Project Updates - <a href="http://download.eclipse.org/eclipse/updates/4.5%EF%BC%9B">http://download.eclipse.org/eclipse/updates/4.5；</a><br>  c、在弹出的可安装组件中选择：Eclipse Tests, Examples, and Extras ；<br>  d、打开下拉选择：Eclipse 2.0 Style Plugin Support安装。</p><p>2、按照一的步骤安装后重新启动Eclipse即可。</p><h2 id="三、使用Fat-Jar打包"><a href="#三、使用Fat-Jar打包" class="headerlink" title="三、使用Fat Jar打包"></a>三、使用Fat Jar打包</h2><p>右键项目，选择Build Fat Jar打包；<br>或者右键项目选择Export-&gt;other-&gt;Fat Jar Exporter打包；<br>命名jar以及选择Main-class（可以不选），next后可以看到要打包的第三方lib，finish即可。</p><img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20210528154817.png"/><h2 id="四、后记"><a href="#四、后记" class="headerlink" title="四、后记"></a>四、后记</h2><p>本地插件安装，重启Eclipse没安装成功，删除Eclipse下\configuration\org.eclipse.update\platform.xml重启也无效；<br>在线安装失败提示：Failed to prepare partial IU: [R]net.sf.fjep.fatjar 0.0.31.；<br>以上错误均为版本不兼容导致。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Eclipse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Peoplesoft-邮件提醒功能开发&amp;配置流程</title>
       <link href="2021/05/28/Peoplesoft-%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E5%8A%9F%E8%83%BD%E5%BC%80%E5%8F%91-%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B/"/>
       <url>2021/05/28/Peoplesoft-%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E5%8A%9F%E8%83%BD%E5%BC%80%E5%8F%91-%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B/</url>
