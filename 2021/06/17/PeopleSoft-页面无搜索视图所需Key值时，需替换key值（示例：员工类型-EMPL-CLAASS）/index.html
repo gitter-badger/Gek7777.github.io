@@ -23,23 +23,24 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="PeopleTools是PeopleSoft各种应用的开发工具集合，常用的包括AppDesigner,PeopleCode，DataMover等等。PeopleTools的各种工具与业务无关，PS各种应用比如Finance, HCM, SCM, SRM, Campus等都是用PeopleTools开发而成。PeopleTools的各种定义都存储在数据库里。既然是存在数据库里，那都有哪些表来存储呢？">
+  <meta name="description" content="在PeopleSoft页面设计中，可能会出现一种情况：某个字段的搜索视图是级联Key值，但是上一级的Key值因为页面不存在，这时可以通过配置替换Key值来实现关联搜索....">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PeopleSoft-系统常用表">
-<meta property="og:url" content="http://yoursite.com/2020/09/15/PeopleSoft-%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%A1%A8/index.html">
+<meta property="og:title" content="PeopleSoft-页面无搜索视图所需Key值时，需替换key值（示例：员工类型-EMPL_CLAASS）">
+<meta property="og:url" content="http://yoursite.com/2021/06/17/PeopleSoft-%E9%A1%B5%E9%9D%A2%E6%97%A0%E6%90%9C%E7%B4%A2%E8%A7%86%E5%9B%BE%E6%89%80%E9%9C%80Key%E5%80%BC%E6%97%B6%EF%BC%8C%E9%9C%80%E6%9B%BF%E6%8D%A2key%E5%80%BC%EF%BC%88%E7%A4%BA%E4%BE%8B%EF%BC%9A%E5%91%98%E5%B7%A5%E7%B1%BB%E5%9E%8B-EMPL-CLAASS%EF%BC%89/index.html">
 <meta property="og:site_name" content="Gek&#39;Blog">
-<meta property="og:description" content="PeopleTools是PeopleSoft各种应用的开发工具集合，常用的包括AppDesigner,PeopleCode，DataMover等等。PeopleTools的各种工具与业务无关，PS各种应用比如Finance, HCM, SCM, SRM, Campus等都是用PeopleTools开发而成。PeopleTools的各种定义都存储在数据库里。既然是存在数据库里，那都有哪些表来存储呢？">
+<meta property="og:description" content="在PeopleSoft页面设计中，可能会出现一种情况：某个字段的搜索视图是级联Key值，但是上一级的Key值因为页面不存在，这时可以通过配置替换Key值来实现关联搜索....">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-15T12:03:44.000Z">
-<meta property="article:modified_time" content="2020-10-09T02:02:03.434Z">
+<meta property="og:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20210617200524.png">
+<meta property="og:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20210617200538.png">
+<meta property="article:published_time" content="2021-06-17T12:02:37.000Z">
+<meta property="article:modified_time" content="2021-06-17T12:07:16.405Z">
 <meta property="article:author" content="Gek">
-<meta property="article:tag" content="SQL">
 <meta property="article:tag" content="PeopleSoft">
-<meta property="article:tag" content="PeopleCode">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20210617200524.png">
 
 
-<link rel="canonical" href="http://yoursite.com/2020/09/15/PeopleSoft-%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%A1%A8/">
+<link rel="canonical" href="http://yoursite.com/2021/06/17/PeopleSoft-%E9%A1%B5%E9%9D%A2%E6%97%A0%E6%90%9C%E7%B4%A2%E8%A7%86%E5%9B%BE%E6%89%80%E9%9C%80Key%E5%80%BC%E6%97%B6%EF%BC%8C%E9%9C%80%E6%9B%BF%E6%8D%A2key%E5%80%BC%EF%BC%88%E7%A4%BA%E4%BE%8B%EF%BC%9A%E5%91%98%E5%B7%A5%E7%B1%BB%E5%9E%8B-EMPL-CLAASS%EF%BC%89/">
 
 
 <script class="page-configurations">
@@ -52,7 +53,7 @@
   };
 </script>
 
-  <title>PeopleSoft-系统常用表 | Gek'Blog</title>
+  <title>PeopleSoft-页面无搜索视图所需Key值时，需替换key值（示例：员工类型-EMPL_CLAASS） | Gek'Blog</title>
   
 
 
@@ -148,7 +149,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">125</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -200,7 +201,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -212,6 +213,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E5%AD%97%E6%AE%B5%E7%9A%84%E6%90%9C%E7%B4%A2%E8%A7%86%E5%9B%BE%E6%89%80%E9%9C%80key%E5%80%BC%E4%B8%8D%E5%AD%98%E5%9C%A8%E6%98%AF%EF%BC%8C%E5%88%A9%E7%94%A8%E6%9B%BF%E6%8D%A2Key%E5%80%BC%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">页面字段的搜索视图所需key值不存在是，利用替换Key值。</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -227,7 +229,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">125</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -284,7 +286,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/15/PeopleSoft-%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%A1%A8/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/17/PeopleSoft-%E9%A1%B5%E9%9D%A2%E6%97%A0%E6%90%9C%E7%B4%A2%E8%A7%86%E5%9B%BE%E6%89%80%E9%9C%80Key%E5%80%BC%E6%97%B6%EF%BC%8C%E9%9C%80%E6%9B%BF%E6%8D%A2key%E5%80%BC%EF%BC%88%E7%A4%BA%E4%BE%8B%EF%BC%9A%E5%91%98%E5%B7%A5%E7%B1%BB%E5%9E%8B-EMPL-CLAASS%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
@@ -300,7 +302,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          PeopleSoft-系统常用表
+          PeopleSoft-页面无搜索视图所需Key值时，需替换key值（示例：员工类型-EMPL_CLAASS）
         </h1>
 
         <div class="post-meta-container">
@@ -310,16 +312,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-09-15 20:03:44" itemprop="dateCreated datePublished" datetime="2020-09-15T20:03:44+08:00">2020-09-15</time>
+      <time title="创建时间：2021-06-17 20:02:37 / 修改时间：20:07:16" itemprop="dateCreated datePublished" datetime="2021-06-17T20:02:37+08:00">2021-06-17</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-09 10:02:03" itemprop="dateModified" datetime="2020-10-09T10:02:03+08:00">2020-10-09</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -336,17 +332,18 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.4k</span>
+      <span>74</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
+            <div class="post-description">在PeopleSoft页面设计中，可能会出现一种情况：某个字段的搜索视图是级联Key值，但是上一级的Key值因为页面不存在，这时可以通过配置替换Key值来实现关联搜索....</div>
         </div>
       </header>
 
@@ -354,34 +351,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>PeopleTools是PeopleSoft各种应用的开发工具集合，常用的包括AppDesigner,PeopleCode，DataMover等等。<br>PeopleTools的各种工具与业务无关，PS各种应用比如Finance, HCM, SCM, SRM, Campus等都是用PeopleTools开发而成。<br>PeopleTools的各种定义都存储在数据库里。既然是存在数据库里，那都有哪些表来存储呢？<br>本文适合从事PS开发的技术人员、对PeopleTools感兴趣的读者，PAAS平台架构师等等。</p>
-<a id="more"></a>
+        <h3 id="页面字段的搜索视图所需key值不存在是，利用替换Key值。"><a href="#页面字段的搜索视图所需key值不存在是，利用替换Key值。" class="headerlink" title="页面字段的搜索视图所需key值不存在是，利用替换Key值。"></a>页面字段的搜索视图所需key值不存在是，利用替换Key值。</h3><p>如果某个字段中的搜索视图SETID在页面没有，可以通过这里设置对应的字段赋值给SETID；</p>
+<img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20210617200524.png"/>
 
-<p>按照PeopleTools对象的类型有如下列表：</p>
-<p>   <strong>Projects:工程</strong><br>    PSPROJECTDEFN — Project header table<br>    PSPROJECTITEM — Definitions in the project<br>    PS_PTOBJECTTYPES — Object types list         </p>
-<p>   <strong>Fields:字段</strong><br>    PSDBFIELD — Fields in the system<br>    PSDBFLDLABL — Field Labels<br>    PSDBFIELDLANG<br>    PSXLATITEM — Translate Values<br>    PSXLATITEMLANG<br>    PSDBFLDLABLLANG                                </p>
-<p>   <strong>Records:表</strong><br>    PSRECDEFN — Record header table (record types)<br>    PSRECFIELD — Fields in the record(subrecords not expanded)<br>    PSRECFIELDALL — Fields in the record(subrecords expanded)<br>    PSKEYDEFN — Indexes<br>    PSTBLSPCCAT — Tablespaces<br>    PSRECTBLSPC — Records’ tablespace assignments<br>    PSRECDEFNLANG — language Record                               </p>
-<p>   <strong>Pages:页面</strong><br>    (Note: Pages still have the name panels inthe PeopleTools table names)<br>    PSPNLDEFN — Page header table<br>    PSPNLFIELD — Page controls (fieldtypes/FIELDTYPE)<br>    PSPNLHTMLAREA — Static HTML Areas on Pages<br>    PSPNLCNTRLDATA — stores additionalattributes for Page controls<br>    PSPNLFIELDEXT — stores additional attributes for Page controls<br>    PSPTPNLRTEDITOR — new PeopleTools 8.50 table that stores attributes relating to the rich-text editor for longcharacter fields.   </p>
-<p>   <strong>Components:组件</strong><br>    (Note: Components still have the name panelgroup in the PeopleTools table names)<br>    PSPNLGRPDEFN — Component header table<br>    PSPNLGROUP — Pages in the components<br>    Component Interface<br>    PSBCDEFN — header record; one row for each component interface<br>    PSBCITEM — one row for each property    </p>
-<p>   <strong>Menus:菜单</strong><br>    PSMENUDEFN — Menu header table<br>    PSMENUITEM — Items (components) on the menu     </p>
-<p>   <strong>Security:安全性</strong><br>    PSCLASSDEFN — Permission List header table<br>    PSAUTHITEM — Menu items granted security bypermission lists<br>    PSROLEDEFN — Role header table<br>    PSROLECLASS — Permission Lists in roles<br>    PSOPRDEFN — User ID header table<br>    PSROLEUSER — Roles granted to users<br>    PSAUTHBUSCOMP — Access to ComponentInterfaces<br>    PSAUTHWEBLIBVW — Access to just WebLibraries<br>    PS_SCRTY_ACC_GRP — Query Security AccessGroups<br>    PSOPROBJ — Definition security (connects apermission list to a definition group) </p>
-<p>   <strong>Tree:树</strong><br>    PSTREENODE</p>
-<p>   <strong>Process Scheduler</strong><br>    PS_PRCSDEFN — Process Definition Header<br>    PS_PRCSTYPEDEFN — Process Type DefinitionHeader<br>    PS_PRCSDEFNPNL — Component<br>    PS_PRCSJOBDEFN — Job Header<br>    PSPRCSRQST — Process Request Instances<br>    PS_PRCSJOBITEM — Job Processes<br>    PSREN — stores REN server ports (from here)<br>    PS_SERVERCLASS — Server Class<br>    PS_PRCS_CAT_TBL — Process Categories<br>    PS_SERVERCATEGORY — Server Categories<br>    PS_SERVERDEFN — Server Definition Header<br>    PSPRCSQUE — Process Queue<br>    PSRF_FLIST_TBL — Folder Definition         </p>
-<p>   <strong>Portal</strong><br>    PSPRSMDEFN — Content References and Folders<br>    PSPRUHTABPGLT — Portal User HP Tab Pagelet<br>    PSPRUHDEFN — Homepage definition(from here)<br>    PSPRUHTAB — Homepage Tab (from here)<br>    PSWEBPROFNVP — Web Profile Settings                      </p>
-<p>   <strong>Change Control</strong><br>    PSCHGCTLHIST — shows history of lockeddefinitions with project name, incident, and description<br>    PSCHGCTLLOCK — shows definitions that arecurrently locked<br>    PSCOMPOBJDIFF — I think this shows comparereport from a Project Compare<br>    PSPROJECTMSG — messages from a project copy        </p>
-<p>   <strong>Application Engine:进程</strong><br>    PSAEAPPLDEFN — header record; 1 row per appengine<br>    PSAEAPPLSTATE — state records assigned toapp engines<br>    PSAEAPPLTEMPTBL — temp tables assigned toapp engines<br>    PSAESECTDEFN — sections<br>    PSAESTEPDEFN — steps<br>    PSAESTEPMSGDEFN<br>    PSAESTMTDEFN — actions (action types)<br>    PSAESECTDTLDEFN — section details<br>    PS_AEONLINEINST — should be 100 rows in thetable<br>    PS_AEINSTANCENBR — should be 100 rows inthe table<br>    PS_AELOCKMGR — should be 100 rows in thetable<br>    PRCSRUNCNTL_SBP   –进程sub页面<br>    PRCSRUNCNTL  – 进程subpage recodr name          </p>
-<p>   <strong>HTML Definitions</strong><br>    PSCONTDEFN — header record; last updatetime, etc.<br>    PSCONTENT — stores actual text in the HTMLdefinition    </p>
-<p>   <strong>PeopleCode:代码</strong><br>    PSPCMPROG — PeopleCode program<br>    PSPCMTXT — The plain text of the PeopleCodeprograms   </p>
-<p>   <strong>SQL Definitions</strong><br>    PSSQLDEFN — header record; last updatetime, etc.<br>    PSSQLTEXTDEFN — stores actual text in the SQL definition<br>    PS_SQLSTMT_TBL — stores SQL statemernts for COBOL        </p>
-<p>   <strong>File Layout Definitions</strong><br>    PSFLDDEFN — header record; last update time, etc.<br>    PSFLDSEGDEFN — stores the segments for eachlayout<br>    PSFLDFIELDDEFN — stores the fields for eachlayout    </p>
-<p>   <strong>Query</strong><br>    PSQRYDEFN — Query Definition Header<br>    PSQRYBIND — Query bind variables/parameters<br>    PSQRYRECORD — Query records<br>    PSQRYFIELD — Fields<br>    PSCONQRSDEFN — connected query<br>    PSCONQRSMAP — connected query: list ofchild queries<br>    PSCONQRSFLDREL — connected query<br>    PSCONQRSRUNCNTR — connected query<br>    PSCONQRSRUNPRM — connected query    </p>
-<p>   <strong>Workflow</strong><br>    APPR_RULE_DETL – Approval Rule Defn Details<br>    APPR_RULE_FIELD – Approval Rule Defn RouteCntl<br>    APPR_RULE_AMT – Approval Rule Amounts<br>    RTE_CNTL_LN – Route Control Profile Line<br>    RTE_CNTL_RUSER – RoleUser Route CntlProfiles<br>    RTE_CNTL_TYPE – Route Control Type<br>    RTE_CNTL_HDR – Routing Control Type<br>    PSWORKLIST — list of work items for eachuser<br>    PS_WF_INSTSTATUS — description of thestatus<br>    PSACTIVITYDEFN — Activity Definition<br>    PSBUSPROCDEFN — Business Process Definition<br>    PSEVENTDEFN — Event Definition<br>    PSEVENTROUTE — Event Route            </p>
-<p>   <strong>Timings</strong><br>    BAT_TIMINGS_LOG<br>    BAT_TIMINGS_DTL<br>    BAT_TIMINGS_FN<br>    File References<br>    PSFILEREDEFN — File references (keys:FILEREFNAME,FILEREFTYPECODE)</p>
-<p>   <strong>EDI Manager</strong><br>    PS_ECINMAPFILE — Records<br>    PS_ECINMAPREC — Records<br>    PS_ECMAPDEFN — EDI Map Definition<br>    PS_ECINMAPFLD — Fields in the Records<br>    PS_ECINMAPRECFLD — Fields in the Records<br>    PS_ECOUTMAPREC<br>    PS_ECOUTMAPFLD    </p>
-<p>   <strong>Feeds</strong><br>    PS_PTFP_FEED<br>    PS_PTFP_DATATYPE<br>    PS_PTFP_DTYPE_IBSO<br>    PS_PTFP_DTYPE_ATTR<br>    PS_PTFP_ATTRS<br>    PS_PTFP_SETTINGS<br>    PS_PTFP_PARMS<br>    PS_PTFP_SECURITY<br>    PS_PTFP_PVALS<br>    PS_PTFP_ADMN_PREF<br>    PS_PTFP_USER_PREF    </p>
-<p>   <strong>Integration Broker</strong><br>    PSMSGPARTS — Message Parts<br>    PSMSGVER — Message Version<br>    PSMSGREC — Message Record<br>    PSOPERATION — Operation<br>    PSOPRVERDFN — Operation Versions<br>    PSSERVICEOPR — Service Operations<br>    PSOPRHDLR — Operation Handlers<br>    PSIBRTNGDEFN — Routings<br>    PSMSGNODEDEFN — Message Nodes<br>    PSRTNGDFNPARM — Routing Parameters<br>    PSOPRVERDFNPARM<br>    PSQUEUEDEFN<br>    PSIBSCMADFN<br>    PSOPERATIONDMS</p>
-<p>   <strong>Message Catalog</strong><br>    PSMSGSETDEFN — Message Set — the header for that message set<br>    PSMSGCATDEFN — Individual messages inthe message catalog/message set<br>    SQR Strings<br>    PS_STRINGS_TBL — String definition (sqrtarns.sqc)<br>    PS_STRINGS_LNG_TBL — Translated String (sqrtarns.sqc)                     </p>
-
+<img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20210617200538.png"/>
     </div>
 
     
@@ -390,22 +363,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/SQL/" rel="tag"># SQL</a>
               <a href="/tags/PeopleSoft/" rel="tag"># PeopleSoft</a>
-              <a href="/tags/PeopleCode/" rel="tag"># PeopleCode</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/09/02/PeopleSoft-RowSet%E7%B1%BB/" rel="prev" title="PeopleSoft-RowSet类">
-                  <i class="fa fa-chevron-left"></i> PeopleSoft-RowSet类
+                <a href="/2021/06/17/PeopleSoft-%E5%88%A0%E9%99%A4%E5%91%98%E5%B7%A5%E5%8A%9F%E8%83%BD/" rel="prev" title="PeopleSoft-删除员工功能">
+                  <i class="fa fa-chevron-left"></i> PeopleSoft-删除员工功能
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/09/16/PeopleSoft-%E7%94%A8%E6%88%B7%E7%BB%91%E5%AE%9A%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/" rel="next" title="PeopleSoft-用户绑定员工信息修改权限设置">
-                  PeopleSoft-用户绑定员工信息修改权限设置 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/06/17/PeopleSoft-%E7%B3%BB%E7%BB%9F%E6%A0%87%E5%87%86%E6%96%B9%E6%B3%95-%E6%8C%89%E9%A1%BA%E5%BA%8F%E7%94%9F%E6%88%90%E7%BC%96%E7%A0%81/" rel="next" title="PeopleSoft-系统标准方法-生成流水号">
+                  PeopleSoft-系统标准方法-生成流水号 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -464,13 +435,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">325k</span>
+    <span title="站点总字数">327k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:55</span>
+    <span title="站点阅读时长">4:57</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
