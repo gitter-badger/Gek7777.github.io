@@ -23,15 +23,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="我们经常需要在组件代码上调用Dosave()或者DosaveNow()内置方法，那么它们两者的区别是什么呢？">
+  <meta name="description" content="Dosave 和dosavenow的区别dosave会放弃后面的代码，进行组件保存。 dosavenow，会保存组件后继续执行后面的代码。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PeopleSoft-组件代码中Dosave()和DosaveNow()的区别">
 <meta property="og:url" content="http://yoursite.com/2020/12/21/PeopleSoft-%E7%BB%84%E4%BB%B6%E4%BB%A3%E7%A0%81%E4%B8%ADDosave-%E5%92%8CDosaveNow-%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="Gek&#39;Blog">
-<meta property="og:description" content="我们经常需要在组件代码上调用Dosave()或者DosaveNow()内置方法，那么它们两者的区别是什么呢？">
+<meta property="og:description" content="Dosave 和dosavenow的区别dosave会放弃后面的代码，进行组件保存。 dosavenow，会保存组件后继续执行后面的代码。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-21T03:50:03.000Z">
-<meta property="article:modified_time" content="2020-12-21T03:52:22.775Z">
+<meta property="article:modified_time" content="2021-06-19T12:08:34.148Z">
 <meta property="article:author" content="Gek">
 <meta property="article:tag" content="PeopleSoft">
 <meta property="article:tag" content="PeopleCede">
@@ -137,7 +137,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -147,7 +147,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">128</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -211,7 +211,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dosave-%E5%92%8Cdosavenow%EF%BC%88%EF%BC%89%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">Dosave() 和dosavenow（）的区别</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dosave-%E5%92%8Cdosavenow%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">Dosave 和dosavenow的区别</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -227,7 +227,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -240,7 +240,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -310,10 +310,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-12-21 11:50:03 / 修改时间：11:52:22" itemprop="dateCreated datePublished" datetime="2020-12-21T11:50:03+08:00">2020-12-21</time>
+      <time title="创建时间：2020-12-21 11:50:03" itemprop="dateCreated datePublished" datetime="2020-12-21T11:50:03+08:00">2020-12-21</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-06-19 20:08:34" itemprop="dateModified" datetime="2021-06-19T20:08:34+08:00">2021-06-19</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -330,7 +336,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>71</span>
+      <span>67</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -341,7 +347,6 @@
     </span>
 </div>
 
-            <div class="post-description">我们经常需要在组件代码上调用Dosave()或者DosaveNow()内置方法，那么它们两者的区别是什么呢？</div>
         </div>
       </header>
 
@@ -349,7 +354,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="Dosave-和dosavenow（）的区别"><a href="#Dosave-和dosavenow（）的区别" class="headerlink" title="Dosave() 和dosavenow（）的区别"></a>Dosave() 和dosavenow（）的区别</h2><p>dosave会放弃后面的代码，进行组件保存。</p>
+        <h2 id="Dosave-和dosavenow的区别"><a href="#Dosave-和dosavenow的区别" class="headerlink" title="Dosave 和dosavenow的区别"></a>Dosave 和dosavenow的区别</h2><p>dosave会放弃后面的代码，进行组件保存。</p>
 <p>dosavenow，会保存组件后继续执行后面的代码。</p>
 
     </div>
@@ -433,13 +438,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">327k</span>
+    <span title="站点总字数">337k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:57</span>
+    <span title="站点阅读时长">5:06</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

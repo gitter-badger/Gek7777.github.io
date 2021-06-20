@@ -23,15 +23,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="​    第一次接触到Peoplesoft这款系统，以下是最基础的使用Application Designer 工具创建一个Demo基本过程和一些注意事项。">
+  <meta name="description" content="第一次接触到Peoplesoft这款系统，以下是最基础的使用Application Designer 工具创建一个Demo基本过程和一些注意事项。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PeopleSoft-开发入门">
 <meta property="og:url" content="http://yoursite.com/2019/03/25/PeopleSoft-%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="Gek&#39;Blog">
-<meta property="og:description" content="​    第一次接触到Peoplesoft这款系统，以下是最基础的使用Application Designer 工具创建一个Demo基本过程和一些注意事项。">
+<meta property="og:description" content="第一次接触到Peoplesoft这款系统，以下是最基础的使用Application Designer 工具创建一个Demo基本过程和一些注意事项。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-03-25T05:37:39.000Z">
-<meta property="article:modified_time" content="2020-09-18T10:19:14.439Z">
+<meta property="article:modified_time" content="2021-06-19T11:44:49.285Z">
 <meta property="article:author" content="Gek">
 <meta property="article:tag" content="PeopleSoft">
 <meta name="twitter:card" content="summary">
@@ -136,7 +136,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -146,7 +146,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">128</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -210,7 +210,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%EF%BC%9AField-%E2%80%94-gt-Record%E2%80%94-gt-Page%E2%80%94-gt-Component%E2%80%94-gt-menu"><span class="nav-number">1.</span> <span class="nav-text">Demo创建流程：Field —&gt; Record—&gt;Page—&gt;Component—&gt;menu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">详细步骤：</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">Demo创建流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">详细步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E6%80%9D%E8%80%83%EF%BC%8C%E8%A7%82%E5%AF%9F%E4%B8%9A%E5%8A%A1%E9%9C%80%E6%B1%82%EF%BC%8C%E5%88%86%E6%9E%90level%E5%B1%82%E7%BA%A7%E4%BB%A5%E5%8F%8A%E6%AF%8F%E4%B8%AA%E5%B1%82%E7%BA%A7%E4%B8%AD%E7%9A%84Field%E7%9A%84%E4%B8%AA%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5%E3%80%82"><span class="nav-number">2.1.</span> <span class="nav-text">首先思考，观察业务需求，分析level层级以及每个层级中的Field的个数以及分布情况。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E6%AF%8F%E4%B8%AA%E5%AD%97%E6%AE%B5%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%8C%E6%96%B0%E5%BB%BA%E6%89%80%E6%9C%89%E7%9A%84fields%E3%80%82%E6%AF%8F%E4%B8%80%E4%B8%AAfield%E5%81%9A%E5%A5%BD%E6%B3%A8%E9%87%8A%E3%80%82"><span class="nav-number">2.2.</span> <span class="nav-text">根据每个字段的特点，新建所有的fields。每一个field做好注释。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E4%B8%A4%E4%B8%AArecord%EF%BC%8C%E5%B0%86%E5%BB%BA%E5%A5%BD%E7%9A%84fields%E6%A0%B9%E6%8D%AE%E5%B1%82%E7%BA%A7%E5%88%86%E5%88%AB%E6%94%BE%E5%85%A5%E4%B8%A4%E4%B8%AArecord%E4%B8%AD%EF%BC%8C%E5%B9%B6%E5%AF%B9fields%E8%BF%9B%E8%A1%8C%E8%AE%BE%E7%BD%AE%EF%BC%8C%E5%81%9A%E5%A5%BD%E6%AF%8F%E4%B8%80%E4%B8%AArecord%E7%9A%84%E6%B3%A8%E9%87%8A%E3%80%82"><span class="nav-number">2.3.</span> <span class="nav-text">建两个record，将建好的fields根据层级分别放入两个record中，并对fields进行设置，做好每一个record的注释。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AApage%E9%A1%B5%E9%9D%A2%EF%BC%8C%E5%B0%86%E5%BB%BA%E5%A5%BD%E7%9A%84-fileds-%E5%92%8C-records-%E5%90%88%E7%90%86%E5%B8%83%E7%BD%AE%E5%88%B0%E9%A1%B5%E9%9D%A2%E4%B8%AD%EF%BC%8C%E5%81%9A%E5%A5%BDpage%E7%9A%84%E6%B3%A8%E9%87%8A%E3%80%82"><span class="nav-number">2.4.</span> <span class="nav-text">新建一个page页面，将建好的 fileds 和 records 合理布置到页面中，做好page的注释。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AAcomponent%E7%BB%84%E4%BB%B6%EF%BC%8C%E6%B7%BB%E5%8A%A0page%EF%BC%8C%E5%86%99%E5%A5%BD%E7%BB%84%E4%BB%B6%E6%B3%A8%E9%87%8A%E3%80%82%E6%A3%80%E6%9F%A5component%E7%9A%84Structure%E5%B1%82%E7%BA%A7%E7%BB%93%E6%9E%84%E6%98%AF%E5%90%A6%E6%9C%89%E8%AF%AF%E3%80%82"><span class="nav-number">2.5.</span> <span class="nav-text">新建一个component组件，添加page，写好组件注释。检查component的Structure层级结构是否有误。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E7%BB%84%E4%BB%B6-register-component%E3%80%82"><span class="nav-number">2.6.</span> <span class="nav-text">注册组件 register component。</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -226,7 +226,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -239,7 +239,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -317,7 +317,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
+        <time title="修改时间：2021-06-19 19:44:49" itemprop="dateModified" datetime="2021-06-19T19:44:49+08:00">2021-06-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -335,7 +335,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.9k</span>
+      <span>1.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -346,6 +346,7 @@
     </span>
 </div>
 
+            <div class="post-description">第一次接触到Peoplesoft这款系统，以下是最基础的使用Application Designer 工具创建一个Demo基本过程和一些注意事项。</div>
         </div>
       </header>
 
@@ -353,12 +354,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>​    第一次接触到Peoplesoft这款系统，以下是最基础的使用Application Designer 工具创建一个Demo基本过程和一些注意事项。</p>
-<a id="more"></a>
-
-<h3 id="Demo创建流程：Field-—-gt-Record—-gt-Page—-gt-Component—-gt-menu"><a href="#Demo创建流程：Field-—-gt-Record—-gt-Page—-gt-Component—-gt-menu" class="headerlink" title="Demo创建流程：Field —&gt; Record—&gt;Page—&gt;Component—&gt;menu"></a>Demo创建流程：Field —&gt; Record—&gt;Page—&gt;Component—&gt;menu</h3><h3 id="详细步骤："><a href="#详细步骤：" class="headerlink" title="详细步骤："></a>详细步骤：</h3><p>一、首先思考，观察业务需求，分析level层级以及每个层级中的Field的个数以及分布情况。</p>
-<p>二、根据每个字段的特点，新建所有的fields。<u>每一个field做好注释</u>。</p>
-<ul>
+        <h2 id="Demo创建流程"><a href="#Demo创建流程" class="headerlink" title="Demo创建流程"></a>Demo创建流程</h2><p>​    Field —&gt; Record—&gt;Page—&gt;Component—&gt;menu</p>
+<h2 id="详细步骤："><a href="#详细步骤：" class="headerlink" title="详细步骤："></a>详细步骤：</h2><h3 id="首先思考，观察业务需求，分析level层级以及每个层级中的Field的个数以及分布情况。"><a href="#首先思考，观察业务需求，分析level层级以及每个层级中的Field的个数以及分布情况。" class="headerlink" title="首先思考，观察业务需求，分析level层级以及每个层级中的Field的个数以及分布情况。"></a>首先思考，观察业务需求，分析level层级以及每个层级中的Field的个数以及分布情况。</h3><h3 id="根据每个字段的特点，新建所有的fields。每一个field做好注释。"><a href="#根据每个字段的特点，新建所有的fields。每一个field做好注释。" class="headerlink" title="根据每个字段的特点，新建所有的fields。每一个field做好注释。"></a>根据每个字段的特点，新建所有的fields。<u>每一个field做好注释</u>。</h3><ul>
 <li>ID：10 Character</li>
 <li>描述：100 Character</li>
 <li>价格：6 signed Number  小数点后两位</li>
@@ -366,28 +363,24 @@
 <li>总价：12 signed Number   </li>
 <li><strong>注意：</strong>translate类型，一定不能超过3个字符长度，否则无法设置其value值，同时translate Value的值，记得要一个个的添加。（不添加的话，没有值）。</li>
 </ul>
-<p>三、建两个record，将建好的fields根据层级分别放入两个record中，并对fields进行设置，<u>做好每一个record的注释</u>。</p>
-<ul>
+<h3 id="建两个record，将建好的fields根据层级分别放入两个record中，并对fields进行设置，做好每一个record的注释。"><a href="#建两个record，将建好的fields根据层级分别放入两个record中，并对fields进行设置，做好每一个record的注释。" class="headerlink" title="建两个record，将建好的fields根据层级分别放入两个record中，并对fields进行设置，做好每一个record的注释。"></a>建两个record，将建好的fields根据层级分别放入两个record中，并对fields进行设置，<u>做好每一个record的注释</u>。</h3><ul>
 <li><strong>订单编号：</strong>勾选<strong>key</strong>，<strong>search key</strong>（出现在搜索栏的选择项）（自动勾选<strong>List Box Item</strong>：出现在搜索结果的列表里），并且在Edits中勾选<strong>required</strong>，<strong>表示这个field是必填项</strong>（即字段前面带*的输入框，无值的话会报错）。</li>
 <li><strong>订单子序号：</strong>勾选key ，search key，勾选required。注意：translate field，在edits中必须将它的Edit Type —&gt;Table Edit —&gt;Type :Translate Table Edit **，否则在保存page页面的时候，会报该field字段无效的错误。</li>
 <li><strong>注意：</strong>这里有个orderid，这个id勾选key，search key ，list box item 就好了，不需要勾选required。它与subid两个field组成一个key。</li>
 <li>保存为HRAPP类型。</li>
 <li><strong>重中之重：<u>必须要build这两个record！！！否则，数据库中没有表，程序会报sql错误</u>。</strong></li>
 </ul>
-<p>四、新建一个page页面，将建好的 fileds 和 records 合理布置到页面中，<u>做好page的注释</u>。</p>
-<ul>
+<h3 id="新建一个page页面，将建好的-fileds-和-records-合理布置到页面中，做好page的注释。"><a href="#新建一个page页面，将建好的-fileds-和-records-合理布置到页面中，做好page的注释。" class="headerlink" title="新建一个page页面，将建好的 fileds 和 records 合理布置到页面中，做好page的注释。"></a>新建一个page页面，将建好的 fileds 和 records 合理布置到页面中，<u>做好page的注释</u>。</h3><ul>
 <li><strong>page页面大小设置：</strong>page properties—&gt; page size设置为：custom size（自定义）。</li>
 <li><strong>0层的record设置：</strong>将0层的fields拖进页面中布局，双击field，设置Size为custom（用户自定拉伸），label—&gt;Alignment设置为Left（左对齐），规范：各field名字左对齐，输入框左对齐。</li>
 <li><strong>1层的grid设置：</strong>插入一个Grid表格，再将1层record拖进该Grid。在General中，设置Occurs count 为合适的个数（一页数据展示的个数），在Label中勾选Display Title，显示该Grid 的名字，并点击Properties修改显示的名字。在body Area中取消show border 的勾选，会好看些，并勾选show Grid lines，显示线条。在Use中取消allow deferred processor的选项的勾选（为了后面的自动计算金额做准备，如果勾选了，会延缓processor ，即我们写在peoplecode的代码）。</li>
 <li><strong>Grid中下拉框设置：</strong>删掉translate字段，点击工具类的Drop Down List box，添加到Grid中，在order中调节它的位置，并双击设置对应的translate field name。</li>
 </ul>
-<p>五、新建一个component组件，添加page，<strong>写好组件注释</strong>。检查component的Structure层级结构是否有误。</p>
-<ul>
+<h3 id="新建一个component组件，添加page，写好组件注释。检查component的Structure层级结构是否有误。"><a href="#新建一个component组件，添加page，写好组件注释。检查component的Structure层级结构是否有误。" class="headerlink" title="新建一个component组件，添加page，写好组件注释。检查component的Structure层级结构是否有误。"></a>新建一个component组件，添加page，<strong>写好组件注释</strong>。检查component的Structure层级结构是否有误。</h3><ul>
 <li>**修改search record :**page—&gt;component Properties—&gt;search record，设置为最高层级的record，在这里是ZL_ORDER_HEL，那么搜索就是根据这个record中的设置了key 的field来进行筛选的。</li>
 <li><strong>修改item label 中的值：</strong>此值为组件<strong>详情页</strong>中页面左上角显示的值。</li>
 </ul>
-<p>六、注册组件 register component。</p>
-<ul>
+<h3 id="注册组件-register-component。"><a href="#注册组件-register-component。" class="headerlink" title="注册组件 register component。"></a>注册组件 register component。</h3><ul>
 <li>在menu菜单中修改<strong>首页</strong>中页面左上角的显示名字。</li>
 <li>选择文件夹名。</li>
 <li>在注册过程中，修改内容参考名、内容参考标签和详细描述：设置为想要显示的。（这里后面可以通过在软件中的门户网站—&gt;内容与结构中对其进行修改设置）</li>
@@ -416,8 +409,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2019/03/27/PeopleSoft-soapUI%E6%A8%A1%E6%8B%9F%E5%A4%96%E9%83%A8request%E9%80%9A%E8%BF%87CI%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6/" rel="next" title="PeopleSoft-soapUI模拟外部request通过CI操作组件">
-                  PeopleSoft-soapUI模拟外部request通过CI操作组件 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/03/27/PeopleSoft-%E5%A4%96%E9%83%A8request%E9%80%9A%E8%BF%87CI%E6%93%8D%E4%BD%9C%E7%BB%84%E4%BB%B6%EF%BC%88soapUI%E6%A8%A1%E6%8B%9F%EF%BC%89/" rel="next" title="PeopleSoft-外部request通过CI操作组件（soapUI模拟）">
+                  PeopleSoft-外部request通过CI操作组件（soapUI模拟） <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -476,13 +469,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">327k</span>
+    <span title="站点总字数">337k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:57</span>
+    <span title="站点阅读时长">5:06</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

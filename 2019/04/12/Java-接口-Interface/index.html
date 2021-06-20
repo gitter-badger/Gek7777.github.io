@@ -31,7 +31,7 @@
 <meta property="og:description" content="Java 接口接口（英文：Interface），在Java 编程语言中是一个抽象类型，是抽象方法的集合，接口通常以Interface 来声明。一个类通过实现接口的方式，从而来实现（或者说继承）接口的抽象方法。 接口并不是类，编写接口的方式和类很相似，但是他们属于不同的概念。类描述对象的属性和方法。接口则包含类要实现的方法。 除非实现接口的类是抽象类，否则该类要定义接口中的所有方法。 接口无法被实例">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-04-12T04:59:23.000Z">
-<meta property="article:modified_time" content="2020-09-18T10:19:14.306Z">
+<meta property="article:modified_time" content="2021-06-19T12:15:46.037Z">
 <meta property="article:author" content="Gek">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Interface">
@@ -137,7 +137,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -147,7 +147,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">128</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -211,7 +211,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">Java 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E4%B8%8E%E7%B1%BB%E7%9B%B8%E4%BC%BC%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">接口与类相似点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E4%B8%8E%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">接口与类的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%89%B9%E6%80%A7"><span class="nav-number">1.3.</span> <span class="nav-text">接口特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.4.</span> <span class="nav-text">抽象类和接口的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">接口的声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">接口的实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="nav-number">4.</span> <span class="nav-text">接口的继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%A4%9A%E7%BB%A7%E6%89%BF"><span class="nav-number">5.</span> <span class="nav-text">接口的多继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E6%8E%A5%E5%8F%A3"><span class="nav-number">6.</span> <span class="nav-text">标记接口</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">Java 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E4%B8%8E%E7%B1%BB%E7%9B%B8%E4%BC%BC%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">接口与类相似点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E4%B8%8E%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">接口与类的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%89%B9%E6%80%A7"><span class="nav-number">1.3.</span> <span class="nav-text">接口特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.4.</span> <span class="nav-text">抽象类和接口的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">接口的声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">接口的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="nav-number">4.</span> <span class="nav-text">接口的继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%A4%9A%E7%BB%A7%E6%89%BF"><span class="nav-number">5.</span> <span class="nav-text">接口的多继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E6%8E%A5%E5%8F%A3"><span class="nav-number">6.</span> <span class="nav-text">标记接口</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -227,7 +227,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -240,7 +240,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -318,7 +318,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-18 18:19:14" itemprop="dateModified" datetime="2020-09-18T18:19:14+08:00">2020-09-18</time>
+        <time title="修改时间：2021-06-19 20:15:46" itemprop="dateModified" datetime="2021-06-19T20:15:46+08:00">2021-06-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -354,19 +354,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="Java-接口"><a href="#Java-接口" class="headerlink" title="Java 接口"></a>Java 接口</h1><p>接口（英文：Interface），在Java 编程语言中是一个抽象类型，是抽象方法的集合，接口通常以Interface 来声明。一个类通过实现接口的方式，从而来实现（或者说继承）接口的抽象方法。</p>
+        <h2 id="Java-接口"><a href="#Java-接口" class="headerlink" title="Java 接口"></a>Java 接口</h2><p>接口（英文：Interface），在Java 编程语言中是一个抽象类型，是抽象方法的集合，接口通常以Interface 来声明。一个类通过实现接口的方式，从而来实现（或者说继承）接口的抽象方法。</p>
 <p>接口并不是类，编写接口的方式和类很相似，但是他们属于不同的概念。类描述对象的属性和方法。接口则包含类要实现的方法。</p>
 <p>除非实现接口的类是抽象类，否则该类要定义接口中的所有方法。</p>
 <p>接口无法被实例化，但是可以被实现。一个实现接口的类，必须实现接口内所描述的所有方法，否则就必须声明为抽象类。另外，在 Java 中，接口类型可用来声明一个变量，他们可以成为一个空指针，或是被绑定在一个以此接口实现的对象。</p>
 <a id="more"></a>
 
-<h2 id="接口与类相似点"><a href="#接口与类相似点" class="headerlink" title="接口与类相似点"></a>接口与类相似点</h2><ul>
+<h3 id="接口与类相似点"><a href="#接口与类相似点" class="headerlink" title="接口与类相似点"></a>接口与类相似点</h3><ul>
 <li>一个接口可有很多个方法。</li>
 <li>接口文件保存在 .java 结尾的文件中，文件名使用接口名。</li>
 <li>接口的字节码文件保存在 . class 结尾的文件中。</li>
 <li>接口相应的字节码文件必须在与包名称相匹配的目录结构中。</li>
 </ul>
-<h2 id="接口与类的区别"><a href="#接口与类的区别" class="headerlink" title="接口与类的区别"></a>接口与类的区别</h2><ul>
+<h3 id="接口与类的区别"><a href="#接口与类的区别" class="headerlink" title="接口与类的区别"></a>接口与类的区别</h3><ul>
 <li>接口不能实例化对象。</li>
 <li>接口没有构造方法。</li>
 <li>接口中所有的方法必须是抽象方法。</li>
@@ -374,18 +374,18 @@
 <li>接口不能被类继承，需要被类实现。</li>
 <li>接口支持多继承。</li>
 </ul>
-<h2 id="接口特性"><a href="#接口特性" class="headerlink" title="接口特性"></a>接口特性</h2><ul>
+<h3 id="接口特性"><a href="#接口特性" class="headerlink" title="接口特性"></a>接口特性</h3><ul>
 <li>接口中每一个方法也是隐式抽象的，接口中的方法会被隐式的指定为 public abstract (只能是 public abstract，其他修饰都会报错 )。</li>
 <li>接口中可以含有变量，但是接口中的变量会被隐式地指定为 public static final 变量（并且只能是public ，用private 修饰会报编译错误） 。</li>
 <li>接口中的方法是不能在接口中实现的，只能由实现接口的类来实现接口的方法。</li>
 </ul>
-<h2 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h2><ol>
+<h3 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h3><ol>
 <li>抽象类中的方法可以有方法体，就是能实现方法的具体功能，但是接口中的方法不行。</li>
 <li>抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是public static final 类型的。</li>
 <li>接口中不能含有静态代码块以及静态方法（用static 修饰的方法），而抽象类是可以有静态代码块和静态方法的。</li>
 <li>一个类只能继承一个抽象类，而一个类却可以实现多个接口。 </li>
 </ol>
-<h1 id="接口的声明"><a href="#接口的声明" class="headerlink" title="接口的声明"></a>接口的声明</h1><p>接口的声明语法格式如下：</p>
+<h2 id="接口的声明"><a href="#接口的声明" class="headerlink" title="接口的声明"></a>接口的声明</h2><p>接口的声明语法格式如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[可见度] Interface 接口名称 [extends 其他的接口名]&#123;</span><br><span class="line">    <span class="comment">//声明变量</span></span><br><span class="line">    <span class="comment">//抽象方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>Interface 关键字用来声明一个接口。下面是接口声明的一个简单例子。</p>
@@ -402,7 +402,7 @@
 
 
 
-<h1 id="接口的实现"><a href="#接口的实现" class="headerlink" title="接口的实现"></a>接口的实现</h1><p>当类实现接口时，类要实现接口中所有的方法。否则，类必须声明为抽象的类。</p>
+<h2 id="接口的实现"><a href="#接口的实现" class="headerlink" title="接口的实现"></a>接口的实现</h2><p>当类实现接口时，类要实现接口中所有的方法。否则，类必须声明为抽象的类。</p>
 <p>类要使用implements 关键字实现接口。在类声明中，implements 关键字方法 class 声明后面。</p>
 <p>实现一个接口的语法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...implements 接口名称[, 其他接口名称, 其他接口名称..., ...] ...</span><br></pre></td></tr></table></figure>
@@ -425,18 +425,18 @@
 <li>一个类只能继承一个类，但是能实现多个接口。</li>
 <li>一个接口能继承另一个接口，这和类之间的继承比较相似。</li>
 </ul>
-<h1 id="接口的继承"><a href="#接口的继承" class="headerlink" title="接口的继承"></a>接口的继承</h1><p>一个接口能继承另一个接口，个类之间的继承方式比较相似。接口的继承使用 extends 关键字，子接口继承父类接口的方法。</p>
+<h2 id="接口的继承"><a href="#接口的继承" class="headerlink" title="接口的继承"></a>接口的继承</h2><p>一个接口能继承另一个接口，个类之间的继承方式比较相似。接口的继承使用 extends 关键字，子接口继承父类接口的方法。</p>
 <p>下面是例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名: Sports.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sports</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHomeTeam</span><span class="params">(String name)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setVisitingTeam</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 文件名: Football.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Football</span> <span class="keyword">extends</span> <span class="title">Sports</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">homeTeamScored</span><span class="params">(<span class="keyword">int</span> points)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitingTeamScored</span><span class="params">(<span class="keyword">int</span> points)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">endOfQuarter</span><span class="params">(<span class="keyword">int</span> quarter)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 文件名: Hockey.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Hockey</span> <span class="keyword">extends</span> <span class="title">Sports</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">homeGoalScored</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitingGoalScored</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">endOfPeriod</span><span class="params">(<span class="keyword">int</span> period)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">overtimePeriod</span><span class="params">(<span class="keyword">int</span> ot)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Hockey接口自己声明了四个方法，从Sports接口继承了两个方法，这样，实现Hockey接口的类需要实现六个方法。</p>
 <p>相似的，实现Football接口的类需要实现五个方法，其中两个来自于Sports接口。</p>
-<h1 id="接口的多继承"><a href="#接口的多继承" class="headerlink" title="接口的多继承"></a>接口的多继承</h1><p>在 Java 中，类的多继承是不合法的，但是接口允许多继承。</p>
+<h2 id="接口的多继承"><a href="#接口的多继承" class="headerlink" title="接口的多继承"></a>接口的多继承</h2><p>在 Java 中，类的多继承是不合法的，但是接口允许多继承。</p>
 <p>在接口的多继承中 extends 关键字只需要使用一次，在其后跟着继承接口。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Hockey</span> <span class="keyword">extends</span> <span class="title">Sport</span>, <span class="title">Event</span></span></span><br></pre></td></tr></table></figure>
 
 <p>以上是合法的。不同于类的单继承规则。</p>
-<h1 id="标记接口"><a href="#标记接口" class="headerlink" title="标记接口"></a>标记接口</h1><p>最常用的继承接口是没有包含任何方法的接口。</p>
+<h2 id="标记接口"><a href="#标记接口" class="headerlink" title="标记接口"></a>标记接口</h2><p>最常用的继承接口是没有包含任何方法的接口。</p>
 <p>标记接口是没有任何方法和属性的接口。它仅仅表明它的类属于一个特定的类型，供其他代码来测试允许做一些事情。</p>
 <p>标记接口作用：简单形象的说就是给某个对象打个标（盖个戳），是对象拥有某个或某些特权。</p>
 <p>例如：java.awt.event 包中的 MouseListener 接口继承的 java.util.EventListener 接口定义如下：</p>
@@ -533,13 +533,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">327k</span>
+    <span title="站点总字数">337k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:57</span>
+    <span title="站点阅读时长">5:06</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
