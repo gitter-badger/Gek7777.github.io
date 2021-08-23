@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20210528151902.jpg">
 <meta property="og:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20210528151925.png">
 <meta property="article:published_time" content="2021-05-28T07:06:42.000Z">
-<meta property="article:modified_time" content="2021-06-19T12:08:06.358Z">
+<meta property="article:modified_time" content="2021-07-13T01:40:36.173Z">
 <meta property="article:author" content="Gek">
 <meta property="article:tag" content="PeopleSoft">
 <meta property="article:tag" content="PeopleCode">
@@ -161,7 +161,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">128</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">134</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -234,14 +234,14 @@
     <img class="site-author-image" itemprop="image" alt="Gek"
       src="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
   <p class="site-author-name" itemprop="name">Gek</p>
-  <div class="site-description" itemprop="description">生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！</div>
+  <div class="site-description" itemprop="description">自律是最强者的本能。--萧伯纳</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">134</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -303,7 +303,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
       <meta itemprop="name" content="Gek">
-      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
+      <meta itemprop="description" content="自律是最强者的本能。--萧伯纳">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -332,7 +332,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-19 20:08:06" itemprop="dateModified" datetime="2021-06-19T20:08:06+08:00">2021-06-19</time>
+        <time title="修改时间：2021-07-13 09:40:36" itemprop="dateModified" datetime="2021-07-13T09:40:36+08:00">2021-07-13</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -350,7 +350,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.2k</span>
+      <span>2.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -379,11 +379,11 @@
 <p>按下面内容这个进行配置 psappsrv.cfg 和 psprcs.cfg 文件中SMTP邮件服务：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">[SMTP Settings]</span><br><span class="line"></span><br><span class="line">;=========================================================================</span><br><span class="line"></span><br><span class="line">; Settings for SMTP mail</span><br><span class="line"></span><br><span class="line">; All controls under SMTP Settings can be dynamically changed</span><br><span class="line"></span><br><span class="line">;=========================================================================</span><br><span class="line"></span><br><span class="line">SMTPServer=smtp.exmail.qq.com</span><br><span class="line"></span><br><span class="line">SMTPPort=25</span><br><span class="line"></span><br><span class="line">SMTPServer1=</span><br><span class="line"></span><br><span class="line">SMTPPort1=0</span><br><span class="line"></span><br><span class="line">SMTPSender=zhaolong@chinasie.com</span><br><span class="line"></span><br><span class="line">SMTPUserName=zhaolong@chinasie.com</span><br><span class="line"></span><br><span class="line">SMTPUserPassWord= &#123;V2.1&#125;Q/gvFJVXvQdlO6xRfOjFpxYV+Eg****</span><br><span class="line"></span><br><span class="line">SMTPSourceMachine=</span><br><span class="line"></span><br><span class="line">SMTPCharacterSet=UTF-8</span><br><span class="line"></span><br><span class="line">SMTPEncodingDLL=</span><br><span class="line"></span><br><span class="line">SMTPTrace=0</span><br><span class="line"></span><br><span class="line">SMTPSendTime=0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">SMTPUseSSL=N</span><br><span class="line"></span><br><span class="line">SMTPSSLPort=465</span><br><span class="line"></span><br><span class="line">SMTPClientCertAlias=</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">SMTPUseSSL1=N</span><br><span class="line"></span><br><span class="line">SMTPSSLPort1=465</span><br><span class="line"></span><br><span class="line">SMTPClientCertAlias1=</span><br></pre></td></tr></table></figure>
 
+<p><del>注意：配置完成后需要重启应用服务；</del>理解有误，订正如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*************邮件配置*************/</span></span><br><span class="line">SMTPServer, SMTPPort, SMTPSender,SMTPSourceMachine needs to be entered and should be valid.  These settings are dynamic and don’t need rebooting Application Server or Process Scheduler.</span><br><span class="line"><span class="comment">/*************邮件日志*************/</span></span><br><span class="line"><span class="number">1.</span> Enable Trace on Application Server/Process Scheduler: To debug the issue, <span class="function">you can use the following settings in Appserver config <span class="title">file</span> <span class="params">(psappsrv.cfg)</span> and/or Process Scheduler config <span class="title">file</span> <span class="params">(psprcs.cfg)</span>.</span></span><br><span class="line"><span class="function">LogFence</span>=<span class="number">5</span></span><br><span class="line">SMTPTrace=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">SMTPTrace is not a dynamic settings and needs reboot of the domain. Once these settings are done, you will see a SMTP.log file generated in the LOGS folder. </span><br></pre></td></tr></table></figure>
 
 
 
-
-<p>注意：配置完成后需要重启应用服务；</p>
 <h2 id="下面为页面配置流程："><a href="#下面为页面配置流程：" class="headerlink" title="下面为页面配置流程："></a>下面为页面配置流程：</h2><h3 id="【SQL语句定义】页面"><a href="#【SQL语句定义】页面" class="headerlink" title="【SQL语句定义】页面"></a>【SQL语句定义】页面</h3><img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20210528151439.png"/>
 
 <p>含义：需要查询出符合邮件提醒条件的员工，查询字段必须符合下面7个字段，没有的需要补空；</p>
@@ -513,13 +513,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">337k</span>
+    <span title="站点总字数">348k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5:06</span>
+    <span title="站点阅读时长">5:17</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

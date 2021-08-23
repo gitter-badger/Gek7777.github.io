@@ -31,7 +31,7 @@
 <meta property="og:description" content="如果更改PeopleSoft服务器的的配置文件，可能需要进行服务器的缓存清理，修改后的配置文件才可以生效，这时候需要进行以下操作清理缓存。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-26T06:57:54.000Z">
-<meta property="article:modified_time" content="2021-04-08T10:06:19.550Z">
+<meta property="article:modified_time" content="2021-07-13T01:43:58.290Z">
 <meta property="article:author" content="Gek">
 <meta property="article:tag" content="服务器">
 <meta property="article:tag" content="PeopleSoft">
@@ -147,7 +147,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">128</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">134</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -219,14 +219,14 @@
     <img class="site-author-image" itemprop="image" alt="Gek"
       src="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
   <p class="site-author-name" itemprop="name">Gek</p>
-  <div class="site-description" itemprop="description">生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！</div>
+  <div class="site-description" itemprop="description">自律是最强者的本能。--萧伯纳</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">134</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -288,7 +288,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
       <meta itemprop="name" content="Gek">
-      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
+      <meta itemprop="description" content="自律是最强者的本能。--萧伯纳">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -317,7 +317,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-04-08 18:06:19" itemprop="dateModified" datetime="2021-04-08T18:06:19+08:00">2021-04-08</time>
+        <time title="修改时间：2021-07-13 09:43:58" itemprop="dateModified" datetime="2021-07-13T09:43:58+08:00">2021-07-13</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -335,7 +335,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>350</span>
+      <span>362</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -354,7 +354,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//首先需要授权给psadm2用户</span></span><br><span class="line">su - psadm2</span><br><span class="line"><span class="comment">//然后进入到缓存文件存放的路径（web服务）</span></span><br><span class="line">cd /home/psadm2/psft/pt/<span class="number">8.57</span>/webserv/peoplesoft/applications/peoplesoft/PORTAL.war/ps/cache</span><br><span class="line"><span class="comment">//缓存文件存放的路径（应用服务）</span></span><br><span class="line">cd /home/psadm2/psft/pt/<span class="number">8.57</span>/appserv/APPDOM/CACHE</span><br><span class="line"><span class="comment">//缓存文件存放的路径（进程服务）</span></span><br><span class="line">cd /home/psadm2/psft/pt/<span class="number">8.57</span>/appserv/prcs/PRCSDOM/CACHE</span><br><span class="line"><span class="comment">//最后进行清理操作</span></span><br><span class="line">rm -rf *</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意：这里的清理操作一定不要打错了，不然会把整个系统给删掉的。那就真的是删库跑路了。</span></span><br></pre></td></tr></table></figure>
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//首先需要授权给psadm2用户</span></span><br><span class="line">su - psadm2</span><br><span class="line"><span class="comment">//然后进入到缓存文件存放的路径（web服务）</span></span><br><span class="line">cd /home/psadm2/psft/pt/<span class="number">8.57</span>/webserv/peoplesoft/applications/peoplesoft/PORTAL.war/ps/cache</span><br><span class="line"><span class="comment">//缓存文件存放的路径（应用服务）</span></span><br><span class="line">cd /home/psadm2/psft/pt/<span class="number">8.57</span>/appserv/APPDOM/CACHE</span><br><span class="line"><span class="comment">//缓存文件存放的路径（进程服务）</span></span><br><span class="line">cd /home/psadm2/psft/pt/<span class="number">8.57</span>/appserv/prcs/PRCSDOM/CACHE</span><br><span class="line"><span class="comment">//最后进行清理操作（确认一下当前所在路径）</span></span><br><span class="line">rm -rf *</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意：这里的清理操作一定不要打错了，不然会把整个系统给删掉的。那就真的是删库跑路了。</span></span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -373,8 +373,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/12/22/PeopleSoft-%E9%A1%B5%E9%9D%A2%E6%8A%A5%E8%A1%A8%E5%A4%9A%E6%9D%A1%E4%BB%B6%E6%A3%80%E7%B4%A2%E5%8A%9F%E8%83%BD/" rel="prev" title="PeopleSoft-页面报表多条件检索功能">
-                  <i class="fa fa-chevron-left"></i> PeopleSoft-页面报表多条件检索功能
+                <a href="/2020/12/22/PeopleSoft-%E9%A1%B5%E9%9D%A2%E6%8A%A5%E8%A1%A8%E5%A4%9A%E6%9D%A1%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" rel="prev" title="PeopleSoft-页面报表多条件搜索功能">
+                  <i class="fa fa-chevron-left"></i> PeopleSoft-页面报表多条件搜索功能
                 </a>
             </div>
             <div class="post-nav-item">
@@ -438,13 +438,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">337k</span>
+    <span title="站点总字数">348k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5:06</span>
+    <span title="站点阅读时长">5:17</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

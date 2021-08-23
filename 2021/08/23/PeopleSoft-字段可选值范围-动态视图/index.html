@@ -23,31 +23,39 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="生而知之者，上也；学而知之者，次也；困而学之，又其次也。困而不学，民斯为下矣！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Gek&#39;Blog">
-<meta property="og:url" content="http://yoursite.com/page/26/index.html">
+  <meta name="description" content="页面上的某个字段的搜索视图或者下拉值，需要根据页面其他字段值来确认可选范围。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PeopleSoft-字段可选值范围-动态视图">
+<meta property="og:url" content="http://yoursite.com/2021/08/23/PeopleSoft-%E5%AD%97%E6%AE%B5%E5%8F%AF%E9%80%89%E5%80%BC%E8%8C%83%E5%9B%B4-%E5%8A%A8%E6%80%81%E8%A7%86%E5%9B%BE/index.html">
 <meta property="og:site_name" content="Gek&#39;Blog">
-<meta property="og:description" content="生而知之者，上也；学而知之者，次也；困而学之，又其次也。困而不学，民斯为下矣！">
+<meta property="og:description" content="页面上的某个字段的搜索视图或者下拉值，需要根据页面其他字段值来确认可选范围。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20210823153038.jpg">
+<meta property="og:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20210823153202.jpg">
+<meta property="og:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20210823154052.png">
+<meta property="og:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20210823153335.jpg">
+<meta property="article:published_time" content="2021-08-23T07:27:25.000Z">
+<meta property="article:modified_time" content="2021-08-23T08:00:41.849Z">
 <meta property="article:author" content="Gek">
+<meta property="article:tag" content="PeopleSoft">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20210823153038.jpg">
 
 
-<link rel="canonical" href="http://yoursite.com/page/26/">
+<link rel="canonical" href="http://yoursite.com/2021/08/23/PeopleSoft-%E5%AD%97%E6%AE%B5%E5%8F%AF%E9%80%89%E5%80%BC%E8%8C%83%E5%9B%B4-%E5%8A%A8%E6%80%81%E8%A7%86%E5%9B%BE/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Gek'Blog</title>
+  <title>PeopleSoft-字段可选值范围-动态视图 | Gek'Blog</title>
   
 
 
@@ -143,7 +151,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">128</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">134</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -195,7 +203,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -207,6 +215,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F1"><span class="nav-number">1.</span> <span class="nav-text">方式1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F2"><span class="nav-number">2.</span> <span class="nav-text">方式2</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -215,14 +224,14 @@
     <img class="site-author-image" itemprop="image" alt="Gek"
       src="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
   <p class="site-author-name" itemprop="name">Gek</p>
-  <div class="site-description" itemprop="description">生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！</div>
+  <div class="site-description" itemprop="description">自律是最强者的本能。--萧伯纳</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">134</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -270,20 +279,21 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
       
 
       
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/Spring-%E5%BD%92%E7%BA%B3%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/23/PeopleSoft-%E5%AD%97%E6%AE%B5%E5%8F%AF%E9%80%89%E5%80%BC%E8%8C%83%E5%9B%B4-%E5%8A%A8%E6%80%81%E8%A7%86%E5%9B%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
       <meta itemprop="name" content="Gek">
-      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
+      <meta itemprop="description" content="自律是最强者的本能。--萧伯纳">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -293,10 +303,9 @@
     
     
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/31/Spring-%E5%BD%92%E7%BA%B3%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Spring-归纳总结</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          PeopleSoft-字段可选值范围-动态视图
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -305,16 +314,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2018-10-31 18:04:16" itemprop="dateCreated datePublished" datetime="2018-10-31T18:04:16+08:00">2018-10-31</time>
+      <time title="创建时间：2021-08-23 15:27:25 / 修改时间：16:00:41" itemprop="dateCreated datePublished" datetime="2021-08-23T15:27:25+08:00">2021-08-23</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-19 18:16:38" itemprop="dateModified" datetime="2021-06-19T18:16:38+08:00">2021-06-19</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -331,17 +334,18 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.8k</span>
+      <span>164</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
+            <div class="post-description">页面上的某个字段的搜索视图或者下拉值，需要根据页面其他字段值来确认可选范围。</div>
         </div>
       </header>
 
@@ -349,16 +353,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>如果说一个程序员必须学习的框架，那么就是Spring无疑了，Spring是一个开放源代码的设计层面框架，解决的是业务逻辑层和其他各层的松耦合问题，因此它将面向接口的编程思想贯穿整个系统应用。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/31/Spring-%E5%BD%92%E7%BA%B3%E6%80%BB%E7%BB%93/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <p>方式1：</p>
+<h2 id="方式1"><a href="#方式1" class="headerlink" title="方式1"></a>方式1</h2><p>如果要实现某个字段的放大镜根据其他控制字段来动态选择对应的搜索视图；（在邮件通知中）</p>
+<p>此方式可以实现字段不同类型变化，例如可以是下拉值、可以是放大镜；</p>
+<img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20210823153038.jpg"/>
+
+<img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20210823153202.jpg"/>
+
+<h2 id="方式2"><a href="#方式2" class="headerlink" title="方式2"></a>方式2</h2><p>如果字段的选择值方式仅为放大镜，那么使用下面的方式即可；</p>
+<p>字段的搜索视图需要使用动态视图（dynamic view）</p>
+<img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20210823154052.png"/>
+
+<p>通过PeopleCode进行搜索视图的动态变化；</p>
+<img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20210823153335.jpg"/>
     </div>
 
     
@@ -366,220 +373,29 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/PeopleSoft/" rel="tag"># PeopleSoft</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/27/%E6%90%AD%E5%BB%BASSM%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
-      <meta itemprop="name" content="Gek">
-      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gek'Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/27/%E6%90%AD%E5%BB%BASSM%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/" class="post-title-link" itemprop="url">搭建SSM项目练习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-10-27 22:52:43" itemprop="dateCreated datePublished" datetime="2018-10-27T22:52:43+08:00">2018-10-27</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-23 00:44:25" itemprop="dateModified" datetime="2020-11-23T00:44:25+08:00">2020-11-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>12k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>11 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>SSM项目：Spring + SpringMVC + Mybatis~</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/27/%E6%90%AD%E5%BB%BASSM%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/24/Blog-%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
-      <meta itemprop="name" content="Gek">
-      <meta itemprop="description" content="生而知之者，上也；</br>学而知之者，次也；</br>困而学之，又其次也。</br>困而不学，民斯为下矣！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gek'Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/24/Blog-%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">Blog-我的第一篇博客</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-10-24 18:49:31" itemprop="dateCreated datePublished" datetime="2018-10-24T18:49:31+08:00">2018-10-24</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-22 17:26:04" itemprop="dateModified" datetime="2020-12-22T17:26:04+08:00">2020-12-22</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.9k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="写在最前面：只是一些个人思考总结，有误处欢迎指正。"><a href="#写在最前面：只是一些个人思考总结，有误处欢迎指正。" class="headerlink" title="写在最前面：只是一些个人思考总结，有误处欢迎指正。"></a>写在最前面：只是一些个人思考总结，有误处欢迎指正。</h3><p>&emsp;&emsp;现在是2018年10月24日，我经过三天的奋斗，终于搭建好了这个简单的博客。这个博客的搭建是完全免费的。主要是用hexo博客框架，生成静态页面，然后使用git版本控制工具把新的项目版本更新到Github上，利用GitHub Pages的项目静态页面展示功能展示页面。所以，感谢Gayhub-全球最大的同性交友网站。</p>
-<p>&emsp;&emsp;因为此博客主要是用来记录自己平时学习的东西，并且将之前学习的前端知识运用起来，所以就没有特意的增加过多花里胡哨的功能，例如：评论功能，宠物功能等，毕竟是以记录知识，提升自己为主。(自己水平有限也是一部分原因。哭)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/10/24/Blog-%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/20/PeopleSoft-%E5%A6%82%E4%BD%95%E5%9C%A8PS%E7%B3%BB%E7%BB%9F%E4%B8%AD%E4%BD%BF%E7%94%A8%E8%85%BE%E8%AE%AFCOS%E6%9C%8D%E5%8A%A1%E5%81%9A%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="prev" title="PeopleSoft-如何在PS系统中使用腾讯COS服务做文件服务器">
+                  <i class="fa fa-chevron-left"></i> PeopleSoft-如何在PS系统中使用腾讯COS服务做文件服务器
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+            <div class="post-nav-item">
+                <a href="/2021/08/23/PeopleSoft-PeopleCode%E8%B0%83%E7%94%A8CI-%E6%96%B0%E5%A2%9E-%E4%BF%AE%E6%94%B9Item%E5%80%BC/" rel="next" title="PeopleSoft-PeopleCode调用CI-新增/修改Item值">
+                  PeopleSoft-PeopleCode调用CI-新增/修改Item值 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
   
   
   
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span>
-  </nav>
 
 
 
@@ -630,13 +446,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">337k</span>
+    <span title="站点总字数">348k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5:06</span>
+    <span title="站点阅读时长">5:17</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

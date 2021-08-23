@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="对于页面报表，通常会有按条件检索功能，如果涉及到多次对rowset操作的时候，rowset.flush()的方法报错，显示无法多次清空rowset。所以，应该使用第二种更简单的方法...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PeopleSoft-页面报表多条件搜索功能">
+<meta property="og:url" content="http://yoursite.com/2020/12/22/PeopleSoft-%E9%A1%B5%E9%9D%A2%E6%8A%A5%E8%A1%A8%E5%A4%9A%E6%9D%A1%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/index.html">
+<meta property="og:site_name" content="Gek&#39;Blog">
+<meta property="og:description" content="对于页面报表，通常会有按条件检索功能，如果涉及到多次对rowset操作的时候，rowset.flush()的方法报错，显示无法多次清空rowset。所以，应该使用第二种更简单的方法...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20210115224726.png">
+<meta property="article:published_time" content="2020-12-22T10:00:16.000Z">
+<meta property="article:modified_time" content="2021-06-30T13:20:47.963Z">
+<meta property="article:author" content="Gek">
+<meta property="article:tag" content="PeopleSoft">
+<meta property="article:tag" content="PeopleCode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/gek7777/cdn.io/raw/master/image/20210115224726.png">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/12/22/PeopleSoft-%E9%A1%B5%E9%9D%A2%E6%8A%A5%E8%A1%A8%E5%A4%9A%E6%9D%A1%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>PeopleSoft-页面报表多条件搜索功能 | Gek'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Gek'Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">134</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D"><span class="nav-number">1.</span> <span class="nav-text">第一种</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D"><span class="nav-number">2.</span> <span class="nav-text">第二种</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-number">3.</span> <span class="nav-text">注意</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E4%BD%BF%E7%94%A8Rowset%E7%9A%84Fill%E6%96%B9%E6%B3%95%E6%97%B6%EF%BC%8C%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%EF%BC%8C%E4%B8%8D%E8%A6%81%E4%B8%BARowset%E5%AE%9A%E4%B9%89%E5%88%AB%E5%90%8D%EF%BC%8C%E5%90%A6%E5%88%99%E4%BC%9A%E6%9F%A5%E4%B8%8D%E5%87%BA%E6%95%B0%E6%8D%AE%E7%9A%84%EF%BC%9B"><span class="nav-number">3.1.</span> <span class="nav-text">在使用Rowset的Fill方法时，需要注意，不要为Rowset定义别名，否则会查不出数据的；</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%95%E8%8E%B7%E9%94%99%E8%AF%AF"><span class="nav-number">3.2.</span> <span class="nav-text">捕获错误</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gek"
+      src="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
+  <p class="site-author-name" itemprop="name">Gek</p>
+  <div class="site-description" itemprop="description">自律是最强者的本能。--萧伯纳</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">134</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gek7777" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gek7777" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gek7777@126.com" title="E-Mail → mailto:gek7777@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/PeopleSoft-%E9%A1%B5%E9%9D%A2%E6%8A%A5%E8%A1%A8%E5%A4%9A%E6%9D%A1%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/gek7777/cdn.io/raw/master/header.jpg">
+      <meta itemprop="name" content="Gek">
+      <meta itemprop="description" content="自律是最强者的本能。--萧伯纳">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gek'Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PeopleSoft-页面报表多条件搜索功能
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-22 18:00:16" itemprop="dateCreated datePublished" datetime="2020-12-22T18:00:16+08:00">2020-12-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-06-30 21:20:47" itemprop="dateModified" datetime="2021-06-30T21:20:47+08:00">2021-06-30</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">对于页面报表，通常会有按条件检索功能，如果涉及到多次对rowset操作的时候，rowset.flush()的方法报错，显示无法多次清空rowset。所以，应该使用第二种更简单的方法...</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Local Rowset &amp;rs = GetRowset(Scroll.C_SAL_QRY_VW);</span><br><span class="line"></span><br><span class="line">REM 清空rowset;</span><br><span class="line">&amp;rs.Flush();</span><br><span class="line">rem 根据输入的查询条件进行查询;</span><br><span class="line">&amp;rs.Select(Record.C_SAL_QRY_VW, &amp;WHERE);</span><br><span class="line">   </span><br><span class="line">rem 排序;</span><br><span class="line">&amp;rs.Sort(C_SAL_QRY_VW.TREE_NODE_NUM, <span class="string">&quot;A&quot;</span>, C_SAL_QRY_VW.EMPLID, <span class="string">&quot;A&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ScrollFlush(Record.C_PRH_SER_VW);</span><br><span class="line"></span><br><span class="line">&amp;strWhere = <span class="string">&quot;WHERE 1 = 1 &quot;</span>;</span><br><span class="line">rem 默认出待入职的;</span><br><span class="line">&amp;strWhere = &amp;strWhere | <span class="string">&quot; AND C_PRH_STATUS = &#x27;10&#x27; &quot;</span>;</span><br><span class="line">&amp;strWhere = &amp;strWhere | <span class="string">&quot; AND OPRID = &#x27;&quot;</span> | %OperatorId | <span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">ScrollSelect(<span class="number">1</span>, Record.C_PRH_SER_VW, Record.C_PRH_SER_VW, &amp;strWhere);</span><br></pre></td></tr></table></figure>
+
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><h4 id="在使用Rowset的Fill方法时，需要注意，不要为Rowset定义别名，否则会查不出数据的；"><a href="#在使用Rowset的Fill方法时，需要注意，不要为Rowset定义别名，否则会查不出数据的；" class="headerlink" title="在使用Rowset的Fill方法时，需要注意，不要为Rowset定义别名，否则会查不出数据的；"></a>在使用Rowset的Fill方法时，需要注意，不要为Rowset定义别名，否则会查不出数据的；</h4><img src="https://gitee.com/gek7777/cdn.io/raw/master/image/20210115224726.png"/>
+
+<h4 id="捕获错误"><a href="#捕获错误" class="headerlink" title="捕获错误"></a>捕获错误</h4><p>原表中有datetime类型，使用视图SQL时；原表中的datetime可以正常在视图中使用；</p>
+<p>但是，如果该视图在页面中被作为Rowset使用，那么使用Rowset的select /fill/scrollselect 等（即第一种方式）；</p>
+<p>搜索时，会默认转换为char（string类型），而页面中如果直接用视图中的datetime字段，会导致页面报错 sql error；</p>
+<p>如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PSAPPSRV.9263 (2123) [2021-02-08T18:00:34.030 SIE_ZL@192.168.0.252 (CHROME 88.0.4324.150; WIN10) ICPanel] XJFyb8kCIOQsQA 767851693135939585 SIE_ZL (3) File: /vob/peopletools/src/psppr/ramget.cppSQL error. Stmt <span class="comment">#: 709 Error Position: 0 Return: 1841 - ORA-01841: (full) year must be between -4713 and +9999, and not be 0 </span></span><br><span class="line"></span><br><span class="line">Failed SQL stmt: </span><br><span class="line"></span><br><span class="line">   <span class="keyword">SELECT</span> C_APPLI_NUMB, TO_CHAR(C_EFFDT,<span class="string">&#x27;YYYY-MM-DD&#x27;</span>), C_APPLI_LEVEL, EMPLID, SETID, C_WORK_CHK_SYS_ID, C_SEQ5, C_REST_DAY, C_IS_WEEKEND, C_IS_LEGAL_HOLI, COMMENTS, C_VACATION_DF, C_VACATION_MORE, ATTACHSYSFILENAME, ATTACHUSERFILE, CST_IMPTFILE_FLAG, C_APPLI_RS, C_SECTION_TYPE, EMPLID2, C_OA_APPL_NUM, TO_CHAR(<span class="keyword">CAST</span>((LASTUPDDTTM) <span class="keyword">AS</span> <span class="built_in">TIMESTAMP</span>),<span class="string">&#x27;YYYY-MM-DD-HH24.MI.SS.FF&#x27;</span>), LASTUPDOPRID <span class="keyword">FROM</span> PS_C_VACATIO_TBL_V <span class="keyword">WHERE</span> <span class="number">1</span> = <span class="number">1</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> C_APPLI_NUMB</span><br></pre></td></tr></table></figure>
+
+<p>解决方式：在视图中，用string类型字段替换datetime类型字段；或者，页面中datetime类型字段用string类型字段替换；</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PeopleSoft/" rel="tag"># PeopleSoft</a>
+              <a href="/tags/PeopleCode/" rel="tag"># PeopleCode</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/22/PeopleSoft-%E6%8A%A5%E8%A1%A8%E7%A4%BA%E4%BE%8B%EF%BC%88WriteExcelEx_2010%E7%B1%BB%E5%92%8CReportDefinition%E7%B1%BB%EF%BC%89/" rel="prev" title="PeopleSoft-报表示例（WriteExcelEx_2010类和ReportDefinition类）">
+                  <i class="fa fa-chevron-left"></i> PeopleSoft-报表示例（WriteExcelEx_2010类和ReportDefinition类）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/12/26/PeopleSoft-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%B8%85%E7%90%86%E7%BC%93%E5%AD%98/" rel="next" title="PeopleSoft-服务器清理缓存">
+                  PeopleSoft-服务器清理缓存 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gek</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">348k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+</body>
+</html>
