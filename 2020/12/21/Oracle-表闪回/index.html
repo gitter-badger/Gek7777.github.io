@@ -25,13 +25,13 @@
 
   <meta name="description" content="对于程序猿来说，经常需要操作数据库，所以需要谨慎对待数据库操作，特别是在正式环境和开发测试环境放在一起时，比较容易误操作，比如更新、删除了表数据等。这时候只需要调用Oracle数据库内置的表闪回功能，这样就能将数据恢复回来。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Oracle-表闪回">
+<meta property="og:title" content="Oracle-表闪回&amp;快照恢复">
 <meta property="og:url" content="http://yoursite.com/2020/12/21/Oracle-%E8%A1%A8%E9%97%AA%E5%9B%9E/index.html">
 <meta property="og:site_name" content="Gek&#39;Blog">
 <meta property="og:description" content="对于程序猿来说，经常需要操作数据库，所以需要谨慎对待数据库操作，特别是在正式环境和开发测试环境放在一起时，比较容易误操作，比如更新、删除了表数据等。这时候只需要调用Oracle数据库内置的表闪回功能，这样就能将数据恢复回来。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-21T03:14:28.000Z">
-<meta property="article:modified_time" content="2021-06-19T09:32:54.414Z">
+<meta property="article:modified_time" content="2021-10-18T09:55:50.582Z">
 <meta property="article:author" content="Gek">
 <meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
@@ -50,7 +50,7 @@
   };
 </script>
 
-  <title>Oracle-表闪回 | Gek'Blog</title>
+  <title>Oracle-表闪回&快照恢复 | Gek'Blog</title>
   
 
 
@@ -136,7 +136,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">35</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -146,7 +146,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">134</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">138</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -210,7 +210,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AF%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">误操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%90%8E%E4%BA%A7%E7%94%9F%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%80%E6%96%B0%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">备份误操作后产生的数据（最新的数据）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E8%A1%A8%E9%97%AA%E5%9B%9E%E5%8A%9F%E8%83%BD%EF%BC%8C%E5%B9%B6%E4%B8%94%E9%97%AA%E5%9B%9E%E8%A1%A8%E5%88%B0%E6%8C%87%E5%AE%9A%E6%97%B6%E9%97%B4"><span class="nav-number">3.</span> <span class="nav-text">开启表闪回功能，并且闪回表到指定时间</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E9%97%AA%E5%9B%9E"><span class="nav-number">1.</span> <span class="nav-text">表闪回</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AF%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">误操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%90%8E%E4%BA%A7%E7%94%9F%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%80%E6%96%B0%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">备份误操作后产生的数据（最新的数据）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E8%A1%A8%E9%97%AA%E5%9B%9E%E5%8A%9F%E8%83%BD%EF%BC%8C%E5%B9%B6%E4%B8%94%E9%97%AA%E5%9B%9E%E8%A1%A8%E5%88%B0%E6%8C%87%E5%AE%9A%E6%97%B6%E9%97%B4"><span class="nav-number">1.3.</span> <span class="nav-text">开启表闪回功能，并且闪回表到指定时间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E7%85%A7%E6%81%A2%E5%A4%8D"><span class="nav-number">2.</span> <span class="nav-text">快照恢复</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -226,7 +226,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">134</span>
+          <span class="site-state-item-count">138</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -239,7 +239,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -299,7 +299,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Oracle-表闪回
+          Oracle-表闪回&快照恢复
         </h1>
 
         <div class="post-meta-container">
@@ -317,7 +317,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-19 17:32:54" itemprop="dateModified" datetime="2021-06-19T17:32:54+08:00">2021-06-19</time>
+        <time title="修改时间：2021-10-18 17:55:50" itemprop="dateModified" datetime="2021-10-18T17:55:50+08:00">2021-10-18</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -335,7 +335,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>505</span>
+      <span>697</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -354,12 +354,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="误操作"><a href="#误操作" class="headerlink" title="误操作"></a>误操作</h3><p>不小心删除了表数据，或者更新了表数据。这时候记下操作的大致时间。</p>
+        <h2 id="表闪回"><a href="#表闪回" class="headerlink" title="表闪回"></a>表闪回</h2><h3 id="误操作"><a href="#误操作" class="headerlink" title="误操作"></a>误操作</h3><p>不小心删除了表数据，或者更新了表数据。这时候记下操作的大致时间。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span>  PS_C_RE_STATUS_TBL </span><br><span class="line"><span class="comment">/*误操作*/</span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> PS_C_RE_STATUS_TBL</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="备份误操作后产生的数据（最新的数据）"><a href="#备份误操作后产生的数据（最新的数据）" class="headerlink" title="备份误操作后产生的数据（最新的数据）"></a>备份误操作后产生的数据（最新的数据）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*创建当前数据备份表*/</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> PS_C_RE_STATUS_TBL_back <span class="keyword">as</span> <span class="keyword">select</span> * <span class="keyword">from</span>  PS_C_RE_STATUS_TBL</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span>  PS_C_RE_STATUS_TBL_back </span><br></pre></td></tr></table></figure>
 
 <h3 id="开启表闪回功能，并且闪回表到指定时间"><a href="#开启表闪回功能，并且闪回表到指定时间" class="headerlink" title="开启表闪回功能，并且闪回表到指定时间"></a>开启表闪回功能，并且闪回表到指定时间</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*开启表闪回*/</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> PS_C_RE_STATUS_TBL <span class="keyword">enable</span> <span class="keyword">row</span> <span class="keyword">movement</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*表闪回指定数据*/</span></span><br><span class="line">FLASHBACK TABLE PS_C_RE_STATUS_TBL TO TIMESTAMP TO_TIMESTAMP(&#x27;2020-12-21 11:11:00&#x27;, &#x27;YYYY-MM-DD HH24:MI:SS&#x27;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*关闭表闪回*/</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> PS_C_RE_STATUS_TBL <span class="keyword">disable</span> <span class="keyword">row</span> <span class="keyword">movement</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="快照恢复"><a href="#快照恢复" class="headerlink" title="快照恢复"></a>快照恢复</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*获取30分钟之前的快照 TIMESTAMP(SYSTIMESTAMP - 1 / 48)插入表中*/</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> PSPCMTXT</span><br><span class="line">  <span class="keyword">SELECT</span> *</span><br><span class="line">    <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> *</span><br><span class="line">            <span class="keyword">FROM</span> PSPCMTXT <span class="keyword">AS</span> <span class="keyword">OF</span> <span class="built_in">TIMESTAMP</span>(SYSTIMESTAMP - <span class="number">1</span> / <span class="number">48</span>))</span><br><span class="line">   <span class="keyword">WHERE</span> OBJECTID1 = <span class="number">104</span></span><br><span class="line">     <span class="keyword">AND</span> OBJECTVALUE1 = <span class="string">&#x27;包名&#x27;</span>; </span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -442,13 +446,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">348k</span>
+    <span title="站点总字数">354k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5:17</span>
+    <span title="站点阅读时长">5:22</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
